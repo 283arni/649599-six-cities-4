@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../card/card.jsx';
+import Card from '../card/card';
 
 const Main = (props) => {
 
-  const {housingCount, namesCards} = props;
+  const {housingCount, namesCards, onTitleCardClick} = props;
 
-  const cards = namesCards.map((nameCard, i) => <Card key={nameCard + i} nameCard={nameCard}/>);
+  const cards = namesCards.map((nameCard, i) =>
+    <Card
+      key={nameCard + i}
+      nameCard={nameCard}
+      onTitleCardClick={onTitleCardClick}
+    />
+  );
 
   return (
     <div className="page page--gray page--main">
@@ -115,7 +121,8 @@ const Main = (props) => {
 
 Main.propTypes = {
   housingCount: PropTypes.number.isRequired,
-  namesCards: PropTypes.arrayOf(PropTypes.string.isRequired)
+  namesCards: PropTypes.arrayOf(PropTypes.string.isRequired),
+  onTitleCardClick: PropTypes.func.isRequired
 };
 
 export default Main;
