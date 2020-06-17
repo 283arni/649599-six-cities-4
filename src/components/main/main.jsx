@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../card/card';
+import {offers} from '../../mocks/data/offers';
 
 const Main = (props) => {
+  const onHover = () => {};
+  const {housingCount, titleCardHandler} = props;
 
-  const {housingCount, namesCards, onTitleCardClick} = props;
-
-  const cards = namesCards.map((nameCard, i) =>
+  const cards = offers.map((offer) =>
     <Card
-      key={nameCard + i}
-      nameCard={nameCard}
-      onTitleCardClick={onTitleCardClick}
+      key={offer.id}
+      offer={offer}
+      titleCardHandler={titleCardHandler}
+      onHover={onHover}
     />
   );
 
@@ -122,7 +124,7 @@ const Main = (props) => {
 Main.propTypes = {
   housingCount: PropTypes.number.isRequired,
   namesCards: PropTypes.arrayOf(PropTypes.string.isRequired),
-  onTitleCardClick: PropTypes.func.isRequired
+  titleCardHandler: PropTypes.func.isRequired
 };
 
 export default Main;

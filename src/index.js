@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app.jsx';
-import {Ads, namesCards} from './mock/data/index';
+import {Ads, namesCards} from './mocks/data/index';
 
 
 ReactDOM.render(

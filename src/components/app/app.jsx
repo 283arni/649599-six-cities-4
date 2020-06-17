@@ -5,20 +5,18 @@ import Main from '../main/main';
 const titleCardHandler = () => {};
 
 const App = (props) => {
-  const {housingCount, namesCards} = props;
+  const {housingCount} = props;
 
   return (
     <Main
       housingCount={housingCount}
-      namesCards={namesCards}
-      onTitleCardClick={titleCardHandler}
+      titleCardHandler={titleCardHandler}
     />
   );
 };
 
 App.propTypes = {
-  housingCount: PropTypes.number.isRequired,
-  namesCards: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+  housingCount: PropTypes.number.isRequired
 };
 
 export default App;
