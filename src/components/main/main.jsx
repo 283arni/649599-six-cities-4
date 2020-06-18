@@ -1,20 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../card/card';
-import {offers} from '../../mocks/data/offers';
+import ListOffers from '../list-offers/list-offers';
+import offerType from '../../types/offers';
 
 const Main = (props) => {
-  const onHover = () => {};
-  const {housingCount, titleCardHandler} = props;
+  const {housingCount, titleCardHandler, offers} = props;
 
-  const cards = offers.map((offer) =>
-    <Card
-      key={offer.id}
-      offer={offer}
-      titleCardHandler={titleCardHandler}
-      onHover={onHover}
-    />
-  );
 
   return (
     <div className="page page--gray page--main">
@@ -107,9 +98,10 @@ const Main = (props) => {
                 </select>
                 */}
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {cards}
-              </div>
+              <ListOffers
+                offers={offers}
+                titleCardHandler={titleCardHandler}
+              />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -122,8 +114,10 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
+  offers: PropTypes.arrayOf(
+      PropTypes.shape(offerType).isRequired
+  ),
   housingCount: PropTypes.number.isRequired,
-  namesCards: PropTypes.arrayOf(PropTypes.string.isRequired),
   titleCardHandler: PropTypes.func.isRequired
 };
 

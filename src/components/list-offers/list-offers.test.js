@@ -1,14 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import App from './app';
-import {Ads} from '../../mocks/test/const';
+import ListOffers from './list-offers';
 import {offers} from '../../mocks/test/offers';
 
-it(`check render App`, () => {
+it(`check render ListOffers`, () => {
   const tree = renderer.create(
-      <App
-        housingCount={Ads.HOUSING_COUNT}
+      <ListOffers
         offers={offers}
+        titleCardHandler={jest.fn()}
       />
   );
 

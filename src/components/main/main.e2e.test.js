@@ -2,7 +2,8 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main";
-import {Ads, namesCards} from '../../mock/test/base';
+import {Ads} from '../../mocks/test/const';
+import {offers} from '../../mocks/test/offers';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -14,8 +15,8 @@ it(`click on title cards`, () => {
   const main = shallow(
       <Main
         housingCount={Ads.HOUSING_COUNT}
-        namesCards={namesCards}
-        onTitleCardClick={onTitleCardClick}
+        offers={offers}
+        titleCardHandler={onTitleCardClick}
       />
   );
 
