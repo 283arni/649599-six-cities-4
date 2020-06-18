@@ -1,24 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main';
+import offerType from '../../types/offers';
 
 const titleCardHandler = () => {};
 
 const App = (props) => {
-  const {housingCount, namesCards} = props;
+  const {housingCount, offers} = props;
 
   return (
     <Main
       housingCount={housingCount}
-      namesCards={namesCards}
-      onTitleCardClick={titleCardHandler}
+      titleCardHandler={titleCardHandler}
+      offers={offers}
     />
   );
 };
 
 App.propTypes = {
-  housingCount: PropTypes.number.isRequired,
-  namesCards: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+  offers: PropTypes.arrayOf(
+      PropTypes.shape(offerType).isRequired
+  ),
+  housingCount: PropTypes.number.isRequired
 };
 
 export default App;
