@@ -14,7 +14,7 @@ export const offers = [
     price: 250,
     title: `Wood and stone place`,
     type: `room`,
-    rating: 5
+    rating: 4.9
   }, {
     id: 3,
     photo: `./img/apartment-03.jpg`,
@@ -22,7 +22,7 @@ export const offers = [
     price: 220,
     title: `Beautiful &amp; luxurious apartment at great location`,
     type: `hotel`,
-    rating: 4
+    rating: 3.7
   }, {
     id: 4,
     photo: `./img/apartment-01.jpg`,

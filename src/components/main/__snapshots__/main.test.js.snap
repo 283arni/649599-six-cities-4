@@ -164,7 +164,7 @@ exports[`check render Main 1`] = `
           <b
             className="places__found"
           >
-            312
+            2
              places to stay in Amsterdam
           </b>
           <form
@@ -242,7 +242,7 @@ exports[`check render Main 1`] = `
                   href="#"
                 >
                   <img
-                    alt="Place image"
+                    alt="Nice, cozy, warm big bed apartment"
                     className="place-card__image"
                     height="200"
                     src="./img/apartment-01.jpg"
@@ -346,7 +346,7 @@ exports[`check render Main 1`] = `
                   href="#"
                 >
                   <img
-                    alt="Place image"
+                    alt="Wood and stone place"
                     className="place-card__image"
                     height="200"
                     src="./img/apartment-02.jpg"

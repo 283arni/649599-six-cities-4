@@ -8,6 +8,7 @@ it(`check render ListOffers`, () => {
       <ListOffers
         offers={offers}
         titleCardHandler={jest.fn()}
+        onHover={jest.fn()}
       />
   );
 

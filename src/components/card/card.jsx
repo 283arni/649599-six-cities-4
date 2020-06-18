@@ -11,7 +11,7 @@ const Card = (props) => {
   return (
     <article
       className="cities__place-card place-card"
-      onMouseOver={onHover}
+      onMouseOver={() => onHover(offer)}
     >
       {premium ?
         <div className="place-card__mark">
@@ -20,7 +20,7 @@ const Card = (props) => {
       }
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={photo} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={photo} width="260" height="200" alt={title} />
         </a>
       </div>
       <div className="place-card__info">
@@ -38,7 +38,7 @@ const Card = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: rating * 20 + `%`}}></span>
+            <span style={{width: Math.round(rating) * 20 + `%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

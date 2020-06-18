@@ -1,21 +1,42 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main';
 import offerType from '../../types/offers';
 
-const titleCardHandler = () => {};
 
-const App = (props) => {
-  const {housingCount, offers} = props;
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      offer: {}
+    };
 
-  return (
-    <Main
-      housingCount={housingCount}
-      titleCardHandler={titleCardHandler}
-      offers={offers}
-    />
-  );
-};
+    this.handlerMouseOver = this.handlerMouseOver.bind(this);
+    this.handlerTitleCardHandler = this.handlerTitleCardHandler.bind(this);
+  }
+
+  handlerMouseOver(offerCard) {
+    this.setState({
+      offer: offerCard
+    });
+  }
+
+  handlerTitleCardHandler() {}
+
+
+  render() {
+    const {housingCount, offers} = this.props;
+
+    return (
+      <Main
+        housingCount={housingCount}
+        titleCardHandler={this.handlerTitleCardHandler}
+        offers={offers}
+        onHover={this.handlerMouseOver}
+      />
+    );
+  }
+}
 
 App.propTypes = {
   offers: PropTypes.arrayOf(

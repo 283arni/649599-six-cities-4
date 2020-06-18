@@ -4,7 +4,7 @@ import ListOffers from '../list-offers/list-offers';
 import offerType from '../../types/offers';
 
 const Main = (props) => {
-  const {housingCount, titleCardHandler, offers} = props;
+  const {housingCount, titleCardHandler, offers, onHover} = props;
 
 
   return (
@@ -101,6 +101,7 @@ const Main = (props) => {
               <ListOffers
                 offers={offers}
                 titleCardHandler={titleCardHandler}
+                onHover={onHover}
               />
             </section>
             <div className="cities__right-section">
@@ -118,7 +119,8 @@ Main.propTypes = {
       PropTypes.shape(offerType).isRequired
   ),
   housingCount: PropTypes.number.isRequired,
-  titleCardHandler: PropTypes.func.isRequired
+  titleCardHandler: PropTypes.func.isRequired,
+  onHover: PropTypes.func.isRequired
 };
 
 export default Main;
