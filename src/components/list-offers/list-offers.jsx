@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../card/card';
-import offerType from '../../types/offers';
+import {offerType} from '../../types/offers';
 
 const ListOffers = (props) => {
 

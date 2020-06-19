@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import offerType from '../../types/offers';
+import {offerType} from '../../types/offers';
 
 const Card = (props) => {
 

@@ -8,7 +8,7 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`to check Card should return offer`, () => {
+it(`to check Card should return offer and click on title`, () => {
   const onHoverCard = jest.fn();
   const titleCardHandler = jest.fn();
 
@@ -21,8 +21,12 @@ it(`to check Card should return offer`, () => {
   );
 
   const place = card.find(`.place-card`);
+  const titleCard = card.find(`.place-card__name a`);
+
 
   place.simulate(`onmouseover`, onHoverCard(offer));
+  titleCard.simulate(`click`);
 
   expect(onHoverCard.mock.calls[0][0]).toMatchObject(offer);
+  expect(titleCardHandler).toHaveBeenCalled();
 });

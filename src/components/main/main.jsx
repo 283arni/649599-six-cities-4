@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ListOffers from '../list-offers/list-offers';
-import offerType from '../../types/offers';
+import {offerType} from '../../types/offers';
 
 const Main = (props) => {
   const {housingCount, titleCardHandler, offers, onHover} = props;

@@ -27,3 +27,23 @@ export const offer = {
   type: `room`,
   rating: 5
 };
+
+export const property = {
+  photos: [`./img/studio-01.jpg`, `./img/apartment-03.jpg`],
+  title: `Title`,
+  description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
+  premium: false,
+  type: {
+    room: `Private Room`
+  },
+  rating: 3.7,
+  amountBedrooms: 3,
+  maxGustes: 3,
+  price: 120,
+  things: [`WiFi`, `Cable TV`, `Conditioner`],
+  owner: {
+    avatar: `./img/avatar-angelina.jpg`,
+    name: `Petiy`,
+    super: true
+  }
+};
