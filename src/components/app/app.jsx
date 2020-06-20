@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main';
-import {offerType, propertyType} from '../../types/offers';
+import {offerType} from '../../types/offers';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Property from '../property/property';
 import {Pages} from '../../mocks/data/const';
@@ -17,6 +17,7 @@ class App extends PureComponent {
 
     this.handlerMouseOver = this.handlerMouseOver.bind(this);
     this.handlerTitleCardHandler = this.handlerTitleCardHandler.bind(this);
+    this.handlerTitleClickProperty = this.handlerTitleClickProperty.bind(this);
   }
 
   handlerMouseOver(offerCard) {
@@ -31,14 +32,19 @@ class App extends PureComponent {
     });
   }
 
+  handlerTitleClickProperty() {}
+
 
   _renderApp() {
-    const {housingCount, offers, property} = this.props;
+    const {housingCount, offers} = this.props;
 
     if (this.state.page === Pages.PROPERTY) {
-      return (<Property
-        property={property}
-      />);
+      return (
+        <Property
+          offer={this.state.offer}
+          titleCardClick={this.handlerTitleClickProperty}
+        />
+      );
     }
 
     return (
@@ -52,7 +58,6 @@ class App extends PureComponent {
   }
 
   render() {
-    const {property} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -61,7 +66,8 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-property">
             <Property
-              property={property}
+              offer={this.props.offers[0]}
+              titleCardClick={this.handlerTitleClickProperty}
             />
           </Route>
         </Switch>
@@ -74,9 +80,8 @@ class App extends PureComponent {
 App.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired
-  ),
-  housingCount: PropTypes.number.isRequired,
-  property: PropTypes.shape(propertyType).isRequired
+  ).isRequired,
+  housingCount: PropTypes.number.isRequired
 };
 
 export default App;

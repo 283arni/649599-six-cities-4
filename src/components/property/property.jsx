@@ -1,10 +1,11 @@
 import React from 'react';
-import {propertyType} from '../../types/offers';
+import {offerType} from '../../types/offers';
 import PropTypes from 'prop-types';
 
 const Property = (props) => {
-  const {property} = props;
-  const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner} = property;
+
+  const {offer, titleCardClick} = props;
+  const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner} = offer;
 
   return (
     <div className="page">
@@ -69,7 +70,7 @@ const Property = (props) => {
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {type.room}
+                  {Object.values(type)}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
                   {amountBedrooms} Bedrooms
@@ -223,7 +224,10 @@ const Property = (props) => {
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Wood and stone place</a>
+                    <a
+                      href="#"
+                      onClick={titleCardClick}
+                    >Wood and stone place</a>
                   </h2>
                   <p className="place-card__type">Private room</p>
                 </div>
@@ -255,7 +259,10 @@ const Property = (props) => {
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Canal View Prinsengracht</a>
+                    <a
+                      href="#"
+                      onClick={titleCardClick}
+                    >Canal View Prinsengracht</a>
                   </h2>
                   <p className="place-card__type">Apartment</p>
                 </div>
@@ -287,7 +294,10 @@ const Property = (props) => {
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Nice, cozy, warm big bed apartment</a>
+                    <a
+                      href="#"
+                      onClick={titleCardClick}
+                    >Nice, cozy, warm big bed apartment</a>
                   </h2>
                   <p className="place-card__type">Apartment</p>
                 </div>
@@ -301,7 +311,8 @@ const Property = (props) => {
 };
 
 Property.propTypes = {
-  property: PropTypes.shape(propertyType).isRequired
+  offer: PropTypes.shape(offerType).isRequired,
+  titleCardClick: PropTypes.func.isRequired
 };
 
 export default Property;

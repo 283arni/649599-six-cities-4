@@ -5,7 +5,7 @@ import {offerType} from '../../types/offers';
 const Card = (props) => {
 
   const {offer, titleCardHandler, onHover} = props;
-  const {photo, premium, price, title, type, rating} = offer;
+  const {photos, premium, price, title, type, rating} = offer;
 
 
   return (
@@ -20,7 +20,7 @@ const Card = (props) => {
       }
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={photo} width="260" height="200" alt={title} />
+          <img className="place-card__image" src={photos[0]} width="260" height="200" alt={title} />
         </a>
       </div>
       <div className="place-card__info">
@@ -48,7 +48,7 @@ const Card = (props) => {
             onClick={titleCardHandler}
           >{title}</a>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{Object.values(type)}</p>
       </div>
     </article>
   );

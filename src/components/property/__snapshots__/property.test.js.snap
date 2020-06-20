@@ -73,7 +73,25 @@ exports[`check render Property 1`] = `
             className="property__image-wrapper"
           >
             <img
-              alt="Title"
+              alt="Beautiful &amp; luxurious apartment at great location"
+              className="property__image"
+              src="./img/apartment-01.jpg"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Beautiful &amp; luxurious apartment at great location"
+              className="property__image"
+              src="./img/apartment-02.jpg"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Beautiful &amp; luxurious apartment at great location"
               className="property__image"
               src="./img/studio-01.jpg"
             />
@@ -82,7 +100,7 @@ exports[`check render Property 1`] = `
             className="property__image-wrapper"
           >
             <img
-              alt="Title"
+              alt="Beautiful &amp; luxurious apartment at great location"
               className="property__image"
               src="./img/apartment-03.jpg"
             />
@@ -101,7 +119,7 @@ exports[`check render Property 1`] = `
             <h1
               className="property__name"
             >
-              Title
+              Beautiful &amp; luxurious apartment at great location
             </h1>
             <button
               className="property__bookmark-button button"
@@ -132,7 +150,7 @@ exports[`check render Property 1`] = `
               <span
                 style={
                   Object {
-                    "width": "80%",
+                    "width": "40%",
                   }
                 }
               />
@@ -145,7 +163,7 @@ exports[`check render Property 1`] = `
             <span
               className="property__rating-value rating__value"
             >
-              3.7
+              2.3
             </span>
           </div>
           <ul
@@ -154,19 +172,19 @@ exports[`check render Property 1`] = `
             <li
               className="property__feature property__feature--entire"
             >
-              Private Room
+              Hotel
             </li>
             <li
               className="property__feature property__feature--bedrooms"
             >
-              3
+              5
                Bedrooms
             </li>
             <li
               className="property__feature property__feature--adults"
             >
               Max 
-              3
+              1
                adults
             </li>
           </ul>
@@ -177,7 +195,7 @@ exports[`check render Property 1`] = `
               className="property__price-value"
             >
               €
-              120
+              130
             </b>
             <span
               className="property__price-text"
@@ -211,6 +229,16 @@ exports[`check render Property 1`] = `
               >
                 Conditioner
               </li>
+              <li
+                className="property__inside-item"
+              >
+                WiFi
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Cable TV
+              </li>
             </ul>
           </div>
           <div
@@ -225,10 +253,10 @@ exports[`check render Property 1`] = `
               className="property__host-user user"
             >
               <div
-                className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper"
+                className="property__avatar-wrapper  user__avatar-wrapper"
               >
                 <img
-                  alt="Petiy"
+                  alt="Misha"
                   className="property__avatar user__avatar"
                   height="74"
                   src="./img/avatar-angelina.jpg"
@@ -238,17 +266,12 @@ exports[`check render Property 1`] = `
               <span
                 className="property__user-name"
               >
-                Petiy
+                Misha
               </span>
             </div>
             <div
               className="property__description"
             >
-              <p
-                className="property__text"
-              >
-                A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-              </p>
               <p
                 className="property__text"
               >
@@ -596,6 +619,7 @@ exports[`check render Property 1`] = `
               >
                 <a
                   href="#"
+                  onClick={[MockFunction]}
                 >
                   Wood and stone place
                 </a>
@@ -690,6 +714,7 @@ exports[`check render Property 1`] = `
               >
                 <a
                   href="#"
+                  onClick={[MockFunction]}
                 >
                   Canal View Prinsengracht
                 </a>
@@ -784,6 +809,7 @@ exports[`check render Property 1`] = `
               >
                 <a
                   href="#"
+                  onClick={[MockFunction]}
                 >
                   Nice, cozy, warm big bed apartment
                 </a>
