@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ListOffers from '../list-offers/list-offers';
-import offerType from '../../types/offers';
+import {offerType} from '../../types/offers';
 
 const Main = (props) => {
-  const {housingCount, titleCardHandler, offers} = props;
+  const {onTitleCardClick, offers, onCardHover} = props;
 
 
   return (
@@ -74,7 +74,7 @@ const Main = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{housingCount} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -100,7 +100,8 @@ const Main = (props) => {
               </form>
               <ListOffers
                 offers={offers}
-                titleCardHandler={titleCardHandler}
+                onTitleCardClick={onTitleCardClick}
+                onCardHover={onCardHover}
               />
             </section>
             <div className="cities__right-section">
@@ -117,8 +118,8 @@ Main.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired
   ),
-  housingCount: PropTypes.number.isRequired,
-  titleCardHandler: PropTypes.func.isRequired
+  onTitleCardClick: PropTypes.func.isRequired,
+  onCardHover: PropTypes.func.isRequired
 };
 
 export default Main;

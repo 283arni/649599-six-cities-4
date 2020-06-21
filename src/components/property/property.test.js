@@ -1,14 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Main from './main';
-import {offers} from '../../mocks/test/offers';
+import Property from './property';
+import {offer} from '../../mocks/test/offers';
 
-it(`check render Main`, () => {
+it(`check render Property`, () => {
   const tree = renderer.create(
-      <Main
-        offers={offers}
+      <Property
+        offer={offer}
         onTitleCardClick={jest.fn()}
-        onCardHover={jest.fn()}
       />
   );
 
