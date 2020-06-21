@@ -6,7 +6,6 @@ import {offers} from '../../mocks/test/offers';
 it(`check render App`, () => {
   const tree = renderer.create(
       <App
-        housingCount={offers.length}
         offers={offers}
       />
   );

@@ -5,7 +5,7 @@ import {offerType} from '../../types/offers';
 
 const ListOffers = (props) => {
 
-  const {offers, titleCardHandler, onHover} = props;
+  const {offers, onTitleCardClick, onCardHover} = props;
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -13,8 +13,8 @@ const ListOffers = (props) => {
         <Card
           key={offer.id}
           offer={offer}
-          titleCardHandler={titleCardHandler}
-          onHover={onHover}
+          onTitleCardClick={onTitleCardClick}
+          onCardHover={onCardHover}
         />
       )}
     </div>
@@ -25,8 +25,8 @@ ListOffers.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired
   ),
-  titleCardHandler: PropTypes.func.isRequired,
-  onHover: PropTypes.func.isRequired
+  onTitleCardClick: PropTypes.func.isRequired,
+  onCardHover: PropTypes.func.isRequired
 };
 
 export default ListOffers;

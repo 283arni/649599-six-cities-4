@@ -86,7 +86,7 @@ exports[`check render Card 1`] = `
     >
       <a
         href="#"
-        onClick={[MockFunction]}
+        onClick={[Function]}
       >
         Beautiful &amp; luxurious apartment at great location
       </a>

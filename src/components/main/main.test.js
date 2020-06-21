@@ -6,10 +6,9 @@ import {offers} from '../../mocks/test/offers';
 it(`check render Main`, () => {
   const tree = renderer.create(
       <Main
-        housingCount={offers.length}
         offers={offers}
-        titleCardHandler={jest.fn()}
-        onHover={jest.fn()}
+        onTitleCardClick={jest.fn()}
+        onCardHover={jest.fn()}
       />
   );
 

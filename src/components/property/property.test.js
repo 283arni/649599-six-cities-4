@@ -7,7 +7,7 @@ it(`check render Property`, () => {
   const tree = renderer.create(
       <Property
         offer={offer}
-        titleCardClick={jest.fn()}
+        onTitleCardClick={jest.fn()}
       />
   );
 

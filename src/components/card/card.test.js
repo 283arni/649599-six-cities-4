@@ -7,8 +7,8 @@ it(`check render Card`, () => {
   const tree = renderer.create(
       <Card
         offer={offer}
-        titleCardHandler={jest.fn()}
-        onHover={jest.fn()}
+        onTitleCardClick={jest.fn()}
+        onCardHover={jest.fn()}
       />
   );
 

@@ -9,12 +9,12 @@ Enzyme.configure({
 });
 
 it(`in Property click on titles cards`, () => {
-  const titleCardClick = jest.fn();
+  const onTitleCardClick = jest.fn();
 
   const property = shallow(
       <Property
         offer={offer}
-        titleCardClick={titleCardClick}
+        onTitleCardClick={onTitleCardClick}
       />
   );
 
@@ -24,6 +24,6 @@ it(`in Property click on titles cards`, () => {
     titleClick.simulate(`click`);
   });
 
-  expect(titleCardClick).toHaveBeenCalledTimes(titlesCards.length);
+  expect(onTitleCardClick).toHaveBeenCalledTimes(titlesCards.length);
 });
 

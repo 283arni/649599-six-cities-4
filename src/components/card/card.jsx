@@ -4,14 +4,14 @@ import {offerType} from '../../types/offers';
 
 const Card = (props) => {
 
-  const {offer, titleCardHandler, onHover} = props;
+  const {offer, onTitleCardClick, onCardHover} = props;
   const {photos, premium, price, title, type, rating} = offer;
 
 
   return (
     <article
       className="cities__place-card place-card"
-      onMouseOver={() => onHover(offer)}
+      onMouseOver={() => onCardHover(offer)}
     >
       {premium ?
         <div className="place-card__mark">
@@ -45,7 +45,7 @@ const Card = (props) => {
         <h2 className="place-card__name">
           <a
             href="#"
-            onClick={titleCardHandler}
+            onClick={() => onTitleCardClick(offer)}
           >{title}</a>
         </h2>
         <p className="place-card__type">{Object.values(type)}</p>
@@ -56,8 +56,8 @@ const Card = (props) => {
 
 Card.propTypes = {
   offer: PropTypes.shape(offerType).isRequired,
-  titleCardHandler: PropTypes.func.isRequired,
-  onHover: PropTypes.func.isRequired
+  onTitleCardClick: PropTypes.func.isRequired,
+  onCardHover: PropTypes.func.isRequired
 };
 
 export default Card;

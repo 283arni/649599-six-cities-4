@@ -6,7 +6,6 @@ import {offers} from './mocks/data/offers';
 
 ReactDOM.render(
     <App
-      housingCount={offers.length}
       offers={offers}
     />,
     document.querySelector(`#root`)

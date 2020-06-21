@@ -89,7 +89,7 @@ exports[`check render ListOffers 1`] = `
       >
         <a
           href="#"
-          onClick={[MockFunction]}
+          onClick={[Function]}
         >
           Wood and stone place
         </a>
@@ -186,7 +186,7 @@ exports[`check render ListOffers 1`] = `
       >
         <a
           href="#"
-          onClick={[MockFunction]}
+          onClick={[Function]}
         >
           Beautiful &amp; luxurious apartment at great location
         </a>

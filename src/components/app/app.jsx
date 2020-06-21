@@ -4,55 +4,45 @@ import Main from '../main/main';
 import {offerType} from '../../types/offers';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Property from '../property/property';
-import {Pages} from '../../mocks/data/const';
 
 
 class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      offer: {},
-      page: ``
+      offer: null
     };
 
-    this.handlerMouseOver = this.handlerMouseOver.bind(this);
-    this.handlerTitleCardHandler = this.handlerTitleCardHandler.bind(this);
-    this.handlerTitleClickProperty = this.handlerTitleClickProperty.bind(this);
+    this.handlerCardMouseOver = this.handlerCardMouseOver.bind(this);
+    this.handlerTitleClick = this.handlerTitleClick.bind(this);
   }
 
-  handlerMouseOver(offerCard) {
+  handlerTitleClick(offerCard) {
     this.setState({
       offer: offerCard,
     });
   }
 
-  handlerTitleCardHandler() {
-    this.setState({
-      page: Pages.PROPERTY,
-    });
-  }
-
-  handlerTitleClickProperty() {}
+  handlerCardMouseOver() {}
 
 
   _renderApp() {
-    const {housingCount, offers} = this.props;
+    const {offers} = this.props;
 
-    if (this.state.page === Pages.PROPERTY) {
+    if (this.state.offer) {
       return (
         <Property
           offer={this.state.offer}
-          titleCardClick={this.handlerTitleClickProperty}
+          onTitleCardClick={this.handlerTitleClick}
         />
       );
     }
 
     return (
       <Main
-        housingCount={housingCount}
-        titleCardHandler={this.handlerTitleCardHandler}
+        onTitleCardClick={this.handlerTitleClick}
         offers={offers}
-        onHover={this.handlerMouseOver}
+        onCardHover={this.handlerCardMouseOver}
       />
     );
   }
@@ -67,7 +57,7 @@ class App extends PureComponent {
           <Route exact path="/dev-property">
             <Property
               offer={this.props.offers[0]}
-              titleCardClick={this.handlerTitleClickProperty}
+              onTitleCardClick={this.handlerTitleClick}
             />
           </Route>
         </Switch>
@@ -80,8 +70,7 @@ class App extends PureComponent {
 App.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired
-  ).isRequired,
-  housingCount: PropTypes.number.isRequired
+  ).isRequired
 };
 
 export default App;

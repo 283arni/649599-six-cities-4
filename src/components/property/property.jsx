@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const Property = (props) => {
 
-  const {offer, titleCardClick} = props;
+  const {offer, onTitleCardClick} = props;
   const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner} = offer;
 
   return (
@@ -226,7 +226,7 @@ const Property = (props) => {
                   <h2 className="place-card__name">
                     <a
                       href="#"
-                      onClick={titleCardClick}
+                      onClick={onTitleCardClick}
                     >Wood and stone place</a>
                   </h2>
                   <p className="place-card__type">Private room</p>
@@ -261,7 +261,7 @@ const Property = (props) => {
                   <h2 className="place-card__name">
                     <a
                       href="#"
-                      onClick={titleCardClick}
+                      onClick={onTitleCardClick}
                     >Canal View Prinsengracht</a>
                   </h2>
                   <p className="place-card__type">Apartment</p>
@@ -296,7 +296,7 @@ const Property = (props) => {
                   <h2 className="place-card__name">
                     <a
                       href="#"
-                      onClick={titleCardClick}
+                      onClick={onTitleCardClick}
                     >Nice, cozy, warm big bed apartment</a>
                   </h2>
                   <p className="place-card__type">Apartment</p>
@@ -312,7 +312,7 @@ const Property = (props) => {
 
 Property.propTypes = {
   offer: PropTypes.shape(offerType).isRequired,
-  titleCardClick: PropTypes.func.isRequired
+  onTitleCardClick: PropTypes.func.isRequired
 };
 
 export default Property;
