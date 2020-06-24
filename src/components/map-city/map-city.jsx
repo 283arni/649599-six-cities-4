@@ -1,10 +1,10 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers';
 import leaflet from 'leaflet';
 
 
-class MapCity extends PureComponent {
+class MapCity extends Component {
   constructor(props) {
     super(props);
   }
