@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ListOffers from '../list-offers/list-offers';
 import {offerType} from '../../types/offers';
+import MapCity from '../map-city/map-city';
 
 const Main = (props) => {
   const {onTitleCardClick, offers, onCardHover} = props;
@@ -104,9 +105,9 @@ const Main = (props) => {
                 onCardHover={onCardHover}
               />
             </section>
-            <div className="cities__right-section">
-              <section className="cities__map map"></section>
-            </div>
+            <MapCity
+              offers={offers}
+            />
           </div>
         </div>
       </main>

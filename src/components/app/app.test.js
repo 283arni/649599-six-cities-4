@@ -3,6 +3,8 @@ import renderer from 'react-test-renderer';
 import App from './app';
 import {offers} from '../../mocks/test/offers';
 
+jest.mock(`../map-city/map-city`, () => `MapCity`);
+
 it(`check render App`, () => {
   const tree = renderer.create(
       <App
