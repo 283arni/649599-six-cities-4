@@ -420,13 +420,82 @@ exports[`check render Main 1`] = `
             </article>
           </div>
         </section>
-        <div
-          className="cities__right-section"
-        >
-          <section
-            className="cities__map map"
-          />
-        </div>
+        <MapCity
+          offers={
+            Array [
+              Object {
+                "amountBedrooms": 3,
+                "coords": Array [
+                  52.3909553943508,
+                  4.85309666406198,
+                ],
+                "description": Array [
+                  "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                  "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                ],
+                "id": 1,
+                "maxGustes": 3,
+                "owner": Object {
+                  "avatar": "./img/avatar-angelina.jpg",
+                  "name": "Petiy",
+                  "super": false,
+                },
+                "photos": Array [
+                  "./img/apartment-01.jpg",
+                  "./img/apartment-02.jpg",
+                ],
+                "premium": false,
+                "price": 120,
+                "rating": 3,
+                "things": Array [
+                  "WiFi",
+                  "Conditioner",
+                ],
+                "title": "Wood and stone place",
+                "type": Object {
+                  "room": "Private Room",
+                },
+              },
+              Object {
+                "amountBedrooms": 5,
+                "coords": Array [
+                  52.3809553943508,
+                  4.939309666406198,
+                ],
+                "description": Array [
+                  "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                ],
+                "id": 2,
+                "maxGustes": 1,
+                "owner": Object {
+                  "avatar": "./img/avatar-angelina.jpg",
+                  "name": "Misha",
+                  "super": false,
+                },
+                "photos": Array [
+                  "./img/apartment-01.jpg",
+                  "./img/apartment-02.jpg",
+                  "./img/studio-01.jpg",
+                  "./img/apartment-03.jpg",
+                ],
+                "premium": false,
+                "price": 130,
+                "rating": 2.3,
+                "things": Array [
+                  "WiFi",
+                  "Cable TV",
+                  "Conditioner",
+                  "WiFi",
+                  "Cable TV",
+                ],
+                "title": "Beautiful &amp; luxurious apartment at great location",
+                "type": Object {
+                  "hotel": "Hotel",
+                },
+              },
+            ]
+          }
+        />
       </div>
     </div>
   </main>
