@@ -3,6 +3,7 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Card from "./card";
 import {offer} from '../../mocks/test/offers';
+import {typeSection} from '../../mocks/test/card';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -14,6 +15,7 @@ it(`to check Card should return offer and click on title`, () => {
 
   const card = shallow(
       <Card
+        typeSection={typeSection}
         offer={offer}
         onTitleCardClick={onTitleCardClick}
         onCardHover={onCardHover}

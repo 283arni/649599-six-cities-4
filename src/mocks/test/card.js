@@ -1,1 +1,1 @@
-export const titleCard = `title card`;
+export const typeSection = `cities`;

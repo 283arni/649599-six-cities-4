@@ -1,15 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import App from './app';
-import {offers} from '../../mocks/test/offers';
+import ReviewsList from './reviews-list';
 import {reviews} from '../../mocks/test/reviews';
 
-jest.mock(`../map-city/map-city`, () => `MapCity`);
 
-it(`check render App`, () => {
+it(`check render ReviewsList`, () => {
   const tree = renderer.create(
-      <App
-        offers={offers}
+      <ReviewsList
         reviews={reviews}
       />
   );

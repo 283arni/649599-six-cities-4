@@ -289,7 +289,7 @@ exports[`check render Property 1`] = `
               <span
                 className="reviews__amount"
               >
-                1
+                2
               </span>
             </h2>
             <ul
@@ -305,10 +305,10 @@ exports[`check render Property 1`] = `
                     className="reviews__avatar-wrapper user__avatar-wrapper"
                   >
                     <img
-                      alt="Reviews avatar"
+                      alt="Max"
                       className="reviews__avatar user__avatar"
                       height="54"
-                      src="img/avatar-max.jpg"
+                      src="./img/avatar-max.jpg"
                       width="54"
                     />
                   </div>
@@ -316,6 +316,65 @@ exports[`check render Property 1`] = `
                     className="reviews__user-name"
                   >
                     Max
+                  </span>
+                </div>
+                <div
+                  className="reviews__info"
+                >
+                  <div
+                    className="reviews__rating rating"
+                  >
+                    <div
+                      className="reviews__stars rating__stars"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "width": "60%",
+                          }
+                        }
+                      />
+                      <span
+                        className="visually-hidden"
+                      >
+                        Rating
+                      </span>
+                    </div>
+                  </div>
+                  <p
+                    className="reviews__text"
+                  >
+                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+                  </p>
+                  <time
+                    className="reviews__time"
+                    dateTime="2019-04-24"
+                  >
+                    April 2019
+                  </time>
+                </div>
+              </li>
+              <li
+                className="reviews__item"
+              >
+                <div
+                  className="reviews__user user"
+                >
+                  <div
+                    className="reviews__avatar-wrapper user__avatar-wrapper"
+                  >
+                    <img
+                      alt="Angelina"
+                      className="reviews__avatar user__avatar"
+                      height="54"
+                      src="./img/avatar-angelina.jpg"
+                      width="54"
+                    />
+                  </div>
+                  <span
+                    className="reviews__user-name"
+                  >
+                    Angelina
                   </span>
                 </div>
                 <div
@@ -344,13 +403,13 @@ exports[`check render Property 1`] = `
                   <p
                     className="reviews__text"
                   >
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+                    The building is green and from 18th century.
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="2019-04-24"
+                    dateTime="2018-04-24"
                   >
-                    April 2019
+                    April 2018
                   </time>
                 </div>
               </li>
@@ -520,7 +579,84 @@ exports[`check render Property 1`] = `
       </div>
       <section
         className="property__map map"
-      />
+      >
+        <MapCity
+          offers={
+            Array [
+              Object {
+                "amountBedrooms": 3,
+                "coords": Array [
+                  52.3909553943508,
+                  4.85309666406198,
+                ],
+                "description": Array [
+                  "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                  "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                ],
+                "id": 1,
+                "maxGustes": 3,
+                "owner": Object {
+                  "avatar": "./img/avatar-angelina.jpg",
+                  "name": "Petiy",
+                  "super": false,
+                },
+                "photos": Array [
+                  "./img/apartment-01.jpg",
+                  "./img/apartment-02.jpg",
+                ],
+                "premium": false,
+                "price": 120,
+                "rating": 3,
+                "things": Array [
+                  "WiFi",
+                  "Conditioner",
+                ],
+                "title": "Wood and stone place",
+                "type": Object {
+                  "room": "Private Room",
+                },
+              },
+              Object {
+                "amountBedrooms": 5,
+                "coords": Array [
+                  52.3809553943508,
+                  4.939309666406198,
+                ],
+                "description": Array [
+                  "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                ],
+                "id": 2,
+                "maxGustes": 1,
+                "owner": Object {
+                  "avatar": "./img/avatar-angelina.jpg",
+                  "name": "Misha",
+                  "super": false,
+                },
+                "photos": Array [
+                  "./img/apartment-01.jpg",
+                  "./img/apartment-02.jpg",
+                  "./img/studio-01.jpg",
+                  "./img/apartment-03.jpg",
+                ],
+                "premium": false,
+                "price": 130,
+                "rating": 2.3,
+                "things": Array [
+                  "WiFi",
+                  "Cable TV",
+                  "Conditioner",
+                  "WiFi",
+                  "Cable TV",
+                ],
+                "title": "Beautiful &amp; luxurious apartment at great location",
+                "type": Object {
+                  "hotel": "Hotel",
+                },
+              },
+            ]
+          }
+        />
+      </section>
     </section>
     <div
       className="container"
@@ -534,10 +670,11 @@ exports[`check render Property 1`] = `
           Other places in the neighbourhood
         </h2>
         <div
-          className="near-places__list places__list"
+          className="near-places__list places__list "
         >
           <article
             className="near-places__card place-card"
+            onMouseOver={[Function]}
           >
             <div
               className="near-places__image-wrapper place-card__image-wrapper"
@@ -546,10 +683,10 @@ exports[`check render Property 1`] = `
                 href="#"
               >
                 <img
-                  alt="Place image"
+                  alt="Wood and stone place"
                   className="place-card__image"
                   height="200"
-                  src="img/room.jpg"
+                  src="./img/apartment-01.jpg"
                   width="260"
                 />
               </a>
@@ -566,7 +703,8 @@ exports[`check render Property 1`] = `
                   <b
                     className="place-card__price-value"
                   >
-                    €80
+                    €
+                    120
                   </b>
                   <span
                     className="place-card__price-text"
@@ -575,7 +713,7 @@ exports[`check render Property 1`] = `
                   </span>
                 </div>
                 <button
-                  className="place-card__bookmark-button place-card__bookmark-button--active button"
+                  className="place-card__bookmark-button button"
                   type="button"
                 >
                   <svg
@@ -590,7 +728,7 @@ exports[`check render Property 1`] = `
                   <span
                     className="visually-hidden"
                   >
-                    In bookmarks
+                    To bookmarks
                   </span>
                 </button>
               </div>
@@ -603,7 +741,7 @@ exports[`check render Property 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "80%",
+                        "width": "60%",
                       }
                     }
                   />
@@ -619,7 +757,7 @@ exports[`check render Property 1`] = `
               >
                 <a
                   href="#"
-                  onClick={[MockFunction]}
+                  onClick={[Function]}
                 >
                   Wood and stone place
                 </a>
@@ -627,12 +765,13 @@ exports[`check render Property 1`] = `
               <p
                 className="place-card__type"
               >
-                Private room
+                Private Room
               </p>
             </div>
           </article>
           <article
             className="near-places__card place-card"
+            onMouseOver={[Function]}
           >
             <div
               className="near-places__image-wrapper place-card__image-wrapper"
@@ -641,10 +780,10 @@ exports[`check render Property 1`] = `
                 href="#"
               >
                 <img
-                  alt="Place image"
+                  alt="Beautiful &amp; luxurious apartment at great location"
                   className="place-card__image"
                   height="200"
-                  src="img/apartment-02.jpg"
+                  src="./img/apartment-01.jpg"
                   width="260"
                 />
               </a>
@@ -661,7 +800,8 @@ exports[`check render Property 1`] = `
                   <b
                     className="place-card__price-value"
                   >
-                    €132
+                    €
+                    130
                   </b>
                   <span
                     className="place-card__price-text"
@@ -698,7 +838,7 @@ exports[`check render Property 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "80%",
+                        "width": "40%",
                       }
                     }
                   />
@@ -714,110 +854,15 @@ exports[`check render Property 1`] = `
               >
                 <a
                   href="#"
-                  onClick={[MockFunction]}
+                  onClick={[Function]}
                 >
-                  Canal View Prinsengracht
+                  Beautiful &amp; luxurious apartment at great location
                 </a>
               </h2>
               <p
                 className="place-card__type"
               >
-                Apartment
-              </p>
-            </div>
-          </article>
-          <article
-            className="near-places__card place-card"
-          >
-            <div
-              className="near-places__image-wrapper place-card__image-wrapper"
-            >
-              <a
-                href="#"
-              >
-                <img
-                  alt="Place image"
-                  className="place-card__image"
-                  height="200"
-                  src="img/apartment-03.jpg"
-                  width="260"
-                />
-              </a>
-            </div>
-            <div
-              className="place-card__info"
-            >
-              <div
-                className="place-card__price-wrapper"
-              >
-                <div
-                  className="place-card__price"
-                >
-                  <b
-                    className="place-card__price-value"
-                  >
-                    €180
-                  </b>
-                  <span
-                    className="place-card__price-text"
-                  >
-                    / night
-                  </span>
-                </div>
-                <button
-                  className="place-card__bookmark-button button"
-                  type="button"
-                >
-                  <svg
-                    className="place-card__bookmark-icon"
-                    height="19"
-                    width="18"
-                  >
-                    <use
-                      xlinkHref="#icon-bookmark"
-                    />
-                  </svg>
-                  <span
-                    className="visually-hidden"
-                  >
-                    To bookmarks
-                  </span>
-                </button>
-              </div>
-              <div
-                className="place-card__rating rating"
-              >
-                <div
-                  className="place-card__stars rating__stars"
-                >
-                  <span
-                    style={
-                      Object {
-                        "width": "80%",
-                      }
-                    }
-                  />
-                  <span
-                    className="visually-hidden"
-                  >
-                    Rating
-                  </span>
-                </div>
-              </div>
-              <h2
-                className="place-card__name"
-              >
-                <a
-                  href="#"
-                  onClick={[MockFunction]}
-                >
-                  Nice, cozy, warm big bed apartment
-                </a>
-              </h2>
-              <p
-                className="place-card__type"
-              >
-                Apartment
+                Hotel
               </p>
             </div>
           </article>
