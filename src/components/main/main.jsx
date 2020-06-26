@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ListOffers from '../list-offers/list-offers';
 import {offerType} from '../../types/offers';
 import MapCity from '../map-city/map-city';
+import {TypeSection} from '../../mocks/data/const';
 
 const Main = (props) => {
   const {onTitleCardClick, offers, onCardHover} = props;
@@ -103,11 +104,16 @@ const Main = (props) => {
                 offers={offers}
                 onTitleCardClick={onTitleCardClick}
                 onCardHover={onCardHover}
+                typeSection={TypeSection.CITIES}
               />
             </section>
-            <MapCity
-              offers={offers}
-            />
+            <div className="cities__right-section">
+              <section className="cities__map map">
+                <MapCity
+                  offers={offers}
+                />
+              </section>
+            </div>
           </div>
         </div>
       </main>

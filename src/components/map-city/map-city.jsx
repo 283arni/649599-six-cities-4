@@ -24,7 +24,8 @@ class MapCity extends Component {
       center: city,
       zoom,
       zoomControl: false,
-      marker: true
+      marker: true,
+      scrollWheelZoom: false
     });
     map.setView(city, zoom);
 
@@ -44,11 +45,7 @@ class MapCity extends Component {
 
   render() {
     return (
-      <div className="cities__right-section">
-        <section className="cities__map map">
-          <div id="map" style={{height: `100%`}}></div>
-        </section>
-      </div>
+      <div id="map" style={{height: `100%`}}></div>
     );
   }
 }

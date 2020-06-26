@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main';
 import {offerType} from '../../types/offers';
+import {reviewTemplate} from '../../types/reviews';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Property from '../property/property';
 
@@ -27,13 +28,17 @@ class App extends PureComponent {
 
 
   _renderApp() {
-    const {offers} = this.props;
+    const {offers, reviews} = this.props;
+    const nearOffers = offers.slice(0, 3);
 
     if (this.state.offer) {
       return (
         <Property
           offer={this.state.offer}
+          reviews={reviews}
+          nearOffers={nearOffers}
           onTitleCardClick={this.handlerTitleClick}
+          onCardHover={this.handlerCardMouseOver}
         />
       );
     }
@@ -57,7 +62,10 @@ class App extends PureComponent {
           <Route exact path="/dev-property">
             <Property
               offer={this.props.offers[0]}
+              nearOffers={this.props.offers}
+              reviews={this.props.reviews}
               onTitleCardClick={this.handlerTitleClick}
+              onCardHover={this.handlerCardMouseOver}
             />
           </Route>
         </Switch>
@@ -70,6 +78,9 @@ class App extends PureComponent {
 App.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired
+  ).isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape(reviewTemplate).isRequired
   ).isRequired
 };
 
