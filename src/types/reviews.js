@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const reviewTemplate = {
+export const reviewType = {
   id: PropTypes.number.isRequired,
   avatar: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

@@ -1,7 +1,7 @@
 import React from 'react';
 import Review from '../review/review';
 import PropTypes from 'prop-types';
-import {reviewTemplate} from '../../types/reviews';
+import {reviewType} from '../../types/reviews';
 
 const ReviewsList = ({reviews}) => {
 
@@ -19,7 +19,7 @@ const ReviewsList = ({reviews}) => {
 
 ReviewsList.propTypes = {
   reviews: PropTypes.arrayOf(
-      PropTypes.shape(reviewTemplate).isRequired
+      PropTypes.shape(reviewType).isRequired
   ).isRequired
 };
 

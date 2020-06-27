@@ -1,11 +1,11 @@
 import React from 'react';
 import {offerType} from '../../types/offers';
-import {reviewTemplate} from '../../types/reviews';
+import {reviewType} from '../../types/reviews';
 import PropTypes from 'prop-types';
 import ReviewsList from '../reviews-list/reviews-list';
 import MapCity from '../map-city/map-city';
 import ListOffers from '../list-offers/list-offers';
-import {TypeSection} from '../../mocks/data/const';
+import {NameBlockCards} from '../../mocks/data/const';
 
 
 const Property = (props) => {
@@ -69,7 +69,7 @@ const Property = (props) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: Math.round(rating) * 20 + `%`}}></span>
+                  <span style={{width: `${Math.round(rating) * 20}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">{rating}</span>
@@ -190,7 +190,7 @@ const Property = (props) => {
               offers={nearOffers}
               onTitleCardClick={onTitleCardClick}
               onCardHover={onCardHover}
-              typeSection={TypeSection.NEAR}
+              typeSection={NameBlockCards.NEAR}
             />
           </section>
         </div>
@@ -203,7 +203,7 @@ Property.propTypes = {
   offer: PropTypes.shape(offerType).isRequired,
   onTitleCardClick: PropTypes.func.isRequired,
   reviews: PropTypes.arrayOf(
-      PropTypes.shape(reviewTemplate).isRequired
+      PropTypes.shape(reviewType).isRequired
   ).isRequired,
   nearOffers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired

@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main';
 import {offerType} from '../../types/offers';
-import {reviewTemplate} from '../../types/reviews';
+import {reviewType} from '../../types/reviews';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Property from '../property/property';
 
@@ -80,7 +80,7 @@ App.propTypes = {
       PropTypes.shape(offerType).isRequired
   ).isRequired,
   reviews: PropTypes.arrayOf(
-      PropTypes.shape(reviewTemplate).isRequired
+      PropTypes.shape(reviewType).isRequired
   ).isRequired
 };
 
