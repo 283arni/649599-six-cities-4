@@ -2,19 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../card/card';
 import {offerType} from '../../types/offers';
-import {TypeSection} from '../../mocks/data/const';
+import {NameBlockCards} from '../../mocks/data/const';
 
 const ListOffers = (props) => {
 
-  const {offers, onTitleCardClick, onCardHover, typeSection} = props;
-  const tabsContent = typeSection === TypeSection.CITIES ? `tabs__content` : ``;
-  const mainClass = typeSection === TypeSection.NEAR ? `near-places__list` : `cities__places-list`;
+  const {offers, onTitleCardClick, onCardHover, nameBlockCards} = props;
+  const tabsContent = nameBlockCards === NameBlockCards.CITIES ? `tabs__content` : ``;
+  const mainClass = nameBlockCards === NameBlockCards.NEAR ? `near-places__list` : `cities__places-list`;
 
   return (
     <div className={`${mainClass} places__list ${tabsContent}`}>
       {offers.map((offer) =>
         <Card
-          typeSection={typeSection}
+          nameBlockCards={nameBlockCards}
           key={offer.id}
           offer={offer}
           onTitleCardClick={onTitleCardClick}
@@ -31,7 +31,7 @@ ListOffers.propTypes = {
   ),
   onTitleCardClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
-  typeSection: PropTypes.string.isRequired
+  nameBlockCards: PropTypes.string.isRequired
 };
 
 export default ListOffers;

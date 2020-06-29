@@ -10,7 +10,7 @@ import {NameBlockCards} from '../../mocks/data/const';
 
 const Property = (props) => {
 
-  const {offer, onTitleCardClick, reviews, nearOffers, onCardHover} = props;
+  const {offer, onTitleCardClick, reviews, nearOffers, onCardHover, currentCity} = props;
   const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner} = offer;
 
   return (
@@ -180,6 +180,8 @@ const Property = (props) => {
           <section className="property__map map">
             <MapCity
               offers={nearOffers}
+              currentCity={currentCity}
+              cityOffers={nearOffers[0].city}
             />
           </section>
         </section>
@@ -190,7 +192,7 @@ const Property = (props) => {
               offers={nearOffers}
               onTitleCardClick={onTitleCardClick}
               onCardHover={onCardHover}
-              typeSection={NameBlockCards.NEAR}
+              nameBlockCards={NameBlockCards.NEAR}
             />
           </section>
         </div>
@@ -208,7 +210,8 @@ Property.propTypes = {
   nearOffers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired
   ),
-  onCardHover: PropTypes.func.isRequired
+  onCardHover: PropTypes.func.isRequired,
+  currentCity: PropTypes.string.isRequired
 };
 
 export default Property;

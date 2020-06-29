@@ -1,1 +1,1 @@
-export const typeSection = `cities`;
+export const nameBlockCards = `cities`;

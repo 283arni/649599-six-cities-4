@@ -93,6 +93,15 @@ exports[`check render Property 1`] = `
             <img
               alt="Beautiful &amp; luxurious apartment at great location"
               className="property__image"
+              src="./img/apartment-03.jpg"
+            />
+          </div>
+          <div
+            className="property__image-wrapper"
+          >
+            <img
+              alt="Beautiful &amp; luxurious apartment at great location"
+              className="property__image"
               src="./img/studio-01.jpg"
             />
           </div>
@@ -150,7 +159,7 @@ exports[`check render Property 1`] = `
               <span
                 style={
                   Object {
-                    "width": "40%",
+                    "width": "60%",
                   }
                 }
               />
@@ -163,7 +172,7 @@ exports[`check render Property 1`] = `
             <span
               className="property__rating-value rating__value"
             >
-              2.3
+              2.5
             </span>
           </div>
           <ul
@@ -172,12 +181,12 @@ exports[`check render Property 1`] = `
             <li
               className="property__feature property__feature--entire"
             >
-              Hotel
+              Private Room
             </li>
             <li
               className="property__feature property__feature--bedrooms"
             >
-              5
+              1
                Bedrooms
             </li>
             <li
@@ -195,7 +204,7 @@ exports[`check render Property 1`] = `
               className="property__price-value"
             >
               €
-              130
+              260
             </b>
             <span
               className="property__price-text"
@@ -217,27 +226,7 @@ exports[`check render Property 1`] = `
               <li
                 className="property__inside-item"
               >
-                WiFi
-              </li>
-              <li
-                className="property__inside-item"
-              >
-                Cable TV
-              </li>
-              <li
-                className="property__inside-item"
-              >
                 Conditioner
-              </li>
-              <li
-                className="property__inside-item"
-              >
-                WiFi
-              </li>
-              <li
-                className="property__inside-item"
-              >
-                Cable TV
               </li>
             </ul>
           </div>
@@ -253,10 +242,10 @@ exports[`check render Property 1`] = `
               className="property__host-user user"
             >
               <div
-                className="property__avatar-wrapper  user__avatar-wrapper"
+                className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper"
               >
                 <img
-                  alt="Misha"
+                  alt="Petiy"
                   className="property__avatar user__avatar"
                   height="74"
                   src="./img/avatar-angelina.jpg"
@@ -266,12 +255,22 @@ exports[`check render Property 1`] = `
               <span
                 className="property__user-name"
               >
-                Misha
+                Petiy
               </span>
             </div>
             <div
               className="property__description"
             >
+              <p
+                className="property__text"
+              >
+                A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+              </p>
+              <p
+                className="property__text"
+              >
+                A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+              </p>
               <p
                 className="property__text"
               >
@@ -581,10 +580,27 @@ exports[`check render Property 1`] = `
         className="property__map map"
       >
         <MapCity
+          cityOffers={
+            Object {
+              "coords": Array [
+                52.37454,
+                4.897976,
+              ],
+              "name": "Amsterdam",
+            }
+          }
+          currentCity="Brussels"
           offers={
             Array [
               Object {
                 "amountBedrooms": 3,
+                "city": Object {
+                  "coords": Array [
+                    52.37454,
+                    4.897976,
+                  ],
+                  "name": "Amsterdam",
+                },
                 "coords": Array [
                   52.3909553943508,
                   4.85309666406198,
@@ -618,9 +634,16 @@ exports[`check render Property 1`] = `
               },
               Object {
                 "amountBedrooms": 5,
+                "city": Object {
+                  "coords": Array [
+                    48.85661,
+                    2.351499,
+                  ],
+                  "name": "Paris",
+                },
                 "coords": Array [
-                  52.3809553943508,
-                  4.939309666406198,
+                  48.85661,
+                  2.351499,
                 ],
                 "description": Array [
                   "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
@@ -651,6 +674,93 @@ exports[`check render Property 1`] = `
                 "title": "Beautiful &amp; luxurious apartment at great location",
                 "type": Object {
                   "hotel": "Hotel",
+                },
+              },
+              Object {
+                "amountBedrooms": 2,
+                "city": Object {
+                  "coords": Array [
+                    50.938361,
+                    6.959974,
+                  ],
+                  "name": "Cologne",
+                },
+                "coords": Array [
+                  50.938361,
+                  6.959974,
+                ],
+                "description": Array [
+                  "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                  "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                ],
+                "id": 3,
+                "maxGustes": 4,
+                "owner": Object {
+                  "avatar": "./img/avatar-angelina.jpg",
+                  "name": "Sasha",
+                  "super": true,
+                },
+                "photos": Array [
+                  "./img/apartment-03.jpg",
+                  "./img/studio-01.jpg",
+                  "./img/apartment-03.jpg",
+                  "./img/apartment-01.jpg",
+                  "./img/apartment-02.jpg",
+                ],
+                "premium": false,
+                "price": 140,
+                "rating": 4.5,
+                "things": Array [
+                  "WiFi",
+                  "Cable TV",
+                  "Conditioner",
+                ],
+                "title": "Wood and stone place",
+                "type": Object {
+                  "house": "House",
+                },
+              },
+              Object {
+                "amountBedrooms": 1,
+                "city": Object {
+                  "coords": Array [
+                    50.846557,
+                    4.351697,
+                  ],
+                  "name": "Brussels",
+                },
+                "coords": Array [
+                  50.846557,
+                  4.351697,
+                ],
+                "description": Array [
+                  "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                  "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                  "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                ],
+                "id": 4,
+                "maxGustes": 1,
+                "owner": Object {
+                  "avatar": "./img/avatar-angelina.jpg",
+                  "name": "Petiy",
+                  "super": true,
+                },
+                "photos": Array [
+                  "./img/apartment-01.jpg",
+                  "./img/apartment-02.jpg",
+                  "./img/apartment-03.jpg",
+                  "./img/studio-01.jpg",
+                  "./img/apartment-03.jpg",
+                ],
+                "premium": false,
+                "price": 260,
+                "rating": 2.5,
+                "things": Array [
+                  "Conditioner",
+                ],
+                "title": "Beautiful &amp; luxurious apartment at great location",
+                "type": Object {
+                  "room": "Private Room",
                 },
               },
             ]
@@ -863,6 +973,200 @@ exports[`check render Property 1`] = `
                 className="place-card__type"
               >
                 Hotel
+              </p>
+            </div>
+          </article>
+          <article
+            className="near-places__card place-card"
+            onMouseOver={[Function]}
+          >
+            <div
+              className="near-places__image-wrapper place-card__image-wrapper"
+            >
+              <a
+                href="#"
+              >
+                <img
+                  alt="Wood and stone place"
+                  className="place-card__image"
+                  height="200"
+                  src="./img/apartment-03.jpg"
+                  width="260"
+                />
+              </a>
+            </div>
+            <div
+              className="place-card__info"
+            >
+              <div
+                className="place-card__price-wrapper"
+              >
+                <div
+                  className="place-card__price"
+                >
+                  <b
+                    className="place-card__price-value"
+                  >
+                    €
+                    140
+                  </b>
+                  <span
+                    className="place-card__price-text"
+                  >
+                    / night
+                  </span>
+                </div>
+                <button
+                  className="place-card__bookmark-button button"
+                  type="button"
+                >
+                  <svg
+                    className="place-card__bookmark-icon"
+                    height="19"
+                    width="18"
+                  >
+                    <use
+                      xlinkHref="#icon-bookmark"
+                    />
+                  </svg>
+                  <span
+                    className="visually-hidden"
+                  >
+                    To bookmarks
+                  </span>
+                </button>
+              </div>
+              <div
+                className="place-card__rating rating"
+              >
+                <div
+                  className="place-card__stars rating__stars"
+                >
+                  <span
+                    style={
+                      Object {
+                        "width": "100%",
+                      }
+                    }
+                  />
+                  <span
+                    className="visually-hidden"
+                  >
+                    Rating
+                  </span>
+                </div>
+              </div>
+              <h2
+                className="place-card__name"
+              >
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  Wood and stone place
+                </a>
+              </h2>
+              <p
+                className="place-card__type"
+              >
+                House
+              </p>
+            </div>
+          </article>
+          <article
+            className="near-places__card place-card"
+            onMouseOver={[Function]}
+          >
+            <div
+              className="near-places__image-wrapper place-card__image-wrapper"
+            >
+              <a
+                href="#"
+              >
+                <img
+                  alt="Beautiful &amp; luxurious apartment at great location"
+                  className="place-card__image"
+                  height="200"
+                  src="./img/apartment-01.jpg"
+                  width="260"
+                />
+              </a>
+            </div>
+            <div
+              className="place-card__info"
+            >
+              <div
+                className="place-card__price-wrapper"
+              >
+                <div
+                  className="place-card__price"
+                >
+                  <b
+                    className="place-card__price-value"
+                  >
+                    €
+                    260
+                  </b>
+                  <span
+                    className="place-card__price-text"
+                  >
+                    / night
+                  </span>
+                </div>
+                <button
+                  className="place-card__bookmark-button button"
+                  type="button"
+                >
+                  <svg
+                    className="place-card__bookmark-icon"
+                    height="19"
+                    width="18"
+                  >
+                    <use
+                      xlinkHref="#icon-bookmark"
+                    />
+                  </svg>
+                  <span
+                    className="visually-hidden"
+                  >
+                    To bookmarks
+                  </span>
+                </button>
+              </div>
+              <div
+                className="place-card__rating rating"
+              >
+                <div
+                  className="place-card__stars rating__stars"
+                >
+                  <span
+                    style={
+                      Object {
+                        "width": "60%",
+                      }
+                    }
+                  />
+                  <span
+                    className="visually-hidden"
+                  >
+                    Rating
+                  </span>
+                </div>
+              </div>
+              <h2
+                className="place-card__name"
+              >
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  Beautiful &amp; luxurious apartment at great location
+                </a>
+              </h2>
+              <p
+                className="place-card__type"
+              >
+                Private Room
               </p>
             </div>
           </article>

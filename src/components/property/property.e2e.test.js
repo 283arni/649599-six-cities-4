@@ -19,6 +19,7 @@ it(`in Property click on titles cards`, () => {
         nearOffers={offers}
         onTitleCardClick={onTitleCardClick}
         onCardHover={jest.fn()}
+        currentCity={offer.city.name}
       />
   );
 

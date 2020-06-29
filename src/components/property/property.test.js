@@ -14,6 +14,7 @@ it(`check render Property`, () => {
         nearOffers={offers}
         onTitleCardClick={jest.fn()}
         onCardHover={jest.fn()}
+        currentCity={offer.city.name}
       />
   );
 
