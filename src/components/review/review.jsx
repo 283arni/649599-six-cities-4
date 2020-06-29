@@ -1,5 +1,5 @@
 import React from 'react';
-import {reviewTemplate} from '../../types/reviews';
+import {reviewType} from '../../types/reviews';
 import {reviewDefault} from '../../mocks/data/reviews';
 
 const Review = ({review}) => {
@@ -30,7 +30,7 @@ const Review = ({review}) => {
   );
 };
 
-Review.propTypes = reviewTemplate;
+Review.propTypes = reviewType;
 Review.defaultProps = reviewDefault;
 
 export default Review;

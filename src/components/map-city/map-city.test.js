@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import MapCity from './map-city';
-import {offers} from '../../mocks/test/offers';
+import {offers, offer} from '../../mocks/test/offers';
 
 
 jest.mock(`leaflet`, () => ({
@@ -22,6 +22,8 @@ it(`check render MapCity`, () => {
   const component = renderer.create(
       <MapCity
         offers={offers}
+        currentCity={offer.city.name}
+        cityOffers={offer.city}
       />, {
         createNodeMock: () => document.createElement(`div`)
       }

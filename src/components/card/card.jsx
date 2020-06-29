@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers';
-import {TypeSection} from '../../mocks/data/const';
+import {NameBlockCards} from '../../mocks/data/const';
 
 const Card = (props) => {
 
-  const {offer, onTitleCardClick, onCardHover, typeSection} = props;
+  const {offer, onTitleCardClick, onCardHover, nameBlockCards} = props;
   const {photos, premium, price, title, type, rating} = offer;
-  const currentName = typeSection === TypeSection.NEAR ? `near-places__card` : `cities__place-card`;
+  const currentName = nameBlockCards === NameBlockCards.NEAR ? `near-places__card` : `cities__place-card`;
 
   return (
     <article
@@ -19,7 +19,7 @@ const Card = (props) => {
           <span>Premium</span>
         </div> : null
       }
-      <div className={`${typeSection}__image-wrapper place-card__image-wrapper`}>
+      <div className={`${nameBlockCards}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={photos[0]} width="260" height="200" alt={title} />
         </a>
@@ -59,7 +59,7 @@ Card.propTypes = {
   offer: PropTypes.shape(offerType).isRequired,
   onTitleCardClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
-  typeSection: PropTypes.string.isRequired
+  nameBlockCards: PropTypes.string.isRequired
 };
 
 export default Card;

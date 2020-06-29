@@ -2,52 +2,39 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main';
 import {offerType} from '../../types/offers';
-import {reviewTemplate} from '../../types/reviews';
+import {reviewType} from '../../types/reviews';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Property from '../property/property';
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer/reducer";
 
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      offer: null
-    };
-
-    this.handlerCardMouseOver = this.handlerCardMouseOver.bind(this);
-    this.handlerTitleClick = this.handlerTitleClick.bind(this);
-  }
-
-  handlerTitleClick(offerCard) {
-    this.setState({
-      offer: offerCard,
-    });
-  }
-
-  handlerCardMouseOver() {}
-
 
   _renderApp() {
-    const {offers, reviews} = this.props;
+    const {offer, offers, reviews, onTitleClick, onCardHover, currentCity, onCityClick} = this.props;
     const nearOffers = offers.slice(0, 3);
 
-    if (this.state.offer) {
+    if (offer) {
       return (
         <Property
-          offer={this.state.offer}
+          offer={offer}
           reviews={reviews}
           nearOffers={nearOffers}
-          onTitleCardClick={this.handlerTitleClick}
-          onCardHover={this.handlerCardMouseOver}
+          onTitleCardClick={onTitleClick}
+          onCardHover={onCardHover}
+          currentCity={currentCity}
         />
       );
     }
 
     return (
       <Main
-        onTitleCardClick={this.handlerTitleClick}
+        currentCity={currentCity}
+        onTitleCardClick={onTitleClick}
         offers={offers}
-        onCardHover={this.handlerCardMouseOver}
+        onCardHover={onCardHover}
+        onCityClick={onCityClick}
       />
     );
   }
@@ -64,8 +51,9 @@ class App extends PureComponent {
               offer={this.props.offers[0]}
               nearOffers={this.props.offers}
               reviews={this.props.reviews}
-              onTitleCardClick={this.handlerTitleClick}
-              onCardHover={this.handlerCardMouseOver}
+              currentCity={this.props.currentCity}
+              onTitleCardClick={this.props.onTitleClick}
+              onCardHover={this.props.onCardHover}
             />
           </Route>
         </Switch>
@@ -74,14 +62,39 @@ class App extends PureComponent {
   }
 }
 
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+  reviews: state.reviews,
+  offer: state.offer,
+  currentCity: state.currentCity
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onTitleClick(offer) {
+    dispatch(ActionCreator.setOffer(offer));
+  },
+  onCardHover(offer) {
+    dispatch(ActionCreator.setHoverOffer(offer));
+  },
+  onCityClick(city) {
+    dispatch(ActionCreator.changeCurrentCity(city));
+  }
+});
+
 
 App.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired
   ).isRequired,
   reviews: PropTypes.arrayOf(
-      PropTypes.shape(reviewTemplate).isRequired
-  ).isRequired
+      PropTypes.shape(reviewType).isRequired
+  ).isRequired,
+  offer: PropTypes.object,
+  onTitleClick: PropTypes.func.isRequired,
+  onCardHover: PropTypes.func.isRequired,
+  currentCity: PropTypes.string.isRequired,
+  onCityClick: PropTypes.func.isRequired
 };
 
-export default App;
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

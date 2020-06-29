@@ -18,7 +18,11 @@ export const offers = [
       name: `Petiy`,
       super: false
     },
-    coords: [52.3909553943508, 4.85309666406198]
+    coords: [52.3909553943508, 4.85309666406198],
+    city: {
+      name: `Amsterdam`,
+      coords: [52.37454, 4.897976]
+    }
   }, {
     id: 2,
     photos: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/studio-01.jpg`, `./img/apartment-03.jpg`],
@@ -38,7 +42,11 @@ export const offers = [
       name: `Misha`,
       super: false
     },
-    coords: [52.3809553943508, 4.939309666406198]
+    coords: [48.85661, 2.351499],
+    city: {
+      name: `Paris`,
+      coords: [48.85661, 2.351499]
+    }
   }, {
     id: 3,
     photos: [`./img/apartment-03.jpg`, `./img/studio-01.jpg`, `./img/apartment-03.jpg`, `./img/apartment-01.jpg`, `./img/apartment-02.jpg`],
@@ -58,27 +66,82 @@ export const offers = [
       name: `Sasha`,
       super: true
     },
-    coords: [52.3909553943508, 4.929309666406198]
+    coords: [50.938361, 6.959974],
+    city: {
+      name: `Cologne`,
+      coords: [50.938361, 6.959974]
+    }
   }, {
     id: 4,
     photos: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/studio-01.jpg`, `./img/apartment-03.jpg`],
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
     premium: false,
-    price: 200,
-    title: `Canal View Prinsengracht`,
+    price: 260,
+    title: `Beautiful &amp; luxurious apartment at great location`,
     type: {
-      apartment: `Apartment`
+      room: `Private Room`
     },
-    rating: 3.5,
-    amountBedrooms: 5,
-    maxGustes: 2,
-    things: [`WiFi`],
+    rating: 2.5,
+    amountBedrooms: 1,
+    maxGustes: 1,
+    things: [`Conditioner`],
     owner: {
       avatar: `./img/avatar-angelina.jpg`,
       name: `Petiy`,
       super: true
     },
-    coords: [52.369553943508, 4.85309666406198]
+    coords: [50.846557, 4.351697],
+    city: {
+      name: `Brussels`,
+      coords: [50.846557, 4.351697]
+    }
+  }, {
+    id: 5,
+    photos: [`./img/apartment-02.jpg`, `./img/apartment-01.jpg`, `./img/apartment-03.jpg`, `./img/studio-01.jpg`, `./img/apartment-03.jpg`],
+    description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
+    premium: false,
+    price: 120,
+    title: `Wood House`,
+    type: {
+      apartment: `Apartment`
+    },
+    rating: 1.2,
+    amountBedrooms: 5,
+    maxGustes: 2,
+    things: [`Cable TV`],
+    owner: {
+      avatar: `./img/avatar-angelina.jpg`,
+      name: `Denis`,
+      super: false
+    },
+    coords: [53.550341, 10.000654],
+    city: {
+      name: `Hamburg`,
+      coords: [53.550341, 10.000654]
+    }
+  }, {
+    id: 6,
+    photos: [`./img/studio-01.jpg`, `./img/apartment-03.jpg`, `./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`],
+    description: [` The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
+    premium: true,
+    price: 320,
+    title: `Canal View Prinsengracht`,
+    type: {
+      apartment: `Apartment`
+    },
+    rating: 2.7,
+    amountBedrooms: 4,
+    maxGustes: 3,
+    things: [`WiFi`, `Shower`, `TV`],
+    owner: {
+      avatar: `./img/avatar-angelina.jpg`,
+      name: `Petiy`,
+      super: true
+    },
+    coords: [51.225402, 6.776314],
+    city: {
+      name: `Dusseldorf`,
+      coords: [51.225402, 6.776314]
+    }
   }
-
 ];
