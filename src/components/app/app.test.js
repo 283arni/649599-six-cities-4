@@ -6,8 +6,10 @@ import {offers, offer} from '../../mocks/test/offers';
 import {reviews} from '../../mocks/test/reviews';
 import configureStore from "redux-mock-store";
 
-jest.mock(`../map-city/map-city`, () => `MapCity`);
 const mockStore = configureStore([]);
+const onTitleClick = jest.fn();
+const onCardHover = jest.fn();
+const onCityClick = jest.fn();
 
 
 it(`check render App`, () => {
@@ -25,12 +27,14 @@ it(`check render App`, () => {
           reviews={reviews}
           offer={offer}
           currentCity={offer.city.name}
-          onTitleClick={jest.fn()}
-          onCardHover={jest.fn()}
-          onCityClick={jest.fn()}
+          onTitleClick={onTitleClick}
+          onCardHover={onCardHover}
+          onCityClick={onCityClick}
         />
-      </Provider>
-  );
+      </Provider>, {
+        createNodeMock: () => document.createElement(`div`)
+      }
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

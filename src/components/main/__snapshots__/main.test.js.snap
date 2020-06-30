@@ -310,63 +310,12 @@ exports[`check render Main 1`] = `
           <section
             className="cities__map map"
           >
-            <MapCity
-              cityOffers={
+            <div
+              id="map"
+              style={
                 Object {
-                  "coords": Array [
-                    50.846557,
-                    4.351697,
-                  ],
-                  "name": "Brussels",
+                  "height": "100%",
                 }
-              }
-              currentCity="Brussels"
-              offers={
-                Array [
-                  Object {
-                    "amountBedrooms": 1,
-                    "city": Object {
-                      "coords": Array [
-                        50.846557,
-                        4.351697,
-                      ],
-                      "name": "Brussels",
-                    },
-                    "coords": Array [
-                      50.846557,
-                      4.351697,
-                    ],
-                    "description": Array [
-                      "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
-                      "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
-                      "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
-                    ],
-                    "id": 4,
-                    "maxGustes": 1,
-                    "owner": Object {
-                      "avatar": "./img/avatar-angelina.jpg",
-                      "name": "Petiy",
-                      "super": true,
-                    },
-                    "photos": Array [
-                      "./img/apartment-01.jpg",
-                      "./img/apartment-02.jpg",
-                      "./img/apartment-03.jpg",
-                      "./img/studio-01.jpg",
-                      "./img/apartment-03.jpg",
-                    ],
-                    "premium": false,
-                    "price": 260,
-                    "rating": 2.5,
-                    "things": Array [
-                      "Conditioner",
-                    ],
-                    "title": "Beautiful &amp; luxurious apartment at great location",
-                    "type": Object {
-                      "room": "Private Room",
-                    },
-                  },
-                ]
               }
             />
           </section>

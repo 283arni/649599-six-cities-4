@@ -6,7 +6,7 @@ import {NameBlockCards} from '../../mocks/data/const';
 const Card = (props) => {
 
   const {offer, onTitleCardClick, onCardHover, nameBlockCards} = props;
-  const {photos, premium, price, title, type, rating} = offer;
+  const {photo, premium, price, title, type, rating} = offer;
   const currentName = nameBlockCards === NameBlockCards.NEAR ? `near-places__card` : `cities__place-card`;
 
   return (
@@ -21,7 +21,7 @@ const Card = (props) => {
       }
       <div className={`${nameBlockCards}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={photos[0]} width="260" height="200" alt={title} />
+          <img className="place-card__image" src={photo} width="260" height="200" alt={title} />
         </a>
       </div>
       <div className="place-card__info">

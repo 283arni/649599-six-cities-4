@@ -12,7 +12,7 @@ it(`check render ListOffers`, () => {
         onCardHover={jest.fn()}
         nameBlockCards={nameBlockCards}
       />
-  );
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

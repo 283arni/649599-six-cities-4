@@ -9,6 +9,8 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
+const onCardHover = jest.fn();
+
 it(`in Property click on titles cards`, () => {
   const onTitleCardClick = jest.fn();
 
@@ -18,7 +20,7 @@ it(`in Property click on titles cards`, () => {
         reviews={reviews}
         nearOffers={offers}
         onTitleCardClick={onTitleCardClick}
-        onCardHover={jest.fn()}
+        onCardHover={onCardHover}
         currentCity={offer.city.name}
       />
   );

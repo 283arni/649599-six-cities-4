@@ -12,8 +12,8 @@ import {ActionCreator} from "../../reducer/reducer";
 class App extends PureComponent {
 
   _renderApp() {
-    const {offer, offers, reviews, onTitleClick, onCardHover, currentCity, onCityClick} = this.props;
-    const nearOffers = offers.slice(0, 3);
+    const {offer, offers, reviews, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer} = this.props;
+    const nearOffers = offers.filter((nearOffer) => nearOffer.city.name === currentCity).slice(0, 3);
 
     if (offer) {
       return (
@@ -23,7 +23,6 @@ class App extends PureComponent {
           nearOffers={nearOffers}
           onTitleCardClick={onTitleClick}
           onCardHover={onCardHover}
-          currentCity={currentCity}
         />
       );
     }
@@ -32,6 +31,7 @@ class App extends PureComponent {
       <Main
         currentCity={currentCity}
         onTitleCardClick={onTitleClick}
+        hoverOffer={hoverOffer}
         offers={offers}
         onCardHover={onCardHover}
         onCityClick={onCityClick}
@@ -66,6 +66,7 @@ const mapStateToProps = (state) => ({
   offers: state.offers,
   reviews: state.reviews,
   offer: state.offer,
+  hoverOffer: state.hoverOffer,
   currentCity: state.currentCity
 });
 
@@ -93,7 +94,8 @@ App.propTypes = {
   onTitleClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
   currentCity: PropTypes.string.isRequired,
-  onCityClick: PropTypes.func.isRequired
+  onCityClick: PropTypes.func.isRequired,
+  hoverOffer: PropTypes.shape(offerType)
 };
 
 export {App};

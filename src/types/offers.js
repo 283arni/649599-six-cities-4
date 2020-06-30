@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 export const offerType = {
   id: PropTypes.number.isRequired,
+  photo: PropTypes.string.isRequired,
   photos: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,

@@ -9,9 +9,9 @@ import {NameBlockCards} from '../../mocks/data/const';
 
 
 const Property = (props) => {
-
-  const {offer, onTitleCardClick, reviews, nearOffers, onCardHover, currentCity} = props;
+  const {offer, onTitleCardClick, reviews, nearOffers, onCardHover} = props;
   const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner} = offer;
+  const onlyNearOffers = nearOffers.filter((nearOffer) => nearOffer.id !== offer.id);
 
   return (
     <div className="page">
@@ -180,22 +180,22 @@ const Property = (props) => {
           <section className="property__map map">
             <MapCity
               offers={nearOffers}
-              currentCity={currentCity}
               cityOffers={nearOffers[0].city}
+              offer={offer}
             />
           </section>
         </section>
-        <div className="container">
+        {onlyNearOffers.length ? <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <ListOffers
-              offers={nearOffers}
+              offers={onlyNearOffers}
               onTitleCardClick={onTitleCardClick}
               onCardHover={onCardHover}
               nameBlockCards={NameBlockCards.NEAR}
             />
           </section>
-        </div>
+        </div> : ``}
       </main>
     </div>
   );
@@ -211,7 +211,6 @@ Property.propTypes = {
       PropTypes.shape(offerType).isRequired
   ),
   onCardHover: PropTypes.func.isRequired,
-  currentCity: PropTypes.string.isRequired
 };
 
 export default Property;

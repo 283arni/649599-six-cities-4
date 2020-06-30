@@ -1,25 +1,35 @@
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers';
 import {cityType} from '../../types/city';
+import {ZOOM_MAP} from '../../mocks/data/const';
 import leaflet from 'leaflet';
 
-const icon = leaflet.icon({
+const marker = leaflet.icon({
   iconUrl: `img/pin.svg`,
-  iconSize: [30, 30]
+  iconSize: [30, 45]
+});
+
+const activeMarker = leaflet.icon({
+  iconUrl: `img/pin-active.svg`,
+  iconSize: [30, 45]
 });
 
 
 class MapCity extends Component {
   constructor(props) {
     super(props);
-
+    this._mapRef = createRef();
     this._map = null;
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.cityOffers.name !== this.props.cityOffers.name) {
       this.viewCenterCity();
+      this.renderPins();
+    }
+
+    if (prevProps.offer !== this.props.offer) {
       this.renderPins();
     }
   }
@@ -34,12 +44,18 @@ class MapCity extends Component {
   }
 
   renderPins() {
-    const {offers} = this.props;
-    offers.forEach((offer) =>
+    const {offers, offer} = this.props;
+    let icon = marker;
+
+
+    offers.forEach((item) => {
+      if (offer) {
+        icon = item.id === offer.id ? activeMarker : marker;
+      }
       leaflet
-        .marker(offer.coords, {icon})
-        .addTo(this._map)
-    );
+        .marker(item.coords, {icon})
+        .addTo(this._map);
+    });
   }
 
 
@@ -48,15 +64,14 @@ class MapCity extends Component {
 
     const city = cityOffers.coords;
 
-    const zoom = 12;
-    this._map = leaflet.map(`map`, {
+    this._map = leaflet.map(this._mapRef.current, {
       center: city,
-      zoom,
+      zoom: ZOOM_MAP,
       zoomControl: false,
       marker: true,
       scrollWheelZoom: false
     });
-    this._map.setView(city, zoom);
+    this._map.setView(city, ZOOM_MAP);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -69,7 +84,7 @@ class MapCity extends Component {
 
   render() {
     return (
-      <div id="map" style={{height: `100%`}}></div>
+      <div id="map" ref={this._mapRef} style={{height: `100%`}}></div>
     );
   }
 }
@@ -78,7 +93,8 @@ MapCity.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired
   ).isRequired,
-  cityOffers: cityType
+  cityOffers: cityType,
+  offer: PropTypes.shape(offerType)
 };
 
 export default MapCity;

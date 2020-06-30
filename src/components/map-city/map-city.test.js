@@ -24,9 +24,7 @@ it(`check render MapCity`, () => {
         offers={offers}
         currentCity={offer.city.name}
         cityOffers={offer.city}
-      />, {
-        createNodeMock: () => document.createElement(`div`)
-      }
+      />
   ).toJSON();
 
   expect(component).toMatchSnapshot();

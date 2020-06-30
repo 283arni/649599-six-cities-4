@@ -4,18 +4,24 @@ import Main from './main';
 import {offers, offer} from '../../mocks/test/offers';
 
 
-jest.mock(`../map-city/map-city`, () => `MapCity`);
+// jest.mock(`../map-city/map-city`, () => `MapCity`);
+
+const onTitleCardClick = jest.fn();
+const onCardHover = jest.fn();
+const onCityClick = jest.fn();
 
 it(`check render Main`, () => {
   const tree = renderer.create(
       <Main
         offers={offers}
-        onTitleCardClick={jest.fn()}
-        onCardHover={jest.fn()}
+        onTitleCardClick={onTitleCardClick}
+        onCardHover={onCardHover}
         currentCity={offer.city.name}
-        onCityClick={jest.fn()}
-      />
-  );
+        onCityClick={onCityClick}
+      />, {
+        createNodeMock: () => document.createElement(`div`)
+      }
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
