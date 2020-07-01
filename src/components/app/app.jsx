@@ -12,7 +12,7 @@ import {ActionCreator} from "../../reducer/reducer";
 class App extends PureComponent {
 
   _renderApp() {
-    const {offer, offers, reviews, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer} = this.props;
+    const {offer, offers, reviews, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer, sortType, onSortChange} = this.props;
     const nearOffers = offers.filter((nearOffer) => nearOffer.city.name === currentCity).slice(0, 3);
 
     if (offer) {
@@ -35,6 +35,8 @@ class App extends PureComponent {
         offers={offers}
         onCardHover={onCardHover}
         onCityClick={onCityClick}
+        sortType={sortType}
+        onSortChange={onSortChange}
       />
     );
   }
@@ -67,7 +69,8 @@ const mapStateToProps = (state) => ({
   reviews: state.reviews,
   offer: state.offer,
   hoverOffer: state.hoverOffer,
-  currentCity: state.currentCity
+  currentCity: state.currentCity,
+  sortType: state.sortType
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -79,6 +82,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onCityClick(city) {
     dispatch(ActionCreator.changeCurrentCity(city));
+  },
+  onSortChange(valueType) {
+    dispatch(ActionCreator.setSortType(valueType));
   }
 });
 
@@ -95,7 +101,9 @@ App.propTypes = {
   onCardHover: PropTypes.func.isRequired,
   currentCity: PropTypes.string.isRequired,
   onCityClick: PropTypes.func.isRequired,
-  hoverOffer: PropTypes.shape(offerType)
+  hoverOffer: PropTypes.shape(offerType),
+  sortType: PropTypes.string.isRequired,
+  onSortChange: PropTypes.func.isRequired
 };
 
 export {App};

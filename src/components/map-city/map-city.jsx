@@ -7,12 +7,12 @@ import leaflet from 'leaflet';
 
 const marker = leaflet.icon({
   iconUrl: `img/pin.svg`,
-  iconSize: [30, 45]
+  iconSize: [20, 30]
 });
 
 const activeMarker = leaflet.icon({
   iconUrl: `img/pin-active.svg`,
-  iconSize: [30, 45]
+  iconSize: [20, 30]
 });
 
 

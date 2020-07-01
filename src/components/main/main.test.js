@@ -3,12 +3,12 @@ import renderer from 'react-test-renderer';
 import Main from './main';
 import {offers, offer} from '../../mocks/test/offers';
 
-
-// jest.mock(`../map-city/map-city`, () => `MapCity`);
+const nameSort = `Popular`;
 
 const onTitleCardClick = jest.fn();
 const onCardHover = jest.fn();
 const onCityClick = jest.fn();
+const onSortChange = jest.fn();
 
 it(`check render Main`, () => {
   const tree = renderer.create(
@@ -18,6 +18,8 @@ it(`check render Main`, () => {
         onCardHover={onCardHover}
         currentCity={offer.city.name}
         onCityClick={onCityClick}
+        sortType={nameSort}
+        onSortChange={onSortChange}
       />, {
         createNodeMock: () => document.createElement(`div`)
       }

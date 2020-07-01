@@ -2,6 +2,7 @@ import {reducer, ActionCreator, ActionType, initialState} from "./reducer.js";
 import {offer} from '../mocks/test/offers';
 
 const cityTest = `Paris`;
+const sortTest = `Popular`;
 
 
 describe(`test work Reducer`, () => {
@@ -41,6 +42,17 @@ describe(`test work Reducer`, () => {
       hoverOffer: offer
     });
   });
+
+  it(`Reducer should change type sort`, () => {
+    expect(reducer({
+      sortType: `type`,
+    }, {
+      type: ActionType.SET_SORT_TYPE,
+      payload: sortTest
+    })).toEqual({
+      sortType: sortTest
+    });
+  });
 });
 
 
@@ -63,6 +75,13 @@ describe(`test work Action Creators`, () => {
     expect(ActionCreator.setHoverOffer(cityTest)).toEqual({
       type: ActionType.SET_OFFER_HOVER,
       payload: cityTest,
+    });
+  });
+
+  it(`Action creator for set sort type returns correct action`, () => {
+    expect(ActionCreator.setSortType(sortTest)).toEqual({
+      type: ActionType.SET_SORT_TYPE,
+      payload: sortTest,
     });
   });
 });

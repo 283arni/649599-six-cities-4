@@ -1,31 +1,64 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
+import {TypeSortOffers} from '../../mocks/data/const';
+import PropTypes from 'prop-types';
 
-const Sorting = () => {
-  return (
-    <form className="places__sorting" action="#" method="get">
-      <span className="places__sorting-caption">Sort by</span>
-      <span className="places__sorting-type" tabIndex="0">
-        Popular
-        <svg className="places__sorting-arrow" width="7" height="4">
-          <use xlinkHref="#icon-arrow-select"></use>
-        </svg>
-      </span>
-      <ul className="places__options places__options--custom places__options--opened">
-        <li className="places__option places__option--active" tabIndex="0">Popular</li>
-        <li className="places__option" tabIndex="0">Price: low to high</li>
-        <li className="places__option" tabIndex="0">Price: high to low</li>
-        <li className="places__option" tabIndex="0">Top rated first</li>
-      </ul>
 
-      {/* <select className="places__sorting-type" id="places-sorting">
-        <option className="places__option" value="popular" selected="">Popular</option>
-        <option className="places__option" value="to-high">Price: low to high</option>
-        <option className="places__option" value="to-low">Price: high to low</option>
-        <option className="places__option" value="top-rated">Top rated first</option>
-      </select>
-      */}
-    </form>
-  );
+class Sorting extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      viewSort: false
+    };
+
+    this.handleSortViewClick = this.handleSortViewClick.bind(this);
+  }
+
+  handleSortViewClick() {
+    this.setState({
+      viewSort: !this.state.viewSort,
+    });
+  }
+
+  render() {
+    const {onSortChange, sortType} = this.props;
+
+    return (
+      <form className="places__sorting" action="#" method="get">
+        <span className="places__sorting-caption">Sort by</span>
+        <span
+          className="places__sorting-type"
+          tabIndex="0"
+          onClick={this.handleSortViewClick}
+        >
+          {sortType}
+          <svg className="places__sorting-arrow" width="7" height="4">
+            <use xlinkHref="#icon-arrow-select"></use>
+          </svg>
+        </span>
+        <ul className={`places__options places__options--custom ${this.state.viewSort ? `places__options--opened` : ``}`}>
+          {Object.values(TypeSortOffers).map((type, i) =>
+            <li
+              key={type + i}
+              className={`places__option ${sortType === type ? `places__option--active` : ``}`}
+              tabIndex="0"
+              onClick={() => {
+                this.handleSortViewClick();
+                onSortChange(type);
+              }}
+            >
+              {type}
+            </li>
+          )}
+        </ul>
+      </form>
+    );
+  }
+}
+
+Sorting.propTypes = {
+  onSortChange: PropTypes.func.isRequired,
+  sortType: PropTypes.string.isRequired
 };
+
 
 export default Sorting;

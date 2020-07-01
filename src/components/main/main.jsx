@@ -6,13 +6,15 @@ import Sorting from '../sorting/sorting';
 import {offerType} from '../../types/offers';
 import MapCity from '../map-city/map-city';
 import {NameBlockCards, MAX_RENDER_CITY} from '../../mocks/data/const';
+import {sortOffers} from '../../utils';
 
 const Main = (props) => {
-  const {onTitleCardClick, offers, onCardHover, currentCity, onCityClick, hoverOffer} = props;
+  const {onTitleCardClick, offers, onCardHover, currentCity, onCityClick, hoverOffer, onSortChange, sortType} = props;
 
   const cities = offers.map((offer) => offer.city).slice(0, MAX_RENDER_CITY);
   const currentOffers = offers.filter((offer) => offer.city.name === currentCity);
   const cityOffers = currentOffers[0].city;
+
 
   return (
     <div className="page page--gray page--main">
@@ -55,9 +57,12 @@ const Main = (props) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{currentOffers.length} places to stay in {currentCity}</b>
-              <Sorting />
+              <Sorting
+                sortType={sortType}
+                onSortChange={onSortChange}
+              />
               <ListOffers
-                offers={currentOffers}
+                offers={sortOffers(currentOffers, sortType)}
                 onTitleCardClick={onTitleCardClick}
                 onCardHover={onCardHover}
                 nameBlockCards={NameBlockCards.CITIES}
@@ -87,7 +92,9 @@ Main.propTypes = {
   onCardHover: PropTypes.func.isRequired,
   currentCity: PropTypes.string.isRequired,
   onCityClick: PropTypes.func.isRequired,
-  hoverOffer: PropTypes.shape(offerType)
+  hoverOffer: PropTypes.shape(offerType),
+  sortType: PropTypes.string.isRequired,
+  onSortChange: PropTypes.func.isRequired
 };
 
 export default Main;

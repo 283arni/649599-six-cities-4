@@ -10,14 +10,15 @@ const mockStore = configureStore([]);
 const onTitleClick = jest.fn();
 const onCardHover = jest.fn();
 const onCityClick = jest.fn();
-
+const onSortChange = jest.fn();
 
 it(`check render App`, () => {
   const store = mockStore({
     offers,
     reviews,
     offer,
-    currentCity: offer.city.name
+    currentCity: offer.city.name,
+    sortType: `Popular`
   });
 
   const tree = renderer.create(
@@ -30,6 +31,8 @@ it(`check render App`, () => {
           onTitleClick={onTitleClick}
           onCardHover={onCardHover}
           onCityClick={onCityClick}
+          sortType={`Popular`}
+          onSortChange={onSortChange}
         />
       </Provider>, {
         createNodeMock: () => document.createElement(`div`)
