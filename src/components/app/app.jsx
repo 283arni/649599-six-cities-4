@@ -7,13 +7,14 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Property from '../property/property';
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/reducer";
+import {filterList} from '../../utils';
 
 
 class App extends PureComponent {
 
   _renderApp() {
     const {offer, offers, reviews, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer, sortType, onSortChange} = this.props;
-    const nearOffers = offers.filter((nearOffer) => nearOffer.city.name === currentCity).slice(0, 3);
+    const nearOffers = filterList(offers, currentCity).slice(0, 3);
 
     if (offer) {
       return (
@@ -22,7 +23,7 @@ class App extends PureComponent {
           reviews={reviews}
           nearOffers={nearOffers}
           onTitleCardClick={onTitleClick}
-          onCardHover={onCardHover}
+          // onCardHover={onCardHover}
         />
       );
     }
@@ -33,7 +34,7 @@ class App extends PureComponent {
         onTitleCardClick={onTitleClick}
         hoverOffer={hoverOffer}
         offers={offers}
-        onCardHover={onCardHover}
+        // onCardHover={onCardHover}
         onCityClick={onCityClick}
         sortType={sortType}
         onSortChange={onSortChange}
@@ -55,7 +56,7 @@ class App extends PureComponent {
               reviews={this.props.reviews}
               currentCity={this.props.currentCity}
               onTitleCardClick={this.props.onTitleClick}
-              onCardHover={this.props.onCardHover}
+              // onCardHover={this.props.onCardHover}
             />
           </Route>
         </Switch>
@@ -68,7 +69,7 @@ const mapStateToProps = (state) => ({
   offers: state.offers,
   reviews: state.reviews,
   offer: state.offer,
-  hoverOffer: state.hoverOffer,
+  // hoverOffer: state.hoverOffer,
   currentCity: state.currentCity,
   sortType: state.sortType
 });
@@ -77,9 +78,9 @@ const mapDispatchToProps = (dispatch) => ({
   onTitleClick(offer) {
     dispatch(ActionCreator.setOffer(offer));
   },
-  onCardHover(offer) {
-    dispatch(ActionCreator.setHoverOffer(offer));
-  },
+  // onCardHover(offer) {
+  //   dispatch(ActionCreator.setHoverOffer(offer));
+  // },
   onCityClick(city) {
     dispatch(ActionCreator.changeCurrentCity(city));
   },
@@ -98,8 +99,8 @@ App.propTypes = {
   ).isRequired,
   offer: PropTypes.object,
   onTitleClick: PropTypes.func.isRequired,
-  onCardHover: PropTypes.func.isRequired,
-  currentCity: PropTypes.string.isRequired,
+  // onCardHover: PropTypes.func.isRequired,
+  // currentCity: PropTypes.string.isRequired,
   onCityClick: PropTypes.func.isRequired,
   hoverOffer: PropTypes.shape(offerType),
   sortType: PropTypes.string.isRequired,

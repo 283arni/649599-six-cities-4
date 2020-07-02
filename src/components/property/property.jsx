@@ -210,7 +210,7 @@ Property.propTypes = {
   nearOffers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired
   ),
-  onCardHover: PropTypes.func.isRequired,
+  // onCardHover: PropTypes.func.isRequired,
 };
 
 export default Property;

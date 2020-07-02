@@ -16,3 +16,7 @@ export const sortOffers = (currentOffers, sortType) => {
 
   return currentOffers;
 };
+
+export const filterList = (offers, city) => {
+  return offers.filter((offer) => offer.city.name === city);
+};
