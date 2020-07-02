@@ -1,6 +1,7 @@
 export const offers = [
   {
     id: 1,
+    photo: `./img/apartment-01.jpg`,
     photos: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`],
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
     premium: false,
@@ -25,6 +26,7 @@ export const offers = [
     }
   }, {
     id: 2,
+    photo: `./img/apartment-01.jpg`,
     photos: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/studio-01.jpg`, `./img/apartment-03.jpg`],
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
     premium: false,
@@ -49,6 +51,7 @@ export const offers = [
     }
   }, {
     id: 3,
+    photo: `./img/apartment-03.jpg`,
     photos: [`./img/apartment-03.jpg`, `./img/studio-01.jpg`, `./img/apartment-03.jpg`, `./img/apartment-01.jpg`, `./img/apartment-02.jpg`],
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
     premium: false,
@@ -73,6 +76,7 @@ export const offers = [
     }
   }, {
     id: 4,
+    photo: `./img/apartment-01.jpg`,
     photos: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/studio-01.jpg`, `./img/apartment-03.jpg`],
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
     premium: false,
@@ -97,6 +101,7 @@ export const offers = [
     }
   }, {
     id: 5,
+    photo: `./img/apartment-02.jpg`,
     photos: [`./img/apartment-02.jpg`, `./img/apartment-01.jpg`, `./img/apartment-03.jpg`, `./img/studio-01.jpg`, `./img/apartment-03.jpg`],
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
     premium: false,
@@ -121,6 +126,7 @@ export const offers = [
     }
   }, {
     id: 6,
+    photo: `./img/studio-01.jpg`,
     photos: [`./img/studio-01.jpg`, `./img/apartment-03.jpg`, `./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`],
     description: [` The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
     premium: true,
@@ -142,6 +148,31 @@ export const offers = [
     city: {
       name: `Dusseldorf`,
       coords: [51.225402, 6.776314]
+    }
+  }, {
+    id: 7,
+    photo: `./img/apartment-02.jpg`,
+    photos: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`],
+    description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
+    premium: true,
+    price: 200,
+    title: `Wood and stone place`,
+    type: {
+      room: `Private Room`
+    },
+    rating: 3.8,
+    amountBedrooms: 4,
+    maxGustes: 5,
+    things: [`WiFi`, `Conditioner`],
+    owner: {
+      avatar: `./img/avatar-angelina.jpg`,
+      name: `Misha`,
+      super: false
+    },
+    coords: [52.39605, 4.85780],
+    city: {
+      name: `Amsterdam`,
+      coords: [52.37454, 4.897976]
     }
   }
 ];

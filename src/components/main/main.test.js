@@ -3,19 +3,27 @@ import renderer from 'react-test-renderer';
 import Main from './main';
 import {offers, offer} from '../../mocks/test/offers';
 
+const nameSort = `Popular`;
 
-jest.mock(`../map-city/map-city`, () => `MapCity`);
+const onTitleCardClick = jest.fn();
+const onCardHover = jest.fn();
+const onCityClick = jest.fn();
+const onSortChange = jest.fn();
 
 it(`check render Main`, () => {
   const tree = renderer.create(
       <Main
         offers={offers}
-        onTitleCardClick={jest.fn()}
-        onCardHover={jest.fn()}
+        onTitleCardClick={onTitleCardClick}
+        onCardHover={onCardHover}
         currentCity={offer.city.name}
-        onCityClick={jest.fn()}
-      />
-  );
+        onCityClick={onCityClick}
+        sortType={nameSort}
+        onSortChange={onSortChange}
+      />, {
+        createNodeMock: () => document.createElement(`div`)
+      }
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

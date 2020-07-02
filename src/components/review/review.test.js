@@ -9,7 +9,7 @@ it(`check render Review`, () => {
       <Review
         review={reviews[0]}
       />
-  );
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

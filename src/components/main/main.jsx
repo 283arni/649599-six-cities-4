@@ -2,16 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ListOffers from '../list-offers/list-offers';
 import LocationsList from '../locations-list/locations-list';
+import Sorting from '../sorting/sorting';
 import {offerType} from '../../types/offers';
 import MapCity from '../map-city/map-city';
 import {NameBlockCards, MAX_RENDER_CITY} from '../../mocks/data/const';
+import {sortOffers} from '../../utils';
 
 const Main = (props) => {
-  const {onTitleCardClick, offers, onCardHover, currentCity, onCityClick} = props;
+  const {onTitleCardClick, offers, onCardHover, currentCity, onCityClick, hoverOffer, onSortChange, sortType} = props;
 
   const cities = offers.map((offer) => offer.city).slice(0, MAX_RENDER_CITY);
   const currentOffers = offers.filter((offer) => offer.city.name === currentCity);
   const cityOffers = currentOffers[0].city;
+
 
   return (
     <div className="page page--gray page--main">
@@ -53,32 +56,13 @@ const Main = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{currentOffers.length} places to stay in Amsterdam</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex="0">
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                  <li className="places__option" tabIndex="0">Price: low to high</li>
-                  <li className="places__option" tabIndex="0">Price: high to low</li>
-                  <li className="places__option" tabIndex="0">Top rated first</li>
-                </ul>
-
-                {/* <select className="places__sorting-type" id="places-sorting">
-                  <option className="places__option" value="popular" selected="">Popular</option>
-                  <option className="places__option" value="to-high">Price: low to high</option>
-                  <option className="places__option" value="to-low">Price: high to low</option>
-                  <option className="places__option" value="top-rated">Top rated first</option>
-                </select>
-                */}
-              </form>
+              <b className="places__found">{currentOffers.length} places to stay in {currentCity}</b>
+              <Sorting
+                sortType={sortType}
+                onSortChange={onSortChange}
+              />
               <ListOffers
-                offers={currentOffers}
+                offers={sortOffers(currentOffers, sortType)}
                 onTitleCardClick={onTitleCardClick}
                 onCardHover={onCardHover}
                 nameBlockCards={NameBlockCards.CITIES}
@@ -88,8 +72,8 @@ const Main = (props) => {
               <section className="cities__map map">
                 <MapCity
                   offers={currentOffers}
-                  currentCity={currentCity}
                   cityOffers={cityOffers}
+                  offer={hoverOffer}
                 />
               </section>
             </div>
@@ -107,7 +91,10 @@ Main.propTypes = {
   onTitleCardClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
   currentCity: PropTypes.string.isRequired,
-  onCityClick: PropTypes.func.isRequired
+  onCityClick: PropTypes.func.isRequired,
+  hoverOffer: PropTypes.shape(offerType),
+  sortType: PropTypes.string.isRequired,
+  onSortChange: PropTypes.func.isRequired
 };
 
 export default Main;

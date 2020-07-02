@@ -9,13 +9,15 @@ const initialState = {
   offers,
   reviews,
   offer: null,
-  hoverOffer: null
+  hoverOffer: null,
+  sortType: `Popular`
 };
 
 const ActionType = {
   CHOOSE_CITY: `CHOOSE_CITY`,
   SET_OFFER: `SET_OFFER`,
-  SET_OFFER_HOVER: `SET_OFFER_HOVER`
+  SET_OFFER_HOVER: `SET_OFFER_HOVER`,
+  SET_SORT_TYPE: `SET_SORT_TYPE`
 };
 
 const ActionCreator = {
@@ -30,6 +32,10 @@ const ActionCreator = {
   changeCurrentCity: (city) => ({
     type: ActionType.CHOOSE_CITY,
     payload: city
+  }),
+  setSortType: (valueType) => ({
+    type: ActionType.SET_SORT_TYPE,
+    payload: valueType
   })
 };
 
@@ -46,6 +52,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_OFFER_HOVER:
       return extend(state, {
         hoverOffer: action.payload
+      });
+    case ActionType.SET_SORT_TYPE:
+      return extend(state, {
+        sortType: action.payload
       });
   }
 

@@ -1,6 +1,7 @@
 export const offers = [
   {
     id: 1,
+    photo: `./img/apartment-01.jpg`,
     photos: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`],
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
     premium: false,
@@ -25,6 +26,7 @@ export const offers = [
     }
   }, {
     id: 2,
+    photo: `./img/apartment-01.jpg`,
     photos: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/studio-01.jpg`, `./img/apartment-03.jpg`],
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
     premium: false,
@@ -49,6 +51,7 @@ export const offers = [
     }
   }, {
     id: 3,
+    photo: `./img/apartment-03.jpg`,
     photos: [`./img/apartment-03.jpg`, `./img/studio-01.jpg`, `./img/apartment-03.jpg`, `./img/apartment-01.jpg`, `./img/apartment-02.jpg`],
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
     premium: false,
@@ -73,6 +76,7 @@ export const offers = [
     }
   }, {
     id: 4,
+    photo: `./img/apartment-01.jpg`,
     photos: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/studio-01.jpg`, `./img/apartment-03.jpg`],
     description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
     premium: false,
@@ -100,6 +104,7 @@ export const offers = [
 
 export const offer = {
   id: 4,
+  photo: `./img/apartment-01.jpg`,
   photos: [`./img/apartment-01.jpg`, `./img/apartment-02.jpg`, `./img/apartment-03.jpg`, `./img/studio-01.jpg`, `./img/apartment-03.jpg`],
   description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`],
   premium: false,
