@@ -1,33 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {cityType} from '../../types/city';
+import {offerType} from '../../types/offers';
+import LocationItem from '../location-item/location-item';
+import {MAX_RENDER_CITY} from '../../mocks/data/const';
 
-const LocationsList = ({cities, currentCity, onCityClick}) => {
+const LocationsList = (props) => {
+  const {offers} = props;
+  const cities = offers.map((offert) => offert.city).slice(0, MAX_RENDER_CITY);
 
   return (
     <ul className="locations__list tabs__list">
       {cities.map((city, i) => (
-        <li
-          key={city.name + i}
-          className="locations__item"
-        >
-          <a
-            className={`locations__item-link tabs__item ${currentCity === city.name ? `tabs__item--active` : ``}`}
-            href="#"
-            onClick={() => onCityClick(city.name)}
-          >
-            <span>{city.name}</span>
-          </a>
-        </li>
+        <LocationItem
+          {...props}
+          key={city + i}
+          city={city}
+        />
       ))}
     </ul>
   );
 };
 
 LocationsList.propTypes = {
-  cities: PropTypes.arrayOf(cityType).isRequired,
-  currentCity: PropTypes.string.isRequired,
-  onCityClick: PropTypes.func.isRequired
+  offers: PropTypes.arrayOf(
+      PropTypes.shape(offerType).isRequired
+  ),
 };
 
 export default LocationsList;

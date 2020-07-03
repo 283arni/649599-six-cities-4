@@ -9,9 +9,12 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
+const onCardHover = jest.fn();
+const onTitleCardClick = jest.fn();
+const onActiveChange = jest.fn();
+
 it(`to check Card should return offer and click on title`, () => {
-  const onCardHover = jest.fn();
-  const onTitleCardClick = jest.fn();
+
 
   const card = shallow(
       <Card
@@ -19,6 +22,8 @@ it(`to check Card should return offer and click on title`, () => {
         onTitleCardClick={onTitleCardClick}
         onCardHover={onCardHover}
         nameBlockCards={nameBlockCards}
+        onActiveChange={onActiveChange}
+        activeItem={offer}
       />
   );
 

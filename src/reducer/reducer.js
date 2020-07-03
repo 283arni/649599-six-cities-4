@@ -2,14 +2,14 @@ import {offers} from '../mocks/data/offers';
 import {reviews} from '../mocks/data/reviews';
 import {extend} from '../utils';
 
-// const startCity = offers[0].city.name;
+const startCity = offers[0].city.name;
 
 const initialState = {
-  // currentCity: startCity,
+  currentCity: startCity,
   offers,
   reviews,
   offer: null,
-  // hoverOffer: null,
+  hoverOffer: null,
   sortType: `Popular`
 };
 

@@ -3,22 +3,23 @@ import PropTypes from 'prop-types';
 import ListOffers from '../list-offers/list-offers';
 import LocationsList from '../locations-list/locations-list';
 import Sorting from '../sorting/sorting';
-import withActiveItem from '../hocs/with-active-item/with-active-item';
+import withSorting from '../../hocs/with-sorting/with-sorting';
 import {offerType} from '../../types/offers';
 import MapCity from '../map-city/map-city';
-import {NameBlockCards, MAX_RENDER_CITY} from '../../mocks/data/const';
-// import {sortOffers, filterList} from '../../utils';
+import {NameBlockCards} from '../../mocks/data/const';
+import {sortOffers, filterList} from '../../utils';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
 
 const LocationsListWrapper = withActiveItem(LocationsList);
 const ListOffersWrapper = withActiveItem(ListOffers);
+const SortingWrapper = withSorting(Sorting);
+
 
 const Main = (props) => {
   const {onTitleCardClick, offers, onCardHover, currentCity, onCityClick, hoverOffer, onSortChange, sortType} = props;
 
-  const cities = offers.map((offer) => offer.city).slice(0, MAX_RENDER_CITY);
-  // const currentOffers = filterList(offers, currentCity);
-  // const cityOffers = currentOffers[0].city;
-
+  const currentOffers = filterList(offers, currentCity);
+  const cityOffers = currentOffers[0].city;
 
   return (
     <div className="page page--gray page--main">
@@ -50,9 +51,9 @@ const Main = (props) => {
         <div className="tabs">
           <section className="locations container">
             <LocationsListWrapper
-              // currentCity={currentCity}
-              cities={cities}
-              // onCityClick={onCityClick}
+              currentCity={currentCity}
+              offers={offers}
+              onCityClick={onCityClick}
             />
           </section>
         </div>
@@ -60,25 +61,25 @@ const Main = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              {/* <b className="places__found">{currentOffers.length} places to stay in {currentCity}</b> */}
-              <Sorting
+              <b className="places__found">{currentOffers.length} places to stay in {currentCity}</b>
+              <SortingWrapper
                 sortType={sortType}
                 onSortChange={onSortChange}
               />
               <ListOffersWrapper
-                offers={offers}
+                offers={sortOffers(currentOffers, sortType)}
                 onTitleCardClick={onTitleCardClick}
-                // onCardHover={onCardHover}
+                onCardHover={onCardHover}
                 nameBlockCards={NameBlockCards.CITIES}
               />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                {/* <MapCity
+                <MapCity
                   offers={currentOffers}
                   cityOffers={cityOffers}
                   offer={hoverOffer}
-                /> */}
+                />
               </section>
             </div>
           </div>
@@ -86,6 +87,7 @@ const Main = (props) => {
       </main>
     </div>
   );
+
 };
 
 Main.propTypes = {
@@ -93,9 +95,9 @@ Main.propTypes = {
       PropTypes.shape(offerType).isRequired
   ),
   onTitleCardClick: PropTypes.func.isRequired,
-  // onCardHover: PropTypes.func.isRequired,
-  // currentCity: PropTypes.string.isRequired,
-  // onCityClick: PropTypes.func.isRequired,
+  onCardHover: PropTypes.func.isRequired,
+  currentCity: PropTypes.string.isRequired,
+  onCityClick: PropTypes.func.isRequired,
   hoverOffer: PropTypes.shape(offerType),
   sortType: PropTypes.string.isRequired,
   onSortChange: PropTypes.func.isRequired
