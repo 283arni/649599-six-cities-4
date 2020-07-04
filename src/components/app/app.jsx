@@ -14,9 +14,10 @@ class App extends PureComponent {
 
   _renderApp() {
     const {offer, offers, reviews, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer, sortType, onSortChange} = this.props;
-    const nearOffers = filterList(offers, currentCity).slice(0, 3);
 
     if (offer) {
+      const nearOffers = filterList(offers, currentCity).slice(0, 3);
+
       return (
         <Property
           offer={offer}

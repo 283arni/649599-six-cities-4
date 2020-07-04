@@ -13,3 +13,8 @@ export const TypeSortOffers = {
 export const MAX_RENDER_CITY = 6;
 
 export const ZOOM_MAP = 12;
+
+export const SettingImage = {
+  SIZE: 119,
+  POSITION: 100
+};
