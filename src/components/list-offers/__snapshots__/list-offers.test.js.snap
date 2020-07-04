@@ -45,7 +45,7 @@ exports[`check render ListOffers 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button  button"
           type="button"
         >
           <svg
@@ -142,7 +142,7 @@ exports[`check render ListOffers 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button  button"
           type="button"
         >
           <svg
@@ -239,7 +239,7 @@ exports[`check render ListOffers 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button  button"
           type="button"
         >
           <svg
@@ -336,7 +336,7 @@ exports[`check render ListOffers 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button  button"
           type="button"
         >
           <svg

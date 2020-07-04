@@ -1,18 +1,19 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import LocationsList from './locations-list';
-import {offer, offers} from '../../mocks/test/offers';
+import LocationItem from './location-item';
+import {offer} from '../../mocks/test/offers';
 
 const onCityClick = jest.fn();
 const onActiveChange = jest.fn();
 
-it(`check render LocationsList`, () => {
+it(`check render LocationItem`, () => {
   const tree = renderer.create(
-      <LocationsList
+      <LocationItem
         currentCity={offer.city.name}
-        offers={offers}
         onCityClick={onCityClick}
         onActiveChange={onActiveChange}
+        activeItem={offer.city.name}
+        city={offer.city}
       />
   ).toJSON();
 

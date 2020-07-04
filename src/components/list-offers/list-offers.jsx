@@ -4,9 +4,10 @@ import Card from '../card/card';
 import {offerType} from '../../types/offers';
 import {NameBlockCards} from '../../mocks/data/const';
 
+
 const ListOffers = (props) => {
 
-  const {offers, onTitleCardClick, onCardHover, nameBlockCards} = props;
+  const {offers, nameBlockCards} = props;
   const tabsContent = nameBlockCards === NameBlockCards.CITIES ? `tabs__content` : ``;
   const mainClass = nameBlockCards === NameBlockCards.NEAR ? `near-places__list` : `cities__places-list`;
 
@@ -14,11 +15,9 @@ const ListOffers = (props) => {
     <div className={`${mainClass} places__list ${tabsContent}`}>
       {offers.map((offer) =>
         <Card
-          nameBlockCards={nameBlockCards}
-          key={offer.id}
+          {...props}
           offer={offer}
-          onTitleCardClick={onTitleCardClick}
-          onCardHover={onCardHover}
+          key={offer.id}
         />
       )}
     </div>

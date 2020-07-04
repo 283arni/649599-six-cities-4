@@ -6,7 +6,9 @@ import ReviewsList from '../reviews-list/reviews-list';
 import MapCity from '../map-city/map-city';
 import ListOffers from '../list-offers/list-offers';
 import {NameBlockCards} from '../../mocks/data/const';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
 
+const ListOffersWrapper = withActiveItem(ListOffers);
 
 const Property = (props) => {
   const {offer, onTitleCardClick, reviews, nearOffers, onCardHover} = props;
@@ -188,7 +190,7 @@ const Property = (props) => {
         {onlyNearOffers.length ? <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <ListOffers
+            <ListOffersWrapper
               offers={onlyNearOffers}
               onTitleCardClick={onTitleCardClick}
               onCardHover={onCardHover}

@@ -3,18 +3,23 @@ import PropTypes from 'prop-types';
 import ListOffers from '../list-offers/list-offers';
 import LocationsList from '../locations-list/locations-list';
 import Sorting from '../sorting/sorting';
+import withSorting from '../../hocs/with-sorting/with-sorting';
 import {offerType} from '../../types/offers';
 import MapCity from '../map-city/map-city';
-import {NameBlockCards, MAX_RENDER_CITY} from '../../mocks/data/const';
-import {sortOffers} from '../../utils';
+import {NameBlockCards} from '../../mocks/data/const';
+import {sortOffers, filterList} from '../../utils';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+
+const LocationsListWrapper = withActiveItem(LocationsList);
+const ListOffersWrapper = withActiveItem(ListOffers);
+const SortingWrapper = withSorting(Sorting);
+
 
 const Main = (props) => {
   const {onTitleCardClick, offers, onCardHover, currentCity, onCityClick, hoverOffer, onSortChange, sortType} = props;
 
-  const cities = offers.map((offer) => offer.city).slice(0, MAX_RENDER_CITY);
-  const currentOffers = offers.filter((offer) => offer.city.name === currentCity);
+  const currentOffers = filterList(offers, currentCity);
   const cityOffers = currentOffers[0].city;
-
 
   return (
     <div className="page page--gray page--main">
@@ -45,9 +50,9 @@ const Main = (props) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <LocationsList
+            <LocationsListWrapper
               currentCity={currentCity}
-              cities={cities}
+              offers={offers}
               onCityClick={onCityClick}
             />
           </section>
@@ -57,11 +62,11 @@ const Main = (props) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{currentOffers.length} places to stay in {currentCity}</b>
-              <Sorting
+              <SortingWrapper
                 sortType={sortType}
                 onSortChange={onSortChange}
               />
-              <ListOffers
+              <ListOffersWrapper
                 offers={sortOffers(currentOffers, sortType)}
                 onTitleCardClick={onTitleCardClick}
                 onCardHover={onCardHover}
@@ -82,6 +87,7 @@ const Main = (props) => {
       </main>
     </div>
   );
+
 };
 
 Main.propTypes = {

@@ -7,13 +7,14 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Property from '../property/property';
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/reducer";
+import {filterList} from '../../utils';
 
 
 class App extends PureComponent {
 
   _renderApp() {
     const {offer, offers, reviews, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer, sortType, onSortChange} = this.props;
-    const nearOffers = offers.filter((nearOffer) => nearOffer.city.name === currentCity).slice(0, 3);
+    const nearOffers = filterList(offers, currentCity).slice(0, 3);
 
     if (offer) {
       return (

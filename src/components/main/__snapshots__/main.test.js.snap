@@ -252,7 +252,7 @@ exports[`check render Main 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button  button"
                     type="button"
                   >
                     <svg

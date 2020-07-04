@@ -5,14 +5,17 @@ import {NameBlockCards} from '../../mocks/data/const';
 
 const Card = (props) => {
 
-  const {offer, onTitleCardClick, onCardHover, nameBlockCards} = props;
+  const {offer, onTitleCardClick, onCardHover, nameBlockCards, onActiveChange, activeItem} = props;
   const {photo, premium, price, title, type, rating} = offer;
   const currentName = nameBlockCards === NameBlockCards.NEAR ? `near-places__card` : `cities__place-card`;
 
   return (
     <article
       className={`${currentName} place-card`}
-      onMouseOver={() => onCardHover(offer)}
+      onMouseOver={() => {
+        onActiveChange(offer);
+        onCardHover(offer);
+      }}
     >
       {premium ?
         <div className="place-card__mark">
@@ -30,7 +33,7 @@ const Card = (props) => {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button className={`place-card__bookmark-button ${activeItem === offer ? `place-card__bookmark-button--active` : ``} button`} type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -59,7 +62,9 @@ Card.propTypes = {
   offer: PropTypes.shape(offerType).isRequired,
   onTitleCardClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
-  nameBlockCards: PropTypes.string.isRequired
+  nameBlockCards: PropTypes.string.isRequired,
+  onActiveChange: PropTypes.func.isRequired,
+  activeItem: PropTypes.shape(offerType),
 };
 
 export default Card;
