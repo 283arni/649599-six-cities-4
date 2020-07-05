@@ -1,25 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ListOffers from '../list-offers/list-offers';
 import LocationsList from '../locations-list/locations-list';
-import Sorting from '../sorting/sorting';
-import withSorting from '../../hocs/with-sorting/with-sorting';
 import {offerType} from '../../types/offers';
-import MapCity from '../map-city/map-city';
-import {NameBlockCards} from '../../mocks/data/const';
-import {sortOffers, filterList} from '../../utils';
+import NoOffers from '../no-offers/no-offers';
+import ScreenCity from '../screen-city/screen-city';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import {filterList} from '../../utils';
+import {cities} from '../../mocks/data/cities';
 
 const LocationsListWrapper = withActiveItem(LocationsList);
-const ListOffersWrapper = withActiveItem(ListOffers);
-const SortingWrapper = withSorting(Sorting);
 
 
 const Main = (props) => {
-  const {onTitleCardClick, offers, onCardHover, currentCity, onCityClick, hoverOffer, onSortChange, sortType} = props;
+  let {offers, currentCity, onCityClick} = props;
 
   const currentOffers = filterList(offers, currentCity);
-  const cityOffers = currentOffers[0].city;
 
   return (
     <div className="page page--gray page--main">
@@ -52,37 +47,21 @@ const Main = (props) => {
           <section className="locations container">
             <LocationsListWrapper
               currentCity={currentCity}
-              offers={offers}
+              cities={cities}
               onCityClick={onCityClick}
             />
           </section>
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{currentOffers.length} places to stay in {currentCity}</b>
-              <SortingWrapper
-                sortType={sortType}
-                onSortChange={onSortChange}
-              />
-              <ListOffersWrapper
-                offers={sortOffers(currentOffers, sortType)}
-                onTitleCardClick={onTitleCardClick}
-                onCardHover={onCardHover}
-                nameBlockCards={NameBlockCards.CITIES}
-              />
-            </section>
-            <div className="cities__right-section">
-              <section className="cities__map map">
-                <MapCity
-                  offers={currentOffers}
-                  cityOffers={cityOffers}
-                  offer={hoverOffer}
-                />
-              </section>
-            </div>
-          </div>
+          {currentOffers.length ?
+            <ScreenCity
+              {...props}
+              currentOffers={currentOffers}
+            /> :
+            <NoOffers
+              currentCity={currentCity}
+            />
+          }
         </div>
       </main>
     </div>
@@ -94,13 +73,8 @@ Main.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired
   ),
-  onTitleCardClick: PropTypes.func.isRequired,
-  onCardHover: PropTypes.func.isRequired,
   currentCity: PropTypes.string.isRequired,
   onCityClick: PropTypes.func.isRequired,
-  hoverOffer: PropTypes.shape(offerType),
-  sortType: PropTypes.string.isRequired,
-  onSortChange: PropTypes.func.isRequired
 };
 
 export default Main;

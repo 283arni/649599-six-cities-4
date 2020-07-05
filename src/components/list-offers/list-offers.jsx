@@ -28,8 +28,6 @@ ListOffers.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired
   ),
-  onTitleCardClick: PropTypes.func.isRequired,
-  onCardHover: PropTypes.func.isRequired,
   nameBlockCards: PropTypes.string.isRequired
 };
 
