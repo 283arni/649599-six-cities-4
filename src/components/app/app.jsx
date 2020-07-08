@@ -6,18 +6,21 @@ import {reviewType} from '../../types/reviews';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Property from '../property/property';
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/reducer";
+import {ActionCreator} from "../../reducer/offer/offer";
+import {Operation} from '../../reducer/data/data';
 import {filterList} from '../../utils';
+import {getConvertOffers, getReviews, getConvertNearOffers} from '../../reducer/data/selector';
+import {getCity, getOffer, getHoverOffer, getSortType} from '../../reducer/offer/selector';
+import {reviews} from '../../mocks/data/reviews';
 
 
 class App extends PureComponent {
 
   _renderApp() {
-    const {offer, offers, reviews, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer, sortType, onSortChange} = this.props;
-
+    let {offer, offers, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer, sortType, onSortChange, onNearOffersClick, nearOffers} = this.props;
+    console.log(nearOffers)
     if (offer) {
-      const nearOffers = filterList(offers, currentCity).slice(0, 3);
-
+      nearOffers = nearOffers.slice(0, 4);
       return (
         <Property
           offer={offer}
@@ -39,6 +42,7 @@ class App extends PureComponent {
         onCityClick={onCityClick}
         sortType={sortType}
         onSortChange={onSortChange}
+        onNearOffersClick={onNearOffersClick}
       />
     );
   }
@@ -51,14 +55,14 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-property">
-            <Property
+            {/* <Property
               offer={this.props.offers[0]}
               nearOffers={this.props.offers}
-              reviews={this.props.reviews}
+              reviews={reviews}
               currentCity={this.props.currentCity}
               onTitleCardClick={this.props.onTitleClick}
               onCardHover={this.props.onCardHover}
-            />
+            /> */}
           </Route>
         </Switch>
       </BrowserRouter>
@@ -67,17 +71,19 @@ class App extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  offers: state.offers,
-  reviews: state.reviews,
-  offer: state.offer,
-  hoverOffer: state.hoverOffer,
-  currentCity: state.currentCity,
-  sortType: state.sortType
+  offers: getConvertOffers(state),
+  reviews: getReviews(state),
+  offer: getOffer(state),
+  hoverOffer: getHoverOffer(state),
+  currentCity: getCity(state),
+  sortType: getSortType(state),
+  nearOffers: getConvertNearOffers(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onTitleClick(offer) {
-    dispatch(ActionCreator.setOffer(offer));
+    dispatch(Operation.loadNearOffers(offer.id))
+    .then(() => dispatch(ActionCreator.setOffer(offer)));
   },
   onCardHover(offer) {
     dispatch(ActionCreator.setHoverOffer(offer));
@@ -105,7 +111,8 @@ App.propTypes = {
   onCityClick: PropTypes.func.isRequired,
   hoverOffer: PropTypes.shape(offerType),
   sortType: PropTypes.string.isRequired,
-  onSortChange: PropTypes.func.isRequired
+  onSortChange: PropTypes.func.isRequired,
+  nearOffers: PropTypes.array
 };
 
 export {App};

@@ -7,14 +7,15 @@ import MapCity from '../map-city/map-city';
 import ListOffers from '../list-offers/list-offers';
 import {NameBlockCards} from '../../mocks/data/const';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import {housingType} from '../../mocks/data/const';
 
 const ListOffersWrapper = withActiveItem(ListOffers);
 
 const Property = (props) => {
   const {offer, onTitleCardClick, reviews, nearOffers, onCardHover} = props;
   const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner} = offer;
-  const onlyNearOffers = nearOffers.filter((nearOffer) => nearOffer.id !== offer.id);
 
+  const onlyNearOffers = nearOffers.filter((nearOffer) => nearOffer.id !== offer.id);
   return (
     <div className="page">
       <header className="header">
@@ -78,7 +79,7 @@ const Property = (props) => {
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {Object.values(type)}
+                  {housingType[type]}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
                   {amountBedrooms} Bedrooms
@@ -115,14 +116,9 @@ const Property = (props) => {
                   </span>
                 </div>
                 <div className="property__description">
-                  {description.map((info, i) =>
-                    <p
-                      key={info + i}
-                      className="property__text"
-                    >
-                      {info}
-                    </p>
-                  )}
+                  <p className="property__text">
+                    {description}
+                  </p>
                 </div>
               </div>
               <section className="property__reviews reviews">
@@ -182,7 +178,6 @@ const Property = (props) => {
           <section className="property__map map">
             <MapCity
               offers={nearOffers}
-              cityOffers={nearOffers[0].city}
               offer={offer}
             />
           </section>

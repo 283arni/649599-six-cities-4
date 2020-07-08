@@ -20,3 +20,4 @@ export const sortOffers = (currentOffers, sortType) => {
 export const filterList = (offers, city) => {
   return offers.filter((offer) => offer.city.name === city);
 };
+

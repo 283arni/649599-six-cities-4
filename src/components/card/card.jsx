@@ -52,7 +52,7 @@ const Card = (props) => {
             onClick={() => onTitleCardClick(offer)}
           >{title}</a>
         </h2>
-        <p className="place-card__type">{Object.values(type)}</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>
   );

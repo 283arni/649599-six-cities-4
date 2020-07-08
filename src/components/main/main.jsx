@@ -13,7 +13,6 @@ const LocationsListWrapper = withActiveItem(LocationsList);
 
 const Main = (props) => {
   let {offers, currentCity, onCityClick} = props;
-
   const currentOffers = filterList(offers, currentCity);
 
   return (

@@ -18,3 +18,10 @@ export const SettingImage = {
   SIZE: 119,
   POSITION: 100
 };
+
+export const housingType = {
+  'apartment': `Apartment`,
+  'room ': `Private Room`,
+  'house': `House`,
+  'hotel': `Hotel`
+};
