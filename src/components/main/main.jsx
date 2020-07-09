@@ -5,8 +5,7 @@ import {offerType} from '../../types/offers';
 import NoOffers from '../no-offers/no-offers';
 import ScreenCity from '../screen-city/screen-city';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import {filterList} from '../../utils';
-import {cities} from '../../mocks/data/cities';
+import {filterList, getCities} from '../../utils';
 
 const LocationsListWrapper = withActiveItem(LocationsList);
 
@@ -14,6 +13,7 @@ const LocationsListWrapper = withActiveItem(LocationsList);
 const Main = (props) => {
   let {offers, currentCity, onCityClick} = props;
   const currentOffers = filterList(offers, currentCity);
+  const cities = getCities(offers);
 
   return (
     <div className="page page--gray page--main">

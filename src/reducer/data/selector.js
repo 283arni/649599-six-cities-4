@@ -1,5 +1,6 @@
 import {createSelector} from 'reselect';
 import OfferModel from '../../adapters/offer-model';
+import ReviewModel from '../../adapters/review-model';
 import NameSpace from "../name-space.js";
 
 
@@ -26,5 +27,12 @@ export const getConvertNearOffers = createSelector(
     getNearOffers,
     (offers) => {
       return OfferModel.parseOffers(offers);
+    }
+);
+
+export const getConvertReviews = createSelector(
+    getReviews,
+    (reviews) => {
+      return ReviewModel.parseReviews(reviews);
     }
 );

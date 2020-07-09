@@ -9,23 +9,23 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/offer/offer";
 import {Operation} from '../../reducer/data/data';
 import {filterList} from '../../utils';
-import {getConvertOffers, getReviews, getConvertNearOffers} from '../../reducer/data/selector';
+import {getConvertOffers, getConvertReviews, getConvertNearOffers} from '../../reducer/data/selector';
 import {getCity, getOffer, getHoverOffer, getSortType} from '../../reducer/offer/selector';
-import {reviews} from '../../mocks/data/reviews';
+// import {reviews} from '../../mocks/data/reviews';
 
 
 class App extends PureComponent {
 
   _renderApp() {
-    let {offer, offers, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer, sortType, onSortChange, onNearOffersClick, nearOffers} = this.props;
-    console.log(nearOffers)
+    const {offer, offers, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer, sortType, onSortChange, reviews, nearOffers} = this.props;
+    
     if (offer) {
-      nearOffers = nearOffers.slice(0, 4);
+
       return (
         <Property
           offer={offer}
           reviews={reviews}
-          nearOffers={nearOffers}
+          nearOffers={nearOffers.slice(0, 4)}
           onTitleCardClick={onTitleClick}
           onCardHover={onCardHover}
         />
@@ -42,7 +42,6 @@ class App extends PureComponent {
         onCityClick={onCityClick}
         sortType={sortType}
         onSortChange={onSortChange}
-        onNearOffersClick={onNearOffersClick}
       />
     );
   }
@@ -72,7 +71,7 @@ class App extends PureComponent {
 
 const mapStateToProps = (state) => ({
   offers: getConvertOffers(state),
-  reviews: getReviews(state),
+  reviews: getConvertReviews(state),
   offer: getOffer(state),
   hoverOffer: getHoverOffer(state),
   currentCity: getCity(state),
@@ -83,7 +82,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onTitleClick(offer) {
     dispatch(Operation.loadNearOffers(offer.id))
-    .then(() => dispatch(ActionCreator.setOffer(offer)));
+      .then(() => dispatch(Operation.loadReviews(offer.id)))
+      .then(() => dispatch(ActionCreator.setOffer(offer)));
   },
   onCardHover(offer) {
     dispatch(ActionCreator.setHoverOffer(offer));

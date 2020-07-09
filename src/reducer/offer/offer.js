@@ -4,7 +4,7 @@ const initialState = {
   offer: null,
   hoverOffer: null,
   sortType: `Popular`,
-  currentCity: `Amsterdam`,
+  currentCity: ``,
 };
 
 const ActionType = {
@@ -32,6 +32,7 @@ const ActionCreator = {
     payload: city
   })
 };
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
