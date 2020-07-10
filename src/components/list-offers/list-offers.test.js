@@ -2,7 +2,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import ListOffers from './list-offers';
 import {offers} from '../../mocks/test/offers';
-import {nameBlockCards} from '../../mocks/test/card';
 
 const onActiveChange = jest.fn();
 const onTitleCardClick = jest.fn();
@@ -14,7 +13,7 @@ it(`check render ListOffers`, () => {
         offers={offers}
         onTitleCardClick={onTitleCardClick}
         onCardHover={onCardHover}
-        nameBlockCards={nameBlockCards}
+        className={`cities`}
         onActiveChange={onActiveChange}
       />
   ).toJSON();

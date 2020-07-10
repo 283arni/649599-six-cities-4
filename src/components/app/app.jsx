@@ -6,19 +6,17 @@ import {reviewType} from '../../types/reviews';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Property from '../property/property';
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/offer/offer";
+import {ActionCreator} from "../../reducer/site/site";
 import {Operation} from '../../reducer/data/data';
-import {filterList} from '../../utils';
 import {getConvertOffers, getConvertReviews, getConvertNearOffers} from '../../reducer/data/selector';
-import {getCity, getOffer, getHoverOffer, getSortType} from '../../reducer/offer/selector';
-// import {reviews} from '../../mocks/data/reviews';
+import {getCity, getOffer, getHoverOffer, getSortType} from '../../reducer/site/selector';
 
 
 class App extends PureComponent {
 
   _renderApp() {
     const {offer, offers, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer, sortType, onSortChange, reviews, nearOffers} = this.props;
-    
+
     if (offer) {
 
       return (

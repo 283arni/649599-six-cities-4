@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MapCity from '../map-city/map-city';
-import {NameBlockCards} from '../../mocks/data/const';
 import {sortOffers} from '../../utils';
 import Sorting from '../sorting/sorting';
 import withSorting from '../../hocs/with-sorting/with-sorting';
@@ -28,7 +27,7 @@ const ScreenCity = (props) => {
           offers={sortOffers(currentOffers, sortType)}
           onTitleCardClick={onTitleCardClick}
           onCardHover={onCardHover}
-          nameBlockCards={NameBlockCards.CITIES}
+          className={`cities__places-list`}
         />
       </section>
       <div className="cities__right-section">

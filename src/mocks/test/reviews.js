@@ -1,21 +1,23 @@
 export const reviews = [{
   id: 1,
-  avatar: `./img/avatar-max.jpg`,
-  name: `Max`,
-  rating: 3.4,
-  date: {
-    fullTime: `2019-04-24`,
-    cutedTime: `April 2019`
+  user: {
+    avatar: `./img/avatar-angelina.jpg`,
+    id: 2,
+    super: true,
+    name: `Angelina`
   },
-  text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
+  rating: 2,
+  date: `2018-04-24`,
+  text: `The building is green and from 18th century.`,
 }, {
   id: 2,
-  avatar: `./img/avatar-angelina.jpg`,
-  name: `Angelina`,
-  rating: 4,
-  date: {
-    fullTime: `2018-04-24`,
-    cutedTime: `April 2018`
+  user: {
+    avatar: `./img/avatar-angelina.jpg`,
+    id: 1,
+    super: true,
+    name: `Angelina`
   },
-  text: `The building is green and from 18th century.`
+  rating: 2,
+  date: `2018-04-24`,
+  text: `The building is green and from 18th century.`,
 }];

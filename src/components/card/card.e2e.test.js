@@ -2,8 +2,7 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Card from "./card";
-import {offer} from '../../mocks/test/offers';
-import {nameBlockCards} from '../../mocks/test/card';
+import {offers} from '../../mocks/test/offers';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -18,12 +17,12 @@ it(`to check Card should return offer and click on title`, () => {
 
   const card = shallow(
       <Card
-        offer={offer}
+        offer={offers[0]}
         onTitleCardClick={onTitleCardClick}
         onCardHover={onCardHover}
-        nameBlockCards={nameBlockCards}
+        className={`cities`}
         onActiveChange={onActiveChange}
-        activeItem={offer}
+        activeItem={offers[0]}
       />
   );
 
@@ -31,9 +30,9 @@ it(`to check Card should return offer and click on title`, () => {
   const titleCard = card.find(`.place-card__name a`);
 
 
-  place.simulate(`onmouseover`, onCardHover(offer));
+  place.simulate(`onmouseover`, onCardHover(offers[0]));
   titleCard.simulate(`click`);
 
-  expect(onCardHover.mock.calls[0][0]).toMatchObject(offer);
+  expect(onCardHover.mock.calls[0][0]).toMatchObject(offers[0]);
   expect(onTitleCardClick).toHaveBeenCalled();
 });

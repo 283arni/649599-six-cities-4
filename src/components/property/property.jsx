@@ -5,9 +5,8 @@ import PropTypes from 'prop-types';
 import ReviewsList from '../reviews-list/reviews-list';
 import MapCity from '../map-city/map-city';
 import ListOffers from '../list-offers/list-offers';
-import {NameBlockCards} from '../../mocks/data/const';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import {housingType} from '../../mocks/data/const';
+import {housingType, ONE_STAR} from '../../mocks/data/const';
 
 const ListOffersWrapper = withActiveItem(ListOffers);
 
@@ -15,7 +14,6 @@ const Property = (props) => {
   const {offer, onTitleCardClick, reviews, nearOffers, onCardHover} = props;
   const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner} = offer;
 
-  const onlyNearOffers = nearOffers.filter((nearOffer) => nearOffer.id !== offer.id);
   return (
     <div className="page">
       <header className="header">
@@ -72,7 +70,7 @@ const Property = (props) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${Math.round(rating) * 20}%`}}></span>
+                  <span style={{width: `${Math.round(rating) * ONE_STAR}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">{rating}</span>
@@ -182,14 +180,14 @@ const Property = (props) => {
             />
           </section>
         </section>
-        {onlyNearOffers.length ? <div className="container">
+        {nearOffers.length ? <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <ListOffersWrapper
-              offers={onlyNearOffers}
+              offers={nearOffers}
               onTitleCardClick={onTitleCardClick}
               onCardHover={onCardHover}
-              nameBlockCards={NameBlockCards.NEAR}
+              className={`near-places__list`}
             />
           </section>
         </div> : ``}

@@ -1,8 +1,6 @@
 import React, {Component, createRef} from 'react';
 import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers';
-import {cityType} from '../../types/city';
-import {ZOOM_MAP} from '../../mocks/data/const';
 import leaflet from 'leaflet';
 
 const marker = leaflet.icon({
@@ -40,7 +38,7 @@ class MapCity extends Component {
 
   viewCenterCity() {
     const {offers} = this.props;
-    this._map.setView(offers[0].city.coords);
+    this._map.setView(offers[0].city.coords, offers[0].city.zoom);
   }
 
   renderPins() {
@@ -63,15 +61,16 @@ class MapCity extends Component {
     const {offers} = this.props;
 
     const city = offers[0].city.coords;
+    const zoom = offers[0].city.zoom;
 
     this._map = leaflet.map(this._mapRef.current, {
       center: city,
-      zoom: ZOOM_MAP,
+      zoom,
       zoomControl: false,
       marker: true,
       scrollWheelZoom: false
     });
-    this._map.setView(city, ZOOM_MAP);
+    this._map.setView(city, zoom);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {

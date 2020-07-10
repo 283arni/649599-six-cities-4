@@ -1,8 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Card from './card';
-import {offer} from '../../mocks/test/offers';
-import {nameBlockCards} from '../../mocks/test/card';
+import {offers} from '../../mocks/test/offers';
 
 const onCardHover = jest.fn();
 const onActiveChange = jest.fn();
@@ -11,12 +10,12 @@ const onTitleCardClick = jest.fn();
 it(`check render Card`, () => {
   const tree = renderer.create(
       <Card
-        offer={offer}
+        offer={offers[0]}
         onTitleCardClick={onCardHover}
         onCardHover={onActiveChange}
-        nameBlockCards={nameBlockCards}
+        className={`cities`}
         onActiveChange={onTitleCardClick}
-        activeItem={offer}
+        activeItem={offers[0]}
       />
   ).toJSON();
 

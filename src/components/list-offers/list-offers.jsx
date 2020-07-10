@@ -6,18 +6,17 @@ import {NameBlockCards} from '../../mocks/data/const';
 
 
 const ListOffers = (props) => {
-
-  const {offers, nameBlockCards} = props;
-  const tabsContent = nameBlockCards === NameBlockCards.CITIES ? `tabs__content` : ``;
-  const mainClass = nameBlockCards === NameBlockCards.NEAR ? `near-places__list` : `cities__places-list`;
+  const {offers, className} = props;
+  const tabsContent = className.search(NameBlockCards.CITIES) ? `` : `tabs__content`;
 
   return (
-    <div className={`${mainClass} places__list ${tabsContent}`}>
+    <div className={`${className} places__list ${tabsContent}`}>
       {offers.map((offer) =>
         <Card
           {...props}
           offer={offer}
           key={offer.id}
+          className={className}
         />
       )}
     </div>
@@ -28,7 +27,7 @@ ListOffers.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired
   ),
-  nameBlockCards: PropTypes.string.isRequired
+  className: PropTypes.string.isRequired
 };
 
 export default ListOffers;
