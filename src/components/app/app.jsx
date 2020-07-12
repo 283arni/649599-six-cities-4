@@ -4,18 +4,22 @@ import Main from '../main/main';
 import {offerType} from '../../types/offers';
 import {reviewType} from '../../types/reviews';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {AuthorizationStatus} from '../../mocks/data/const';
 import Property from '../property/property';
+import SignScreen from '../../components/sign-screen/sign-screen';
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/site/site";
-import {Operation} from '../../reducer/data/data';
+import {Operation as DataOperation} from '../../reducer/data/data';
+import {Operation as UserOperation} from '../../reducer/user/user';
 import {getConvertOffers, getConvertReviews, getConvertNearOffers} from '../../reducer/data/selector';
 import {getCity, getOffer, getHoverOffer, getSortType} from '../../reducer/site/selector';
+import {getAuth} from '../../reducer/user/selector';
 
 
 class App extends PureComponent {
 
   _renderApp() {
-    const {offer, offers, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer, sortType, onSortChange, reviews, nearOffers} = this.props;
+    const {offer, offers, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer, sortType, onSortChange, reviews, nearOffers, authorizationStatus, onLoginSubmit} = this.props;
 
     if (offer) {
 
@@ -30,6 +34,10 @@ class App extends PureComponent {
       );
     }
 
+    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+      return <SignScreen onLoginSubmit={onLoginSubmit}/>;
+    }
+
     return (
       <Main
         currentCity={currentCity}
@@ -40,6 +48,7 @@ class App extends PureComponent {
         onCityClick={onCityClick}
         sortType={sortType}
         onSortChange={onSortChange}
+        authorizationStatus={authorizationStatus}
       />
     );
   }
@@ -74,13 +83,14 @@ const mapStateToProps = (state) => ({
   hoverOffer: getHoverOffer(state),
   currentCity: getCity(state),
   sortType: getSortType(state),
-  nearOffers: getConvertNearOffers(state)
+  nearOffers: getConvertNearOffers(state),
+  authorizationStatus: getAuth(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onTitleClick(offer) {
-    dispatch(Operation.loadNearOffers(offer.id))
-      .then(() => dispatch(Operation.loadReviews(offer.id)))
+    dispatch(DataOperation.loadNearOffers(offer.id))
+      .then(() => dispatch(DataOperation.loadReviews(offer.id)))
       .then(() => dispatch(ActionCreator.setOffer(offer)));
   },
   onCardHover(offer) {
@@ -91,6 +101,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onSortChange(valueType) {
     dispatch(ActionCreator.setSortType(valueType));
+  },
+  onLoginSubmit(mail) {
+    dispatch(UserOperation.login(mail));
   }
 });
 
@@ -110,7 +123,9 @@ App.propTypes = {
   hoverOffer: PropTypes.shape(offerType),
   sortType: PropTypes.string.isRequired,
   onSortChange: PropTypes.func.isRequired,
-  nearOffers: PropTypes.array
+  nearOffers: PropTypes.array,
+  authorizationStatus: PropTypes.string.isRequired,
+  onLoginSubmit: PropTypes.func.isRequired
 };
 
 export {App};

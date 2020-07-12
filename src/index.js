@@ -12,7 +12,7 @@ import {ActionCreator as SiteActionCreator} from './reducer/site/site';
 import {Operation as DataOperation} from './reducer/data/data';
 
 const api = createApi(() => {
-  store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+  store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
 });
 
 const store = createStore(

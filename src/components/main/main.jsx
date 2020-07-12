@@ -11,7 +11,7 @@ const LocationsListWrapper = withActiveItem(LocationsList);
 
 
 const Main = (props) => {
-  let {offers, currentCity, onCityClick} = props;
+  const {offers, currentCity, onCityClick} = props;
   const currentOffers = filterList(offers, currentCity);
   const cities = getCities(offers);
 
@@ -31,7 +31,7 @@ const Main = (props) => {
                   <a className="header__nav-link header__nav-link--profile" href="#">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    <span className="header__user-name user__name">Oliver@google.com</span>
                   </a>
                 </li>
               </ul>
