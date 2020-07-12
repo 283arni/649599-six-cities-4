@@ -2,16 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers';
 import {NameBlockCards} from '../../mocks/data/const';
+import {ONE_STAR} from '../../mocks/data/const';
 
 const Card = (props) => {
 
-  const {offer, onTitleCardClick, onCardHover, nameBlockCards, onActiveChange, activeItem} = props;
+  const {offer, onTitleCardClick, onCardHover, className, onActiveChange, activeItem} = props;
   const {photo, premium, price, title, type, rating} = offer;
-  const currentName = nameBlockCards === NameBlockCards.NEAR ? `near-places__card` : `cities__place-card`;
+  const currentClass = className.search(NameBlockCards.NEAR) ? `cities__place-card` : `near-places__card`;
+  const currentName = className.search(NameBlockCards.NEAR) ? NameBlockCards.CITIES : NameBlockCards.NEAR;
 
   return (
     <article
-      className={`${currentName} place-card`}
+      className={`${currentClass} place-card`}
       onMouseOver={() => {
         onActiveChange(offer);
         onCardHover(offer);
@@ -22,7 +24,7 @@ const Card = (props) => {
           <span>Premium</span>
         </div> : null
       }
-      <div className={`${nameBlockCards}__image-wrapper place-card__image-wrapper`}>
+      <div className={`${currentName}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={photo} width="260" height="200" alt={title} />
         </a>
@@ -42,7 +44,7 @@ const Card = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${Math.round(rating) * 20}%`}}></span>
+            <span style={{width: `${Math.round(rating) * ONE_STAR}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -52,7 +54,7 @@ const Card = (props) => {
             onClick={() => onTitleCardClick(offer)}
           >{title}</a>
         </h2>
-        <p className="place-card__type">{Object.values(type)}</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>
   );
@@ -62,7 +64,7 @@ Card.propTypes = {
   offer: PropTypes.shape(offerType).isRequired,
   onTitleCardClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
-  nameBlockCards: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
   onActiveChange: PropTypes.func.isRequired,
   activeItem: PropTypes.shape(offerType),
 };

@@ -22,8 +22,7 @@ it(`check render MapCity`, () => {
   const component = renderer.create(
       <MapCity
         offers={offers}
-        currentCity={offer.city.name}
-        cityOffers={offer.city}
+        offer={offer}
       />
   ).toJSON();
 

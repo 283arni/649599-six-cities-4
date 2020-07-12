@@ -3,6 +3,13 @@ export const NameBlockCards = {
   NEAR: `near-places`
 };
 
+export const ONE_STAR = 20;
+
+export const AuthorizationStatus = {
+  NO_AUTH: `NO_AUTH`,
+  AUTH: `AUTH`
+};
+
 export const TypeSortOffers = {
   POPULAR: `Popular`,
   PRICE_LOW: `Price: high to low`,
@@ -12,9 +19,15 @@ export const TypeSortOffers = {
 
 export const MAX_RENDER_CITY = 6;
 
-export const ZOOM_MAP = 12;
 
 export const SettingImage = {
   SIZE: 119,
   POSITION: 100
+};
+
+export const housingType = {
+  'apartment': `Apartment`,
+  'room ': `Private Room`,
+  'house': `House`,
+  'hotel': `Hotel`
 };

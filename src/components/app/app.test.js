@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {App} from './app';
 import {Provider} from "react-redux";
-import {offers, offer} from '../../mocks/test/offers';
+import {offers} from '../../mocks/test/offers';
 import {reviews} from '../../mocks/test/reviews';
 import configureStore from "redux-mock-store";
 
@@ -16,8 +16,8 @@ it(`check render App`, () => {
   const store = mockStore({
     offers,
     reviews,
-    offer,
-    currentCity: offer.city.name,
+    offer: offers[0],
+    currentCity: offers[0].city.name,
     sortType: `Popular`
   });
 
@@ -26,13 +26,15 @@ it(`check render App`, () => {
         <App
           offers={offers}
           reviews={reviews}
-          offer={offer}
-          currentCity={offer.city.name}
+          offer={offers[0]}
+          currentCity={offers[0].city.name}
           onTitleClick={onTitleClick}
           onCardHover={onCardHover}
           onCityClick={onCityClick}
           sortType={`Popular`}
           onSortChange={onSortChange}
+          nearOffers={offers}
+          hoverOffer={offers[0]}
         />
       </Provider>, {
         createNodeMock: () => document.createElement(`div`)

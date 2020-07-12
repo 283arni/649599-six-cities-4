@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LocationItem from '../location-item/location-item';
 import {MAX_RENDER_CITY} from '../../mocks/data/const';
-import {cityType} from '../../types/city';
 
 
 const LocationsList = (props) => {
@@ -23,7 +22,7 @@ const LocationsList = (props) => {
 };
 
 LocationsList.propTypes = {
-  cities: PropTypes.arrayOf(cityType).isRequired
+  cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };
 
 export default LocationsList;

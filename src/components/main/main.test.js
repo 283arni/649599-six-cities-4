@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Main from './main';
-import {offers, offer} from '../../mocks/test/offers';
+import {offers} from '../../mocks/test/offers';
 
 const nameSort = `Popular`;
 
@@ -16,7 +16,7 @@ it(`check render Main`, () => {
         offers={offers}
         onTitleCardClick={onTitleCardClick}
         onCardHover={onCardHover}
-        currentCity={offer.city.name}
+        currentCity={offers[0].city.name}
         onCityClick={onCityClick}
         sortType={nameSort}
         onSortChange={onSortChange}

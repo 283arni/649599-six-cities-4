@@ -1,5 +1,15 @@
 import {TypeSortOffers} from './mocks/data/const';
 
+const monthNames = [`January`, `February`, `March`, `April`, `May`, `June`,
+  `July`, `August`, `September`, `October`, `November`, `December`
+];
+
+
+export const getDate = (date) => {
+  const dateNow = new Date(date);
+  return `${monthNames[dateNow.getMonth()]} ${dateNow.getFullYear()}`;
+};
+
 export const extend = (oldData, newData) => {
   return Object.assign({}, oldData, newData);
 };
@@ -19,4 +29,10 @@ export const sortOffers = (currentOffers, sortType) => {
 
 export const filterList = (offers, city) => {
   return offers.filter((offer) => offer.city.name === city);
+};
+
+export const getCities = (offers) => {
+  let cities = new Set();
+  offers.forEach((offer) => cities.add(offer.city.name));
+  return Array.from(cities);
 };

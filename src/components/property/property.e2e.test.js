@@ -2,7 +2,7 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Property from "./property";
-import {offer, offers} from '../../mocks/test/offers';
+import {offers} from '../../mocks/test/offers';
 import {reviews} from '../../mocks/test/reviews';
 
 Enzyme.configure({
@@ -16,12 +16,11 @@ it(`in Property click on titles cards`, () => {
 
   const property = shallow(
       <Property
-        offer={offer}
+        offer={offers[0]}
         reviews={reviews}
         nearOffers={offers}
         onTitleCardClick={onTitleCardClick}
         onCardHover={onCardHover}
-        currentCity={offer.city.name}
       />
   );
 

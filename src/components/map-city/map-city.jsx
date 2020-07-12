@@ -1,8 +1,6 @@
 import React, {Component, createRef} from 'react';
 import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers';
-import {cityType} from '../../types/city';
-import {ZOOM_MAP} from '../../mocks/data/const';
 import leaflet from 'leaflet';
 
 const marker = leaflet.icon({
@@ -24,7 +22,7 @@ class MapCity extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.cityOffers.name !== this.props.cityOffers.name) {
+    if (prevProps.offers[0].city.name !== this.props.offers[0].city.name) {
       this.viewCenterCity();
       this.renderPins();
     }
@@ -39,8 +37,8 @@ class MapCity extends Component {
   }
 
   viewCenterCity() {
-    const {cityOffers} = this.props;
-    this._map.setView(cityOffers.coords);
+    const {offers} = this.props;
+    this._map.setView(offers[0].city.coords, offers[0].city.zoom);
   }
 
   renderPins() {
@@ -53,25 +51,26 @@ class MapCity extends Component {
         icon = item.id === offer.id ? activeMarker : marker;
       }
       leaflet
-        .marker(item.coords, {icon})
+        .marker(item.coords.target, {icon})
         .addTo(this._map);
     });
   }
 
 
   renderMap() {
-    const {cityOffers} = this.props;
+    const {offers} = this.props;
 
-    const city = cityOffers.coords;
+    const city = offers[0].city.coords;
+    const zoom = offers[0].city.zoom;
 
     this._map = leaflet.map(this._mapRef.current, {
       center: city,
-      zoom: ZOOM_MAP,
+      zoom,
       zoomControl: false,
       marker: true,
       scrollWheelZoom: false
     });
-    this._map.setView(city, ZOOM_MAP);
+    this._map.setView(city, zoom);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -93,8 +92,8 @@ MapCity.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired
   ).isRequired,
-  cityOffers: cityType,
-  offer: PropTypes.shape(offerType)
+  // cityOffers: cityType,
+  offer: PropTypes.shape(offerType),
 };
 
 export default MapCity;

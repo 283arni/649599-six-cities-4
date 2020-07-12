@@ -1,5 +1,5 @@
-import {reducer, ActionCreator, ActionType, initialState} from "./reducer.js";
-import {offer} from '../mocks/test/offers';
+import {reducer, ActionCreator, ActionType, initialState} from "./site";
+import {offers} from '../../mocks/test/offers';
 
 const cityTest = `Paris`;
 const sortTest = `Popular`;
@@ -26,9 +26,9 @@ describe(`test work Reducer`, () => {
       offer: null,
     }, {
       type: ActionType.SET_OFFER,
-      payload: offer
+      payload: offers[0]
     })).toEqual({
-      offer
+      offer: offers[0]
     });
   });
 
@@ -37,9 +37,9 @@ describe(`test work Reducer`, () => {
       hoverOffer: null,
     }, {
       type: ActionType.SET_OFFER_HOVER,
-      payload: offer
+      payload: offers[0]
     })).toEqual({
-      hoverOffer: offer
+      hoverOffer: offers[0]
     });
   });
 
@@ -58,9 +58,9 @@ describe(`test work Reducer`, () => {
 
 describe(`test work Action Creators`, () => {
   it(`Action creator for set offer returns correct action`, () => {
-    expect(ActionCreator.setOffer(offer)).toEqual({
+    expect(ActionCreator.setOffer(offers[0])).toEqual({
       type: ActionType.SET_OFFER,
-      payload: offer,
+      payload: offers[0],
     });
   });
 
