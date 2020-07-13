@@ -13,13 +13,13 @@ import {Operation as DataOperation} from '../../reducer/data/data';
 import {Operation as UserOperation} from '../../reducer/user/user';
 import {getConvertOffers, getConvertReviews, getConvertNearOffers} from '../../reducer/data/selector';
 import {getCity, getOffer, getHoverOffer, getSortType} from '../../reducer/site/selector';
-import {getAuth} from '../../reducer/user/selector';
+import {getAuth, getUser} from '../../reducer/user/selector';
 
 
 class App extends PureComponent {
 
   _renderApp() {
-    const {offer, offers, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer, sortType, onSortChange, reviews, nearOffers, authorizationStatus, onLoginSubmit} = this.props;
+    const {offer, offers, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer, sortType, onSortChange, reviews, nearOffers, authorizationStatus, onLoginSubmit, user} = this.props;
 
     if (offer) {
 
@@ -49,6 +49,7 @@ class App extends PureComponent {
         sortType={sortType}
         onSortChange={onSortChange}
         authorizationStatus={authorizationStatus}
+        user={user}
       />
     );
   }
@@ -84,7 +85,8 @@ const mapStateToProps = (state) => ({
   currentCity: getCity(state),
   sortType: getSortType(state),
   nearOffers: getConvertNearOffers(state),
-  authorizationStatus: getAuth(state)
+  authorizationStatus: getAuth(state),
+  user: getUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -125,7 +127,8 @@ App.propTypes = {
   onSortChange: PropTypes.func.isRequired,
   nearOffers: PropTypes.array,
   authorizationStatus: PropTypes.string.isRequired,
-  onLoginSubmit: PropTypes.func.isRequired
+  onLoginSubmit: PropTypes.func.isRequired,
+  user: PropTypes.object
 };
 
 export {App};

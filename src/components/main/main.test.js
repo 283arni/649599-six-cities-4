@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Main from './main';
 import {offers} from '../../mocks/test/offers';
+import {user} from '../../mocks/test/user';
 
 const nameSort = `Popular`;
 
@@ -20,6 +21,7 @@ it(`check render Main`, () => {
         onCityClick={onCityClick}
         sortType={nameSort}
         onSortChange={onSortChange}
+        user={user}
       />, {
         createNodeMock: () => document.createElement(`div`)
       }

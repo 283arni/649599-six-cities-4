@@ -47,7 +47,7 @@ exports[`check render Main 1`] = `
                 <span
                   className="header__user-name user__name"
                 >
-                  Oliver.conner@gmail.com
+                  google@google.com
                 </span>
               </a>
             </li>

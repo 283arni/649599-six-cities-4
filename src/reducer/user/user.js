@@ -1,12 +1,15 @@
 import {AuthorizationStatus} from '../../mocks/data/const';
 import {extend} from '../../utils';
+import UserModel from '../../adapters/user-model';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  user: null
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  SET_USER: `SET_USER`
 };
 
 const ActionCreator = {
@@ -16,6 +19,12 @@ const ActionCreator = {
       payload: status,
     };
   },
+  setUser: (user) => {
+    return {
+      type: ActionType.SET_USER,
+      payload: user
+    };
+  }
 };
 
 const Operation = {
@@ -33,6 +42,12 @@ const Operation = {
       email: authData.login,
       password: authData.password,
     })
+      .then((response) => {
+        if (response.status === 200) {
+          const convertUser = UserModel.parseUser(response.data);
+          dispatch(ActionCreator.setUser(convertUser));
+        }
+      })
       .then(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       })
@@ -47,6 +62,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return extend(state, {
         authorizationStatus: action.payload,
+      });
+    case ActionType.SET_USER:
+      return extend(state, {
+        user: action.payload,
       });
   }
 
