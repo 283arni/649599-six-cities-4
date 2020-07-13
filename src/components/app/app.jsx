@@ -71,6 +71,11 @@ class App extends PureComponent {
               onCardHover={this.props.onCardHover}
             /> */}
           </Route>
+          <Route exact path="/login">
+            <SignScreen
+              onLoginSubmit={this.props.onLoginSubmit}
+            />
+          </Route>
         </Switch>
       </BrowserRouter>
     );
