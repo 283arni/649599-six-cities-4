@@ -30,6 +30,7 @@ class App extends PureComponent {
           nearOffers={nearOffers.slice(0, 4)}
           onTitleCardClick={onTitleClick}
           onCardHover={onCardHover}
+          user={user}
         />
       );
     }
