@@ -7,13 +7,15 @@ import ReviewsList from '../reviews-list/reviews-list';
 import MapCity from '../map-city/map-city';
 import ListOffers from '../list-offers/list-offers';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import withReviewForm from '../../hocs/with-review-form/with-review-form';
 import {housingType, ONE_STAR} from '../../mocks/data/const';
 import ReviewForm from '../review-form/review-form';
 
 const ListOffersWrapper = withActiveItem(ListOffers);
+const ReviewFormWrapper = withReviewForm(ReviewForm);
 
 const Property = (props) => {
-  const {offer, onTitleCardClick, reviews, nearOffers, onCardHover, user} = props;
+  const {offer, onTitleCardClick, reviews, nearOffers, onCardHover, user, onReviewSubmit, messageServer, isBlocked} = props;
   const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner} = offer;
 
   return (
@@ -32,7 +34,7 @@ const Property = (props) => {
                   <a className="header__nav-link header__nav-link--profile" href="#">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    <span className="header__user-name user__name">{user.mail}</span>
                   </a>
                 </li>
               </ul>
@@ -127,7 +129,12 @@ const Property = (props) => {
                   reviews={reviews}
                 />
                 {user ?
-                  <ReviewForm />
+                  <ReviewFormWrapper
+                    offer={offer}
+                    onReviewSubmit={onReviewSubmit}
+                    messageServer={messageServer}
+                    isBlocked={isBlocked}
+                  />
                   : null
                 }
               </section>
@@ -150,8 +157,28 @@ const Property = (props) => {
               className={`near-places__list`}
             />
           </section>
-        </div> : ``}
+        </div> : null}
       </main>
+      {messageServer && messageServer.status === 404 ?
+        <div className="error" style={{
+          minWidth: `300px`,
+          fontSize: `1.5rem`,
+          padding: `10px`,
+          textAlign: `center`,
+          color: `pink`,
+          border: `2px solid pink`,
+          borderRadius: `3px`,
+          backgroundColor: `red`,
+          position: `fixed`,
+          zIndex: `100`,
+          top: `20px`,
+          left: `50%`,
+          transform: `translateX(-50%)`
+        }}
+        >
+          {`${messageServer.data.error} Status: ${messageServer.status}`}
+        </div>
+        : null}
     </div>
   );
 };
@@ -166,7 +193,10 @@ Property.propTypes = {
       PropTypes.shape(offerType).isRequired
   ),
   onCardHover: PropTypes.func.isRequired,
-  user: PropTypes.shape(userType).isRequired
+  user: PropTypes.shape(userType).isRequired,
+  onReviewSubmit: PropTypes.func.isRequired,
+  messageServer: PropTypes.object,
+  isBlocked: PropTypes.bool.isRequired
 };
 
 export default Property;

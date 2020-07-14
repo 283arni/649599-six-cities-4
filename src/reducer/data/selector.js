@@ -16,6 +16,14 @@ export const getNearOffers = (state) => {
   return state[NameSpace.DATA].nearOffers;
 };
 
+export const getMessageServer = (state) => {
+  return state[NameSpace.DATA].messageServer;
+};
+
+export const getBlocking = (state) => {
+  return state[NameSpace.DATA].isBlocked;
+};
+
 export const getConvertOffers = createSelector(
     getOffers,
     (offers) => {

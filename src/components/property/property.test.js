@@ -3,9 +3,11 @@ import renderer from 'react-test-renderer';
 import Property from './property';
 import {offers} from '../../mocks/test/offers';
 import {reviews} from '../../mocks/test/reviews';
+import {user} from '../../mocks/test/user';
 
 const onCardHover = jest.fn();
 const onTitleCardClick = jest.fn();
+const onReviewSubmit = jest.fn();
 
 it(`check render Property`, () => {
   const tree = renderer.create(
@@ -16,6 +18,9 @@ it(`check render Property`, () => {
         onTitleCardClick={onTitleCardClick}
         onCardHover={onCardHover}
         className={`class`}
+        user={user}
+        onReviewSubmit={onReviewSubmit}
+        isBlocked={false}
       />, {
         createNodeMock: () => document.createElement(`div`)
       }

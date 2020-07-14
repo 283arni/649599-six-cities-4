@@ -48,7 +48,7 @@ exports[`check render App 1`] = `
                 <span
                   className="header__user-name user__name"
                 >
-                  Oliver.conner@gmail.com
+                  google@google.com
                 </span>
               </a>
             </li>
@@ -417,6 +417,7 @@ exports[`check render App 1`] = `
               action="#"
               className="reviews__form form"
               method="post"
+              onSubmit={[Function]}
             >
               <label
                 className="reviews__label form__label"
@@ -428,9 +429,12 @@ exports[`check render App 1`] = `
                 className="reviews__rating-form form__rating"
               >
                 <input
+                  checked={false}
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="5-stars"
                   name="rating"
+                  onChange={[Function]}
                   type="radio"
                   value="5"
                 />
@@ -450,9 +454,12 @@ exports[`check render App 1`] = `
                   </svg>
                 </label>
                 <input
+                  checked={false}
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="4-stars"
                   name="rating"
+                  onChange={[Function]}
                   type="radio"
                   value="4"
                 />
@@ -472,9 +479,12 @@ exports[`check render App 1`] = `
                   </svg>
                 </label>
                 <input
+                  checked={false}
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="3-stars"
                   name="rating"
+                  onChange={[Function]}
                   type="radio"
                   value="3"
                 />
@@ -494,9 +504,12 @@ exports[`check render App 1`] = `
                   </svg>
                 </label>
                 <input
+                  checked={false}
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="2-stars"
                   name="rating"
+                  onChange={[Function]}
                   type="radio"
                   value="2"
                 />
@@ -516,15 +529,18 @@ exports[`check render App 1`] = `
                   </svg>
                 </label>
                 <input
+                  checked={false}
                   className="form__rating-input visually-hidden"
-                  id="1-star"
+                  disabled={false}
+                  id="1-stars"
                   name="rating"
+                  onChange={[Function]}
                   type="radio"
                   value="1"
                 />
                 <label
                   className="reviews__rating-label form__rating-label"
-                  htmlFor="1-star"
+                  htmlFor="1-stars"
                   title="terribly"
                 >
                   <svg
@@ -540,9 +556,12 @@ exports[`check render App 1`] = `
               </div>
               <textarea
                 className="reviews__textarea form__textarea"
+                disabled={false}
                 id="review"
                 name="review"
+                onChange={[Function]}
                 placeholder="Tell how was your stay, what you like and what can be improved"
+                value=""
               />
               <div
                 className="reviews__button-wrapper"
@@ -566,7 +585,7 @@ exports[`check render App 1`] = `
                 </p>
                 <button
                   className="reviews__submit form__submit button"
-                  disabled=""
+                  disabled={true}
                   type="submit"
                 >
                   Submit

@@ -4,12 +4,14 @@ import Adapter from "enzyme-adapter-react-16";
 import Property from "./property";
 import {offers} from '../../mocks/test/offers';
 import {reviews} from '../../mocks/test/reviews';
+import {user} from '../../mocks/test/user';
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
 
 const onCardHover = jest.fn();
+const onReviewSubmit = jest.fn();
 
 it(`in Property click on titles cards`, () => {
   const onTitleCardClick = jest.fn();
@@ -21,6 +23,9 @@ it(`in Property click on titles cards`, () => {
         nearOffers={offers}
         onTitleCardClick={onTitleCardClick}
         onCardHover={onCardHover}
+        user={user}
+        onReviewSubmit={onReviewSubmit}
+        isBlocked={false}
       />
   );
 
