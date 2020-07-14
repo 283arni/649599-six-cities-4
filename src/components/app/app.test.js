@@ -4,6 +4,7 @@ import {App} from './app';
 import {Provider} from "react-redux";
 import {offers} from '../../mocks/test/offers';
 import {reviews} from '../../mocks/test/reviews';
+import {user} from '../../mocks/test/user';
 import configureStore from "redux-mock-store";
 
 const mockStore = configureStore([]);
@@ -12,6 +13,7 @@ const onCardHover = jest.fn();
 const onCityClick = jest.fn();
 const onSortChange = jest.fn();
 const onLoginSubmit = jest.fn();
+const onReviewSubmit = jest.fn();
 
 it(`check render App`, () => {
   const store = mockStore({
@@ -36,8 +38,11 @@ it(`check render App`, () => {
           onSortChange={onSortChange}
           nearOffers={offers}
           hoverOffer={offers[0]}
-          authorizationStatus={`AUTH`}
+          isAuth={true}
           onLoginSubmit={onLoginSubmit}
+          user={user}
+          onReviewSubmit={onReviewSubmit}
+          isBlocked={false}
         />
       </Provider>, {
         createNodeMock: () => document.createElement(`div`)

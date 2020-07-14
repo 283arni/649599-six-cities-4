@@ -1,17 +1,21 @@
 import React from 'react';
 import {offerType} from '../../types/offers';
 import {reviewType} from '../../types/reviews';
+import {userType} from '../../types/user';
 import PropTypes from 'prop-types';
 import ReviewsList from '../reviews-list/reviews-list';
 import MapCity from '../map-city/map-city';
 import ListOffers from '../list-offers/list-offers';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import withReviewForm from '../../hocs/with-review-form/with-review-form';
 import {housingType, ONE_STAR} from '../../mocks/data/const';
+import ReviewForm from '../review-form/review-form';
 
 const ListOffersWrapper = withActiveItem(ListOffers);
+const ReviewFormWrapper = withReviewForm(ReviewForm);
 
 const Property = (props) => {
-  const {offer, onTitleCardClick, reviews, nearOffers, onCardHover} = props;
+  const {offer, onTitleCardClick, reviews, nearOffers, onCardHover, user, onReviewSubmit, messageServer, isBlocked} = props;
   const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner} = offer;
 
   return (
@@ -30,7 +34,7 @@ const Property = (props) => {
                   <a className="header__nav-link header__nav-link--profile" href="#">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    <span className="header__user-name user__name">{user.mail}</span>
                   </a>
                 </li>
               </ul>
@@ -124,52 +128,15 @@ const Property = (props) => {
                 <ReviewsList
                   reviews={reviews}
                 />
-                <form className="reviews__form form" action="#" method="post">
-                  <label className="reviews__label form__label" htmlFor="review">Your review</label>
-                  <div className="reviews__rating-form form__rating">
-                    <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" />
-                    <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-                      <svg className="form__star-image" width="37" height="33">
-                        <use xlinkHref="#icon-star"></use>
-                      </svg>
-                    </label>
-
-                    <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio" />
-                    <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-                      <svg className="form__star-image" width="37" height="33">
-                        <use xlinkHref="#icon-star"></use>
-                      </svg>
-                    </label>
-
-                    <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio" />
-                    <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-                      <svg className="form__star-image" width="37" height="33">
-                        <use xlinkHref="#icon-star"></use>
-                      </svg>
-                    </label>
-
-                    <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio" />
-                    <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-                      <svg className="form__star-image" width="37" height="33">
-                        <use xlinkHref="#icon-star"></use>
-                      </svg>
-                    </label>
-
-                    <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio" />
-                    <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-                      <svg className="form__star-image" width="37" height="33">
-                        <use xlinkHref="#icon-star"></use>
-                      </svg>
-                    </label>
-                  </div>
-                  <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
-                  <div className="reviews__button-wrapper">
-                    <p className="reviews__help">
-                      To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
-                    </p>
-                    <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
-                  </div>
-                </form>
+                {user ?
+                  <ReviewFormWrapper
+                    offer={offer}
+                    onReviewSubmit={onReviewSubmit}
+                    messageServer={messageServer}
+                    isBlocked={isBlocked}
+                  />
+                  : null
+                }
               </section>
             </div>
           </div>
@@ -190,8 +157,28 @@ const Property = (props) => {
               className={`near-places__list`}
             />
           </section>
-        </div> : ``}
+        </div> : null}
       </main>
+      {messageServer && messageServer.status === 404 ?
+        <div className="error" style={{
+          minWidth: `300px`,
+          fontSize: `1.5rem`,
+          padding: `10px`,
+          textAlign: `center`,
+          color: `pink`,
+          border: `2px solid pink`,
+          borderRadius: `3px`,
+          backgroundColor: `red`,
+          position: `fixed`,
+          zIndex: `100`,
+          top: `20px`,
+          left: `50%`,
+          transform: `translateX(-50%)`
+        }}
+        >
+          {`${messageServer.data.error} Status: ${messageServer.status}`}
+        </div>
+        : null}
     </div>
   );
 };
@@ -206,6 +193,10 @@ Property.propTypes = {
       PropTypes.shape(offerType).isRequired
   ),
   onCardHover: PropTypes.func.isRequired,
+  user: PropTypes.shape(userType).isRequired,
+  onReviewSubmit: PropTypes.func.isRequired,
+  messageServer: PropTypes.object,
+  isBlocked: PropTypes.bool.isRequired
 };
 
 export default Property;

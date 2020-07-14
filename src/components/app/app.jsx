@@ -4,22 +4,37 @@ import Main from '../main/main';
 import {offerType} from '../../types/offers';
 import {reviewType} from '../../types/reviews';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
-import {AuthorizationStatus} from '../../mocks/data/const';
 import Property from '../property/property';
 import SignScreen from '../../components/sign-screen/sign-screen';
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/site/site";
 import {Operation as DataOperation} from '../../reducer/data/data';
 import {Operation as UserOperation} from '../../reducer/user/user';
-import {getConvertOffers, getConvertReviews, getConvertNearOffers} from '../../reducer/data/selector';
+import {getConvertOffers, getConvertReviews, getConvertNearOffers, getMessageServer, getBlocking} from '../../reducer/data/selector';
 import {getCity, getOffer, getHoverOffer, getSortType} from '../../reducer/site/selector';
-import {getAuth, getUser} from '../../reducer/user/selector';
+import {getUser, checkAuthUser} from '../../reducer/user/selector';
 
 
 class App extends PureComponent {
 
   _renderApp() {
-    const {offer, offers, onTitleClick, onCardHover, currentCity, onCityClick, hoverOffer, sortType, onSortChange, reviews, nearOffers, authorizationStatus, onLoginSubmit, user} = this.props;
+    const {isBlocked,
+      onReviewSubmit,
+      offer,
+      offers,
+      onTitleClick,
+      onCardHover,
+      currentCity,
+      onCityClick,
+      hoverOffer,
+      sortType,
+      onSortChange,
+      reviews,
+      nearOffers,
+      isAuth,
+      onLoginSubmit,
+      user,
+      messageServer} = this.props;
 
     if (offer) {
 
@@ -30,11 +45,15 @@ class App extends PureComponent {
           nearOffers={nearOffers.slice(0, 4)}
           onTitleCardClick={onTitleClick}
           onCardHover={onCardHover}
+          user={user}
+          onReviewSubmit={onReviewSubmit}
+          messageServer={messageServer}
+          isBlocked={isBlocked}
         />
       );
     }
 
-    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+    if (isAuth) {
       return <SignScreen onLoginSubmit={onLoginSubmit}/>;
     }
 
@@ -48,7 +67,6 @@ class App extends PureComponent {
         onCityClick={onCityClick}
         sortType={sortType}
         onSortChange={onSortChange}
-        authorizationStatus={authorizationStatus}
         user={user}
       />
     );
@@ -63,12 +81,12 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-property">
             {/* <Property
-              offer={this.props.offers[0]}
-              nearOffers={this.props.offers}
+              offer={offer}
               reviews={reviews}
-              currentCity={this.props.currentCity}
-              onTitleCardClick={this.props.onTitleClick}
-              onCardHover={this.props.onCardHover}
+              nearOffers={nearOffers.slice(0, 4)}
+              onTitleCardClick={onTitleClick}
+              onCardHover={onCardHover}
+              user={user}
             /> */}
           </Route>
           <Route exact path="/login">
@@ -90,8 +108,10 @@ const mapStateToProps = (state) => ({
   currentCity: getCity(state),
   sortType: getSortType(state),
   nearOffers: getConvertNearOffers(state),
-  authorizationStatus: getAuth(state),
+  isAuth: checkAuthUser(state),
   user: getUser(state),
+  messageServer: getMessageServer(state),
+  isBlocked: getBlocking(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -111,6 +131,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onLoginSubmit(mail) {
     dispatch(UserOperation.login(mail));
+  },
+  onReviewSubmit(id, review) {
+    dispatch(DataOperation.sendReview(id, review));
   }
 });
 
@@ -131,9 +154,12 @@ App.propTypes = {
   sortType: PropTypes.string.isRequired,
   onSortChange: PropTypes.func.isRequired,
   nearOffers: PropTypes.array,
-  authorizationStatus: PropTypes.string.isRequired,
+  isAuth: PropTypes.bool.isRequired,
   onLoginSubmit: PropTypes.func.isRequired,
-  user: PropTypes.object
+  user: PropTypes.object,
+  onReviewSubmit: PropTypes.func.isRequired,
+  messageServer: PropTypes.object,
+  isBlocked: PropTypes.bool.isRequired
 };
 
 export {App};
