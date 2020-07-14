@@ -7,18 +7,17 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {createApi} from './api';
 import {AuthorizationStatus} from './mocks/data/const';
-import {ActionCreator as UserActionCreator} from './reducer/user/user';
+import {Operation as UserActionCreator} from './reducer/user/user';
 import {ActionCreator as SiteActionCreator} from './reducer/site/site';
 import {Operation as DataOperation} from './reducer/data/data';
 
 const api = createApi(() => {
-  store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+  store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
 });
 
 const store = createStore(
     reducer,
     applyMiddleware(thunk.withExtraArgument(api))
-    // window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
 );
 
 store.dispatch(DataOperation.loadOffers())

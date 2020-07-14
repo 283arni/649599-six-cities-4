@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LocationsList from '../locations-list/locations-list';
 import {offerType} from '../../types/offers';
+import {userType} from '../../types/user';
 import NoOffers from '../no-offers/no-offers';
 import ScreenCity from '../screen-city/screen-city';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
@@ -11,7 +12,7 @@ const LocationsListWrapper = withActiveItem(LocationsList);
 
 
 const Main = (props) => {
-  let {offers, currentCity, onCityClick} = props;
+  const {offers, currentCity, onCityClick, user} = props;
   const currentOffers = filterList(offers, currentCity);
   const cities = getCities(offers);
 
@@ -31,7 +32,7 @@ const Main = (props) => {
                   <a className="header__nav-link header__nav-link--profile" href="#">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    <span className="header__user-name user__name">{user.mail}</span>
                   </a>
                 </li>
               </ul>
@@ -74,6 +75,7 @@ Main.propTypes = {
   ),
   currentCity: PropTypes.string.isRequired,
   onCityClick: PropTypes.func.isRequired,
+  user: PropTypes.shape(userType).isRequired
 };
 
 export default Main;

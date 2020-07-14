@@ -11,6 +11,7 @@ const onTitleClick = jest.fn();
 const onCardHover = jest.fn();
 const onCityClick = jest.fn();
 const onSortChange = jest.fn();
+const onLoginSubmit = jest.fn();
 
 it(`check render App`, () => {
   const store = mockStore({
@@ -35,6 +36,8 @@ it(`check render App`, () => {
           onSortChange={onSortChange}
           nearOffers={offers}
           hoverOffer={offers[0]}
+          authorizationStatus={`AUTH`}
+          onLoginSubmit={onLoginSubmit}
         />
       </Provider>, {
         createNodeMock: () => document.createElement(`div`)
