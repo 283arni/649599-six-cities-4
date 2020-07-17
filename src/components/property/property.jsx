@@ -15,7 +15,7 @@ const ListOffersWrapper = withActiveItem(ListOffers);
 const ReviewFormWrapper = withReviewForm(ReviewForm);
 
 const Property = (props) => {
-  const {offer, onTitleCardClick, reviews, nearOffers, onCardHover, user, onReviewSubmit, messageServer, isBlocked} = props;
+  const {offer, onTitleCardClick, reviews, nearOffers, onCardHover, user, onReviewSubmit, messageServer, isBlocked, onFavoriteOfferClick} = props;
   const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner} = offer;
 
   return (
@@ -155,6 +155,7 @@ const Property = (props) => {
               onTitleCardClick={onTitleCardClick}
               onCardHover={onCardHover}
               className={`near-places__list`}
+              onFavoriteOfferClick={onFavoriteOfferClick}
             />
           </section>
         </div> : null}
@@ -196,7 +197,8 @@ Property.propTypes = {
   user: PropTypes.shape(userType),
   onReviewSubmit: PropTypes.func.isRequired,
   messageServer: PropTypes.object,
-  isBlocked: PropTypes.bool.isRequired
+  isBlocked: PropTypes.bool.isRequired,
+  onFavoriteOfferClick: PropTypes.func.isRequired
 };
 
 export default Property;

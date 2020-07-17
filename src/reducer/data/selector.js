@@ -20,6 +20,11 @@ export const getNearOffers = createSelector(
     (state) => state.nearOffers
 );
 
+export const getFavoriteOffers = createSelector(
+    getSelector,
+    (state) => state.favoriteOffers
+);
+
 export const getMessageServer = createSelector(
     getSelector,
     (state) => state.messageServer
@@ -49,5 +54,12 @@ export const getConvertReviews = createSelector(
     getReviews,
     (reviews) => {
       return ReviewModel.parseReviews(reviews);
+    }
+);
+
+export const getConvertFavoriteOffers = createSelector(
+    getFavoriteOffers,
+    (offers) => {
+      return OfferModel.parseOffers(offers);
     }
 );

@@ -11,6 +11,7 @@ Enzyme.configure({
 const onCardHover = jest.fn();
 const onTitleCardClick = jest.fn();
 const onActiveChange = jest.fn();
+const onFavoriteOfferClick = jest.fn();
 
 it(`to check Card should return offer and click on title`, () => {
 
@@ -23,6 +24,7 @@ it(`to check Card should return offer and click on title`, () => {
         className={`cities`}
         onActiveChange={onActiveChange}
         activeItem={offers[0]}
+        onFavoriteOfferClick={onFavoriteOfferClick}
       />
   );
 

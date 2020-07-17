@@ -5,12 +5,13 @@ import {offerType} from '../../types/offers';
 import {reviewType} from '../../types/reviews';
 import {Switch, Route, Router, Redirect} from "react-router-dom";
 import Property from '../property/property';
-import SignScreen from '../../components/sign-screen/sign-screen';
+import SignScreen from '../sign-screen/sign-screen';
+import Favorites from '../favorites/favorites';
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/site/site";
 import {Operation as DataOperation} from '../../reducer/data/data';
 import {Operation as UserOperation} from '../../reducer/user/user';
-import {getConvertOffers, getConvertReviews, getConvertNearOffers, getMessageServer, getBlocking} from '../../reducer/data/selector';
+import {getConvertOffers, getConvertReviews, getConvertNearOffers, getMessageServer, getBlocking, getConvertFavoriteOffers} from '../../reducer/data/selector';
 import {getCity, getOffer, getHoverOffer, getSortType} from '../../reducer/site/selector';
 import {getUser, checkAuthUser} from '../../reducer/user/selector';
 import history from '../../history';
@@ -19,61 +20,6 @@ import {AppRoute} from '../../const';
 
 class App extends PureComponent {
 
-  // _renderApp() {
-  //   const {
-  //     isBlocked,
-  //     onReviewSubmit,
-  //     offer,
-  //     offers,
-  //     onTitleClick,
-  //     onCardHover,
-  //     currentCity,
-  //     onCityClick,
-  //     hoverOffer,
-  //     sortType,
-  //     onSortChange,
-  //     reviews,
-  //     nearOffers,
-  //     isAuth,
-  //     onLoginSubmit,
-  //     user,
-  //     messageServer} = this.props;
-
-  // if (offer) {
-
-  //   return (
-  //     <Property
-  //       offer={offer}
-  //       reviews={reviews}
-  //       nearOffers={nearOffers.slice(0, 4)}
-  //       onTitleCardClick={onTitleClick}
-  //       onCardHover={onCardHover}
-  //       user={user}
-  //       onReviewSubmit={onReviewSubmit}
-  //       messageServer={messageServer}
-  //       isBlocked={isBlocked}
-  //     />
-  //   );
-  // }
-
-  // if (isAuth) {
-  //   return history.push(AppRoute.LOGIN)
-  // }
-
-  //   return (
-  //     <Main
-  //       currentCity={currentCity}
-  //       onTitleCardClick={onTitleClick}
-  //       hoverOffer={hoverOffer}
-  //       offers={offers}
-  //       onCardHover={onCardHover}
-  //       onCityClick={onCityClick}
-  //       sortType={sortType}
-  //       onSortChange={onSortChange}
-  //       user={user}
-  //     />
-  //   );
-  // }
 
   render() {
     const {
@@ -93,7 +39,10 @@ class App extends PureComponent {
       isAuth,
       onLoginSubmit,
       user,
-      messageServer} = this.props;
+      messageServer,
+      onFavoriteOfferClick,
+      favoriteOffers
+    } = this.props;
 
     return (
       <Router
@@ -101,17 +50,20 @@ class App extends PureComponent {
       >
         <Switch>
           <Route exact path={AppRoute.MAIN}>
-            <Main
-              currentCity={currentCity}
-              onTitleCardClick={onTitleClick}
-              hoverOffer={hoverOffer}
-              offers={offers}
-              onCardHover={onCardHover}
-              onCityClick={onCityClick}
-              sortType={sortType}
-              onSortChange={onSortChange}
-              user={user}
-            />
+            {isAuth ? <Redirect to={AppRoute.LOGIN}/>
+              : <Main
+                currentCity={currentCity}
+                onTitleCardClick={onTitleClick}
+                hoverOffer={hoverOffer}
+                offers={offers}
+                onCardHover={onCardHover}
+                onCityClick={onCityClick}
+                sortType={sortType}
+                onSortChange={onSortChange}
+                user={user}
+                onFavoriteOfferClick={onFavoriteOfferClick}
+              />
+            }
           </Route>
           <Route exact path={AppRoute.PROPERTY}>
             <Property
@@ -124,12 +76,18 @@ class App extends PureComponent {
               onReviewSubmit={onReviewSubmit}
               messageServer={messageServer}
               isBlocked={isBlocked}
+              onFavoriteOfferClick={onFavoriteOfferClick}
             />
           </Route>
           <Route exact path={AppRoute.LOGIN}>
-            {isAuth ? <SignScreen
-              onLoginSubmit={onLoginSubmit}
-            /> : <Redirect to={AppRoute.MAIN}/>}
+            {isAuth ?
+              <SignScreen
+                onLoginSubmit={onLoginSubmit}
+              /> :
+              <Redirect to={AppRoute.MAIN}/>}
+          </Route>
+          <Route exact path={AppRoute.FAVORITES}>
+            <Favorites favoriteOffers={favoriteOffers} />
           </Route>
         </Switch>
       </Router>
@@ -149,6 +107,7 @@ const mapStateToProps = (state) => ({
   user: getUser(state),
   messageServer: getMessageServer(state),
   isBlocked: getBlocking(state),
+  favoriteOffers: getConvertFavoriteOffers(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -171,6 +130,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onReviewSubmit(id, review) {
     dispatch(DataOperation.sendReview(id, review));
+  },
+  onFavoriteOfferClick(id, status) {
+    dispatch(DataOperation.setFavoriteOffer(id, status));
   }
 });
 
@@ -196,7 +158,11 @@ App.propTypes = {
   user: PropTypes.object,
   onReviewSubmit: PropTypes.func,
   messageServer: PropTypes.object,
-  isBlocked: PropTypes.bool
+  isBlocked: PropTypes.bool,
+  onFavoriteOfferClick: PropTypes.func.isRequired,
+  favoriteOffers: PropTypes.arrayOf(
+      PropTypes.shape(offerType).isRequired
+  ).isRequired,
 };
 
 export {App};

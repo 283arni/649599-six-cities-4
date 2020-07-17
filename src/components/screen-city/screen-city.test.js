@@ -6,6 +6,7 @@ import {offers} from '../../mocks/test/offers';
 const onCardHover = jest.fn();
 const onSortChange = jest.fn();
 const onTitleCardClick = jest.fn();
+const onFavoriteOfferClick = jest.fn();
 
 const nameSort = `Popular`;
 
@@ -19,6 +20,7 @@ it(`check render ScreenCity`, () => {
       onCardHover={onCardHover}
       hoverOffer={offers[0]}
       currentOffers={offers}
+      onFavoriteOfferClick={onFavoriteOfferClick}
     />
   ), {
     createNodeMock: () => document.createElement(`div`)

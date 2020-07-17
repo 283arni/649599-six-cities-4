@@ -1,5 +1,5 @@
 import {reducer, ActionCreator, ActionType} from "./user";
-import {AuthorizationStatus} from '../../mocks/data/const';
+import {AuthorizationStatus} from '../../const';
 
 
 it(`Reducer without additional parameters should return initial state`, () => {

@@ -50,5 +50,6 @@ export const Validation = {
 export const AppRoute = {
   LOGIN: `/login`,
   PROPERTY: `/property`,
+  FAVORITES: `/favorites`,
   MAIN: `/`,
 };

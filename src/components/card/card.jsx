@@ -6,7 +6,7 @@ import {ONE_STAR} from '../../const';
 
 const Card = (props) => {
 
-  const {offer, onTitleCardClick, onCardHover, className, onActiveChange, activeItem} = props;
+  const {offer, onTitleCardClick, onCardHover, className, onActiveChange, onFavoriteOfferClick} = props;
   const {photo, premium, price, title, type, rating} = offer;
   const currentClass = className.search(NameBlockCards.NEAR) ? `cities__place-card` : `near-places__card`;
   const currentName = className.search(NameBlockCards.NEAR) ? NameBlockCards.CITIES : NameBlockCards.NEAR;
@@ -35,7 +35,11 @@ const Card = (props) => {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button ${activeItem === offer ? `place-card__bookmark-button--active` : ``} button`} type="button">
+          <button
+            className={`place-card__bookmark-button ${offer.favorite ? `place-card__bookmark-button--active` : ``} button`}
+            type="button"
+            onClick={() => onFavoriteOfferClick(offer.id, offer.favorite)}
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -67,6 +71,7 @@ Card.propTypes = {
   className: PropTypes.string.isRequired,
   onActiveChange: PropTypes.func.isRequired,
   activeItem: PropTypes.shape(offerType),
+  onFavoriteOfferClick: PropTypes.func.isRequired
 };
 
 export default Card;

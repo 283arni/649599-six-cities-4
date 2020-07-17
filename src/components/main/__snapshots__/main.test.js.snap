@@ -39,7 +39,8 @@ exports[`check render Main 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/favorites"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -47,7 +48,7 @@ exports[`check render Main 1`] = `
                 <span
                   className="header__user-name user__name"
                 >
-                  google@google.com
+                  Max
                 </span>
               </a>
             </li>
@@ -221,6 +222,7 @@ exports[`check render Main 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button  button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -325,6 +327,7 @@ exports[`check render Main 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button  button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -429,6 +432,7 @@ exports[`check render Main 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button  button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
