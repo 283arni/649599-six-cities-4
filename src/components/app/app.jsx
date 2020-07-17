@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Main from '../main/main';
 import {offerType} from '../../types/offers';
 import {reviewType} from '../../types/reviews';
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router, Redirect} from "react-router-dom";
 import Property from '../property/property';
 import SignScreen from '../../components/sign-screen/sign-screen';
 import {connect} from "react-redux";
@@ -13,12 +13,71 @@ import {Operation as UserOperation} from '../../reducer/user/user';
 import {getConvertOffers, getConvertReviews, getConvertNearOffers, getMessageServer, getBlocking} from '../../reducer/data/selector';
 import {getCity, getOffer, getHoverOffer, getSortType} from '../../reducer/site/selector';
 import {getUser, checkAuthUser} from '../../reducer/user/selector';
+import history from '../../history';
+import {AppRoute} from '../../const';
 
 
 class App extends PureComponent {
 
-  _renderApp() {
-    const {isBlocked,
+  // _renderApp() {
+  //   const {
+  //     isBlocked,
+  //     onReviewSubmit,
+  //     offer,
+  //     offers,
+  //     onTitleClick,
+  //     onCardHover,
+  //     currentCity,
+  //     onCityClick,
+  //     hoverOffer,
+  //     sortType,
+  //     onSortChange,
+  //     reviews,
+  //     nearOffers,
+  //     isAuth,
+  //     onLoginSubmit,
+  //     user,
+  //     messageServer} = this.props;
+
+  // if (offer) {
+
+  //   return (
+  //     <Property
+  //       offer={offer}
+  //       reviews={reviews}
+  //       nearOffers={nearOffers.slice(0, 4)}
+  //       onTitleCardClick={onTitleClick}
+  //       onCardHover={onCardHover}
+  //       user={user}
+  //       onReviewSubmit={onReviewSubmit}
+  //       messageServer={messageServer}
+  //       isBlocked={isBlocked}
+  //     />
+  //   );
+  // }
+
+  // if (isAuth) {
+  //   return history.push(AppRoute.LOGIN)
+  // }
+
+  //   return (
+  //     <Main
+  //       currentCity={currentCity}
+  //       onTitleCardClick={onTitleClick}
+  //       hoverOffer={hoverOffer}
+  //       offers={offers}
+  //       onCardHover={onCardHover}
+  //       onCityClick={onCityClick}
+  //       sortType={sortType}
+  //       onSortChange={onSortChange}
+  //       user={user}
+  //     />
+  //   );
+  // }
+
+  render() {
+    const {
+      isBlocked,
       onReviewSubmit,
       offer,
       offers,
@@ -36,66 +95,44 @@ class App extends PureComponent {
       user,
       messageServer} = this.props;
 
-    if (offer) {
-
-      return (
-        <Property
-          offer={offer}
-          reviews={reviews}
-          nearOffers={nearOffers.slice(0, 4)}
-          onTitleCardClick={onTitleClick}
-          onCardHover={onCardHover}
-          user={user}
-          onReviewSubmit={onReviewSubmit}
-          messageServer={messageServer}
-          isBlocked={isBlocked}
-        />
-      );
-    }
-
-    if (isAuth) {
-      return <SignScreen onLoginSubmit={onLoginSubmit}/>;
-    }
-
     return (
-      <Main
-        currentCity={currentCity}
-        onTitleCardClick={onTitleClick}
-        hoverOffer={hoverOffer}
-        offers={offers}
-        onCardHover={onCardHover}
-        onCityClick={onCityClick}
-        sortType={sortType}
-        onSortChange={onSortChange}
-        user={user}
-      />
-    );
-  }
-
-  render() {
-    return (
-      <BrowserRouter>
+      <Router
+        history={history}
+      >
         <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
+          <Route exact path={AppRoute.MAIN}>
+            <Main
+              currentCity={currentCity}
+              onTitleCardClick={onTitleClick}
+              hoverOffer={hoverOffer}
+              offers={offers}
+              onCardHover={onCardHover}
+              onCityClick={onCityClick}
+              sortType={sortType}
+              onSortChange={onSortChange}
+              user={user}
+            />
           </Route>
-          <Route exact path="/dev-property">
-            {/* <Property
+          <Route exact path={AppRoute.PROPERTY}>
+            <Property
               offer={offer}
               reviews={reviews}
               nearOffers={nearOffers.slice(0, 4)}
               onTitleCardClick={onTitleClick}
               onCardHover={onCardHover}
               user={user}
-            /> */}
-          </Route>
-          <Route exact path="/login">
-            <SignScreen
-              onLoginSubmit={this.props.onLoginSubmit}
+              onReviewSubmit={onReviewSubmit}
+              messageServer={messageServer}
+              isBlocked={isBlocked}
             />
           </Route>
+          <Route exact path={AppRoute.LOGIN}>
+            {isAuth ? <SignScreen
+              onLoginSubmit={onLoginSubmit}
+            /> : <Redirect to={AppRoute.MAIN}/>}
+          </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
@@ -157,9 +194,9 @@ App.propTypes = {
   isAuth: PropTypes.bool.isRequired,
   onLoginSubmit: PropTypes.func.isRequired,
   user: PropTypes.object,
-  onReviewSubmit: PropTypes.func.isRequired,
+  onReviewSubmit: PropTypes.func,
   messageServer: PropTypes.object,
-  isBlocked: PropTypes.bool.isRequired
+  isBlocked: PropTypes.bool
 };
 
 export {App};

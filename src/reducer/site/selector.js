@@ -1,17 +1,26 @@
 import NameSpace from '../name-space';
+import {createSelector} from 'reselect';
 
-export const getCity = (state) => {
-  return state[NameSpace.SITE].currentCity;
-};
 
-export const getOffer = (state) => {
-  return state[NameSpace.SITE].offer;
-};
+const getSelector = (state) => state[NameSpace.SITE];
 
-export const getHoverOffer = (state) => {
-  return state[NameSpace.SITE].hoverOffer;
-};
+export const getCity = createSelector(
+    getSelector,
+    (state) => state.currentCity
+);
 
-export const getSortType = (state) => {
-  return state[NameSpace.SITE].sortType;
-};
+export const getOffer = createSelector(
+    getSelector,
+    (state) => state.offer
+);
+
+export const getHoverOffer = createSelector(
+    getSelector,
+    (state) => state.hoverOffer
+);
+
+export const getSortType = createSelector(
+    getSelector,
+    (state) => state.sortType
+);
+

@@ -45,3 +45,10 @@ export const Validation = {
   MIN_LENGTH_REVIEW: 50,
   NO_STAR: 0
 };
+
+
+export const AppRoute = {
+  LOGIN: `/login`,
+  PROPERTY: `/property`,
+  MAIN: `/`,
+};

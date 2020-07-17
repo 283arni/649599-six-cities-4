@@ -6,7 +6,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {createApi} from './api';
-import {AuthorizationStatus} from './mocks/data/const';
+import {AuthorizationStatus} from './const';
 import {Operation as UserActionCreator} from './reducer/user/user';
 import {ActionCreator as SiteActionCreator} from './reducer/site/site';
 import {Operation as DataOperation} from './reducer/data/data';

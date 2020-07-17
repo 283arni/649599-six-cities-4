@@ -4,7 +4,7 @@ const initialState = {
   offers: [],
   reviews: [],
   nearOffers: [],
-  isReview: false,
+  // isReview: false,
   messageServer: null,
   isBlocked: false
 };
@@ -13,7 +13,7 @@ const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
   LOAD_NEAR_OFFERS: `GET_NEAR_OFFERS`,
-  SEND_REVIEW: `SEND_REVIEW`,
+  // SEND_REVIEW: `SEND_REVIEW`,
   LOAD_MESSAGE_SERVER: `LOAD_MESSAGE_SERVER`,
   BLOCKED_FORM: `BLOCKED_FORM`
 };
@@ -31,10 +31,10 @@ const ActionCreator = {
     type: ActionType.LOAD_NEAR_OFFERS,
     payload: nearOffers
   }),
-  sendReview: (review) => ({
-    type: ActionType.SEND_REVIEW,
-    payload: review
-  }),
+  // sendReview: (review) => ({
+  //   type: ActionType.SEND_REVIEW,
+  //   payload: review
+  // }),
   loadMessageServer: (message) => ({
     type: ActionType.LOAD_MESSAGE_SERVER,
     payload: message
@@ -97,10 +97,10 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         nearOffers: action.payload
       });
-    case ActionType.SEND_REVIEW:
-      return extend(state, {
-        isReview: action.payload
-      });
+    // case ActionType.SEND_REVIEW:
+    //   return extend(state, {
+    //     isReview: action.payload
+    //   });
     case ActionType.LOAD_MESSAGE_SERVER:
       return extend(state, {
         messageServer: action.payload

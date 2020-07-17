@@ -1,4 +1,4 @@
-import {AuthorizationStatus} from '../../mocks/data/const';
+import {AuthorizationStatus} from '../../const';
 import {extend} from '../../utils';
 import UserModel from '../../adapters/user-model';
 

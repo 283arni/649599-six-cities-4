@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers';
-import {NameBlockCards} from '../../mocks/data/const';
-import {ONE_STAR} from '../../mocks/data/const';
+import {NameBlockCards} from '../../const';
+import {ONE_STAR} from '../../const';
 
 const Card = (props) => {
 

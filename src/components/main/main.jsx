@@ -7,6 +7,8 @@ import NoOffers from '../no-offers/no-offers';
 import ScreenCity from '../screen-city/screen-city';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {filterList, getCities} from '../../utils';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const';
 
 const LocationsListWrapper = withActiveItem(LocationsList);
 
@@ -29,11 +31,11 @@ const Main = (props) => {
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
+                  <Link className="header__nav-link header__nav-link--profile" to={AppRoute.LOGIN}>
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">{user.mail}</span>
-                  </a>
+                    <span className="header__user-name user__name">{user ? user.name : `Sign in`}</span>
+                  </Link>
                 </li>
               </ul>
             </nav>
@@ -71,11 +73,11 @@ const Main = (props) => {
 
 Main.propTypes = {
   offers: PropTypes.arrayOf(
-      PropTypes.shape(offerType).isRequired
+      PropTypes.shape(offerType)
   ),
   currentCity: PropTypes.string.isRequired,
   onCityClick: PropTypes.func.isRequired,
-  user: PropTypes.shape(userType).isRequired
+  user: PropTypes.shape(userType)
 };
 
 export default Main;

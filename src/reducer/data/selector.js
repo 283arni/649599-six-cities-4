@@ -3,26 +3,33 @@ import OfferModel from '../../adapters/offer-model';
 import ReviewModel from '../../adapters/review-model';
 import NameSpace from "../name-space.js";
 
+const getSelector = (state) => state[NameSpace.DATA];
 
-export const getOffers = (state) => {
-  return state[NameSpace.DATA].offers;
-};
+export const getOffers = createSelector(
+    getSelector,
+    (state) => state.offers
+);
 
-export const getReviews = (state) => {
-  return state[NameSpace.DATA].reviews;
-};
+export const getReviews = createSelector(
+    getSelector,
+    (state) => state.reviews
+);
 
-export const getNearOffers = (state) => {
-  return state[NameSpace.DATA].nearOffers;
-};
+export const getNearOffers = createSelector(
+    getSelector,
+    (state) => state.nearOffers
+);
 
-export const getMessageServer = (state) => {
-  return state[NameSpace.DATA].messageServer;
-};
+export const getMessageServer = createSelector(
+    getSelector,
+    (state) => state.messageServer
+);
 
-export const getBlocking = (state) => {
-  return state[NameSpace.DATA].isBlocked;
-};
+export const getBlocking = createSelector(
+    getSelector,
+    (state) => state.isBlocked
+);
+
 
 export const getConvertOffers = createSelector(
     getOffers,

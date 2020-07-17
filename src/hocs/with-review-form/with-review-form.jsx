@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers';
-import {Validation} from '../../mocks/data/const';
+import {Validation} from '../../const';
 
 
 const withReviewForm = (Component) => {

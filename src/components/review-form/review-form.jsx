@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {radioStars} from '../../mocks/data/const';
+import {radioStars} from '../../const';
 
 
 const ReviewForm = (props) => {

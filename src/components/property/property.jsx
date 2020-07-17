@@ -8,7 +8,7 @@ import MapCity from '../map-city/map-city';
 import ListOffers from '../list-offers/list-offers';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withReviewForm from '../../hocs/with-review-form/with-review-form';
-import {housingType, ONE_STAR} from '../../mocks/data/const';
+import {housingType, ONE_STAR} from '../../const';
 import ReviewForm from '../review-form/review-form';
 
 const ListOffersWrapper = withActiveItem(ListOffers);
@@ -184,7 +184,7 @@ const Property = (props) => {
 };
 
 Property.propTypes = {
-  offer: PropTypes.shape(offerType).isRequired,
+  offer: PropTypes.shape(offerType),
   onTitleCardClick: PropTypes.func.isRequired,
   reviews: PropTypes.arrayOf(
       PropTypes.shape(reviewType).isRequired
@@ -193,7 +193,7 @@ Property.propTypes = {
       PropTypes.shape(offerType).isRequired
   ),
   onCardHover: PropTypes.func.isRequired,
-  user: PropTypes.shape(userType).isRequired,
+  user: PropTypes.shape(userType),
   onReviewSubmit: PropTypes.func.isRequired,
   messageServer: PropTypes.object,
   isBlocked: PropTypes.bool.isRequired
