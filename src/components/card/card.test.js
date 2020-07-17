@@ -6,6 +6,7 @@ import {offers} from '../../mocks/test/offers';
 const onCardHover = jest.fn();
 const onActiveChange = jest.fn();
 const onTitleCardClick = jest.fn();
+const onFavoriteOfferClick = jest.fn();
 
 it(`check render Card`, () => {
   const tree = renderer.create(
@@ -16,6 +17,7 @@ it(`check render Card`, () => {
         className={`cities`}
         onActiveChange={onTitleCardClick}
         activeItem={offers[0]}
+        onFavoriteOfferClick={onFavoriteOfferClick}
       />
   ).toJSON();
 

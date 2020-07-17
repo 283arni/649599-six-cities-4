@@ -12,6 +12,7 @@ Enzyme.configure({
 
 const onCardHover = jest.fn();
 const onReviewSubmit = jest.fn();
+const onFavoriteOfferClick = jest.fn();
 
 it(`in Property click on titles cards`, () => {
   const onTitleCardClick = jest.fn();
@@ -26,6 +27,7 @@ it(`in Property click on titles cards`, () => {
         user={user}
         onReviewSubmit={onReviewSubmit}
         isBlocked={false}
+        onFavoriteOfferClick={onFavoriteOfferClick}
       />
   );
 

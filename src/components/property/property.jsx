@@ -8,14 +8,14 @@ import MapCity from '../map-city/map-city';
 import ListOffers from '../list-offers/list-offers';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withReviewForm from '../../hocs/with-review-form/with-review-form';
-import {housingType, ONE_STAR} from '../../mocks/data/const';
+import {housingType, ONE_STAR} from '../../const';
 import ReviewForm from '../review-form/review-form';
 
 const ListOffersWrapper = withActiveItem(ListOffers);
 const ReviewFormWrapper = withReviewForm(ReviewForm);
 
 const Property = (props) => {
-  const {offer, onTitleCardClick, reviews, nearOffers, onCardHover, user, onReviewSubmit, messageServer, isBlocked} = props;
+  const {offer, onTitleCardClick, reviews, nearOffers, onCardHover, user, onReviewSubmit, messageServer, isBlocked, onFavoriteOfferClick} = props;
   const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner} = offer;
 
   return (
@@ -155,6 +155,7 @@ const Property = (props) => {
               onTitleCardClick={onTitleCardClick}
               onCardHover={onCardHover}
               className={`near-places__list`}
+              onFavoriteOfferClick={onFavoriteOfferClick}
             />
           </section>
         </div> : null}
@@ -184,7 +185,7 @@ const Property = (props) => {
 };
 
 Property.propTypes = {
-  offer: PropTypes.shape(offerType).isRequired,
+  offer: PropTypes.shape(offerType),
   onTitleCardClick: PropTypes.func.isRequired,
   reviews: PropTypes.arrayOf(
       PropTypes.shape(reviewType).isRequired
@@ -193,10 +194,11 @@ Property.propTypes = {
       PropTypes.shape(offerType).isRequired
   ),
   onCardHover: PropTypes.func.isRequired,
-  user: PropTypes.shape(userType).isRequired,
+  user: PropTypes.shape(userType),
   onReviewSubmit: PropTypes.func.isRequired,
   messageServer: PropTypes.object,
-  isBlocked: PropTypes.bool.isRequired
+  isBlocked: PropTypes.bool.isRequired,
+  onFavoriteOfferClick: PropTypes.func.isRequired
 };
 
 export default Property;

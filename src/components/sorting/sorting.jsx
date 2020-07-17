@@ -1,5 +1,5 @@
 import React from 'react';
-import {TypeSortOffers} from '../../mocks/data/const';
+import {TypeSortOffers} from '../../const';
 import PropTypes from 'prop-types';
 
 

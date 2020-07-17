@@ -1,15 +1,20 @@
 import NameSpace from '../name-space';
 import {createSelector} from 'reselect';
-import {AuthorizationStatus} from '../../mocks/data/const';
+import {AuthorizationStatus} from '../../const';
 
 
-export const getAuth = (state) => {
-  return state[NameSpace.USER].authorizationStatus;
-};
+const getSelector = (state) => state[NameSpace.USER];
 
-export const getUser = (state) => {
-  return state[NameSpace.USER].user;
-};
+export const getAuth = createSelector(
+    getSelector,
+    (state) => state.authorizationStatus
+);
+
+export const getUser = createSelector(
+    getSelector,
+    (state) => state.user
+);
+
 
 export const checkAuthUser = createSelector(
     getAuth,

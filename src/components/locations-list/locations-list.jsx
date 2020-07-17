@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LocationItem from '../location-item/location-item';
-import {MAX_RENDER_CITY} from '../../mocks/data/const';
+import {MAX_RENDER_CITY} from '../../const';
 
 
 const LocationsList = (props) => {

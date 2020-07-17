@@ -8,6 +8,7 @@ import {user} from '../../mocks/test/user';
 const onCardHover = jest.fn();
 const onTitleCardClick = jest.fn();
 const onReviewSubmit = jest.fn();
+const onFavoriteOfferClick = jest.fn();
 
 it(`check render Property`, () => {
   const tree = renderer.create(
@@ -21,6 +22,7 @@ it(`check render Property`, () => {
         user={user}
         onReviewSubmit={onReviewSubmit}
         isBlocked={false}
+        onFavoriteOfferClick={onFavoriteOfferClick}
       />, {
         createNodeMock: () => document.createElement(`div`)
       }

@@ -11,7 +11,7 @@ const ListOffersWrapper = withActiveItem(ListOffers);
 const SortingWrapper = withSorting(Sorting);
 
 const ScreenCity = (props) => {
-  const {currentCity, sortType, onSortChange, onTitleCardClick, onCardHover, hoverOffer, currentOffers} = props;
+  const {currentCity, sortType, onSortChange, onTitleCardClick, onCardHover, hoverOffer, currentOffers, onFavoriteOfferClick} = props;
 
 
   return (
@@ -27,6 +27,7 @@ const ScreenCity = (props) => {
           offers={sortOffers(currentOffers, sortType)}
           onTitleCardClick={onTitleCardClick}
           onCardHover={onCardHover}
+          onFavoriteOfferClick={onFavoriteOfferClick}
           className={`cities__places-list`}
         />
       </section>
@@ -52,6 +53,7 @@ ScreenCity.propTypes = {
   hoverOffer: PropTypes.shape(offerType),
   sortType: PropTypes.string.isRequired,
   onSortChange: PropTypes.func.isRequired,
+  onFavoriteOfferClick: PropTypes.func.isRequired
 };
 
 export default ScreenCity;

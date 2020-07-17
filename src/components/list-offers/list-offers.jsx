@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../card/card';
 import {offerType} from '../../types/offers';
-import {NameBlockCards} from '../../mocks/data/const';
+import {NameBlockCards} from '../../const';
 
 
 const ListOffers = (props) => {

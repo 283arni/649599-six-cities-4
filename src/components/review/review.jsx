@@ -2,7 +2,7 @@ import React from 'react';
 import {reviewType} from '../../types/reviews';
 import {reviewDefault} from '../../mocks/data/reviews';
 import {getDate} from '../../utils';
-import {ONE_STAR} from '../../mocks/data/const';
+import {ONE_STAR} from '../../const';
 
 const Review = ({review}) => {
 

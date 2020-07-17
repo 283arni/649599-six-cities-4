@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {SettingImage} from '../../mocks/data/const';
+import {SettingImage} from '../../const';
 
 
 const NoOffers = ({currentCity}) => {

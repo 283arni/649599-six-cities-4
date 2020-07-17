@@ -14,6 +14,7 @@ const onCityClick = jest.fn();
 const onSortChange = jest.fn();
 const onLoginSubmit = jest.fn();
 const onReviewSubmit = jest.fn();
+const onFavoriteOfferClick = jest.fn();
 
 it(`check render App`, () => {
   const store = mockStore({
@@ -43,6 +44,8 @@ it(`check render App`, () => {
           user={user}
           onReviewSubmit={onReviewSubmit}
           isBlocked={false}
+          onFavoriteOfferClick={onFavoriteOfferClick}
+          favoriteOffers={offers}
         />
       </Provider>, {
         createNodeMock: () => document.createElement(`div`)
