@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers';
-import {NameBlockCards} from '../../const';
-import {ONE_STAR} from '../../const';
+import {Link} from 'react-router-dom';
+import {AppRoute, ONE_STAR} from '../../const';
+import {getCurrentName} from '../../utils';
 
 const Card = (props) => {
 
   const {offer, onTitleCardClick, onCardHover, className, onActiveChange, onFavoriteOfferClick} = props;
   const {photo, premium, price, title, type, rating} = offer;
-  const currentClass = className.search(NameBlockCards.NEAR) ? `cities__place-card` : `near-places__card`;
-  const currentName = className.search(NameBlockCards.NEAR) ? NameBlockCards.CITIES : NameBlockCards.NEAR;
+
+  const currentName = getCurrentName(className);
 
   return (
     <article
-      className={`${currentClass} place-card`}
+      className={`${className} place-card`}
       onMouseOver={() => {
         onActiveChange(offer);
         onCardHover(offer);
@@ -53,10 +54,10 @@ const Card = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a
-            href="#"
+          <Link
+            to={`${AppRoute.PROPERTY}/${offer.id}`}
             onClick={() => onTitleCardClick(offer)}
-          >{title}</a>
+          >{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

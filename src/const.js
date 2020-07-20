@@ -1,6 +1,7 @@
 export const NameBlockCards = {
   CITIES: `cities`,
-  NEAR: `near-places`
+  NEAR: `near-places`,
+  FAVORITES: `favorites`
 };
 
 export const ONE_STAR = 20;

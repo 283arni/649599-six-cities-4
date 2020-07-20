@@ -20,7 +20,6 @@ import {AppRoute} from '../../const';
 
 class App extends PureComponent {
 
-
   render() {
     const {
       isBlocked,
@@ -50,8 +49,8 @@ class App extends PureComponent {
       >
         <Switch>
           <Route exact path={AppRoute.MAIN}>
-            {isAuth ? <Redirect to={AppRoute.LOGIN}/>
-              : <Main
+            {isAuth ?
+              <Main
                 currentCity={currentCity}
                 onTitleCardClick={onTitleClick}
                 hoverOffer={hoverOffer}
@@ -63,31 +62,44 @@ class App extends PureComponent {
                 user={user}
                 onFavoriteOfferClick={onFavoriteOfferClick}
               />
+              : <Redirect to={AppRoute.LOGIN}/>
             }
           </Route>
-          <Route exact path={AppRoute.PROPERTY}>
-            <Property
-              offer={offer}
-              reviews={reviews}
-              nearOffers={nearOffers.slice(0, 4)}
-              onTitleCardClick={onTitleClick}
-              onCardHover={onCardHover}
-              user={user}
-              onReviewSubmit={onReviewSubmit}
-              messageServer={messageServer}
-              isBlocked={isBlocked}
-              onFavoriteOfferClick={onFavoriteOfferClick}
-            />
-          </Route>
+          <Route exact path={`${AppRoute.PROPERTY}/:id`} render={({match}) => {
+            const foundOffer = offers.find((item) => item.id === +match.params.id);
+
+
+            return (offer ?
+              <Property
+                offer={foundOffer}
+                reviews={reviews}
+                offers={offers}
+                nearOffers={nearOffers.slice(0, 4)}
+                onTitleCardClick={onTitleClick}
+                onCardHover={() => {}}
+                user={user}
+                onReviewSubmit={onReviewSubmit}
+                messageServer={messageServer}
+                isBlocked={isBlocked}
+                onFavoriteOfferClick={onFavoriteOfferClick}
+              /> : null);
+
+          }}/>
           <Route exact path={AppRoute.LOGIN}>
-            {isAuth ?
+            {isAuth ? <Redirect to={AppRoute.MAIN}/>
+              :
               <SignScreen
                 onLoginSubmit={onLoginSubmit}
-              /> :
-              <Redirect to={AppRoute.MAIN}/>}
+              />}
           </Route>
           <Route exact path={AppRoute.FAVORITES}>
-            <Favorites favoriteOffers={favoriteOffers} />
+            <Favorites
+              offers={favoriteOffers}
+              onFavoriteOfferClick={onFavoriteOfferClick}
+              onTitleCardClick={onTitleClick}
+              onCardHover={() => {}}
+              user={user}
+            />
           </Route>
         </Switch>
       </Router>
@@ -127,6 +139,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onLoginSubmit(mail) {
     dispatch(UserOperation.login(mail));
+    dispatch(DataOperation.loadFavoriteOffers());
   },
   onReviewSubmit(id, review) {
     dispatch(DataOperation.sendReview(id, review));

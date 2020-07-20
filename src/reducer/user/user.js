@@ -30,11 +30,14 @@ const ActionCreator = {
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
+      .then((response) => {
+        if (response.status === 200) {
+          const convertUser = UserModel.parseUser(response.data);
+          dispatch(ActionCreator.setUser(convertUser));
+        }
+      })
       .then(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-      })
-      .catch((err) => {
-        throw err;
       });
   },
   login: (authData) => (dispatch, getState, api) => {
@@ -50,9 +53,6 @@ const Operation = {
       })
       .then(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-      })
-      .catch((err) => {
-        throw err;
       });
   },
 };

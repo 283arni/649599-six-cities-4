@@ -19,6 +19,7 @@ class MapCity extends Component {
     super(props);
     this._mapRef = createRef();
     this._map = null;
+    this.markers = null;
   }
 
   componentDidUpdate(prevProps) {
@@ -27,13 +28,18 @@ class MapCity extends Component {
       this.renderPins();
     }
 
-    if (prevProps.offer !== this.props.offer) {
+    if (prevProps.offer && prevProps.offer.id !== this.props.offer.id) {
+      this.markers.clearLayers();
       this.renderPins();
     }
   }
 
   componentDidMount() {
     this.renderMap();
+  }
+
+  componentWillUnmount() {
+    this._map = null;
   }
 
   viewCenterCity() {
@@ -43,22 +49,36 @@ class MapCity extends Component {
 
   renderPins() {
     const {offers, offer} = this.props;
-    let icon = marker;
+    this.markers = leaflet.layerGroup().addTo(this._map);
 
+    if (offer) {
+      this.setTypePin(offer, activeMarker);
+    }
 
     offers.forEach((item) => {
-      if (offer) {
-        icon = item.id === offer.id ? activeMarker : marker;
+      if (offer && offer.id === item.id) {
+        this.setTypePin(offer, activeMarker);
+        return;
       }
-      leaflet
-        .marker(item.coords.target, {icon})
-        .addTo(this._map);
+
+      this.setTypePin(item, marker);
     });
+
+    leaflet.layerGroup(this.markers);
+  }
+
+  setTypePin(offer, type) {
+    const icon = type;
+
+    leaflet
+      .marker(offer.coords.target, {icon})
+      .addTo(this.markers);
   }
 
 
   renderMap() {
     const {offers} = this.props;
+
 
     const city = offers[0].city.coords;
     const zoom = offers[0].city.zoom;
@@ -70,7 +90,9 @@ class MapCity extends Component {
       marker: true,
       scrollWheelZoom: false
     });
+
     this._map.setView(city, zoom);
+
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
