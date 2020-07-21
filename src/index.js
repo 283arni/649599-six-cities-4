@@ -25,7 +25,9 @@ const store = createStore(
 
 store.dispatch(DataOperation.loadOffers())
   .then((city) => store.dispatch(SiteActionCreator.changeCurrentCity(city)));
-store.dispatch(UserOperation.checkAuth());
+
+store.dispatch(UserOperation.checkAuth())
+  .then(() => store.dispatch(DataOperation.loadFavoriteOffers()));
 
 ReactDOM.render(
     <Provider store={store}>

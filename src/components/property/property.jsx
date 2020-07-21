@@ -8,9 +8,9 @@ import MapCity from '../map-city/map-city';
 import ListOffers from '../list-offers/list-offers';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withReviewForm from '../../hocs/with-review-form/with-review-form';
-import {housingType, ONE_STAR} from '../../const';
+import {housingType, ONE_STAR, AppRoute} from '../../const';
 import ReviewForm from '../review-form/review-form';
-import {filterNearOffers} from '../../utils';
+import {Link} from 'react-router-dom';
 
 const ListOffersWrapper = withActiveItem(ListOffers);
 const ReviewFormWrapper = withReviewForm(ReviewForm);
@@ -20,10 +20,10 @@ class Property extends PureComponent {
     super(props);
   }
 
-
   render() {
-    const {offer, offers, onTitleCardClick, reviews, nearOffers, onCardHover, user, onReviewSubmit, messageServer, isBlocked, onFavoriteOfferClick} = this.props;
+    const {offer, onTitleCardClick, reviews, nearOffers, onCardHover, user, onReviewSubmit, messageServer, isBlocked, onFavoriteOfferClick} = this.props;
     const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner} = offer;
+
 
     return (
       <div className="page">
@@ -38,11 +38,14 @@ class Property extends PureComponent {
               <nav className="header__nav">
                 <ul className="header__nav-list">
                   <li className="header__nav-item user">
-                    <a className="header__nav-link header__nav-link--profile" href="#">
+                    <Link
+                      className="header__nav-link header__nav-link--profile"
+                      to={AppRoute.FAVORITES}
+                    >
                       <div className="header__avatar-wrapper user__avatar-wrapper">
                       </div>
                       <span className="header__user-name user__name">{user.mail}</span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </nav>
@@ -77,7 +80,7 @@ class Property extends PureComponent {
                     type="button"
                     onClick={() => onFavoriteOfferClick(offer.id, offer.favorite)}
                   >
-                    <svg className="property__bookmark-icon" width="31" height="33">
+                    <svg className="place-card__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
                     <span className="visually-hidden">To bookmarks</span>
@@ -153,23 +156,23 @@ class Property extends PureComponent {
             </div>
             <section className="property__map map">
               <MapCity
-                offers={filterNearOffers(offers, nearOffers)}
+                offers={nearOffers}
                 offer={offer}
               />
             </section>
           </section>
-          {nearOffers.length ? <div className="container">
+          <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <ListOffersWrapper
-                offers={filterNearOffers(offers, nearOffers)}
+                offers={nearOffers}
                 onTitleCardClick={onTitleCardClick}
                 onCardHover={onCardHover}
                 className={`near-places__list`}
                 onFavoriteOfferClick={onFavoriteOfferClick}
               />
             </section>
-          </div> : null}
+          </div>
         </main>
         {messageServer && messageServer.status === 404 ?
           <div className="error" style={{
@@ -211,7 +214,6 @@ Property.propTypes = {
   messageServer: PropTypes.object,
   isBlocked: PropTypes.bool.isRequired,
   onFavoriteOfferClick: PropTypes.func.isRequired,
-  offers: PropTypes.array
 };
 
 export default Property;

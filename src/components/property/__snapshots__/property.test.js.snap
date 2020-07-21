@@ -40,7 +40,8 @@ exports[`check render Property 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/favorites"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -138,11 +139,12 @@ exports[`check render Property 1`] = `
               Beautiful &amp; luxurious apartment at great location
             </h1>
             <button
-              className="property__bookmark-button button"
+              className="property__bookmark-button  button"
+              onClick={[Function]}
               type="button"
             >
               <svg
-                className="property__bookmark-icon"
+                className="place-card__bookmark-icon"
                 height="33"
                 width="31"
               >
@@ -620,7 +622,7 @@ exports[`check render Property 1`] = `
           Other places in the neighbourhood
         </h2>
         <div
-          className="near-places__list places__list "
+          className="near-places__list places__list tabs__content"
         >
           <article
             className="near-places__card place-card"
@@ -714,7 +716,7 @@ exports[`check render Property 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/property/4"
                   onClick={[Function]}
                 >
                   Beautiful &amp; luxurious apartment at great location
@@ -819,7 +821,7 @@ exports[`check render Property 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/property/1"
                   onClick={[Function]}
                 >
                   Beautiful &amp; luxurious apartment at great location
@@ -924,7 +926,7 @@ exports[`check render Property 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="#"
+                  href="/property/2"
                   onClick={[Function]}
                 >
                   Beautiful &amp; luxurious apartment at great location

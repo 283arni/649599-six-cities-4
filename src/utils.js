@@ -51,7 +51,16 @@ export const getCurrentName = (name) => {
 };
 
 export const filterNearOffers = (offers, nearOffers) => {
-  return offers.filter((item) => {
-    return nearOffers.find((item2) => item2.id === item.id);
+  return offers.filter((offer) => {
+    return nearOffers.find((nearOffer) => nearOffer.id === offer.id);
+  });
+};
+
+export const getOffersSortedCities = (offers) => {
+  return getCities(offers.slice()).map((item) => {
+    return {
+      city: item,
+      offers: offers.filter((offer) => item === offer.city.name)
+    };
   });
 };

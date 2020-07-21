@@ -16,6 +16,9 @@ jest.mock(`leaflet`, () => ({
   marker: jest.fn().mockReturnValue({
     addTo: jest.fn()
   }),
+  layerGroup: jest.fn().mockReturnValue({
+    addTo: jest.fn()
+  }),
 }));
 
 it(`check render MapCity`, () => {

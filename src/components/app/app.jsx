@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main';
-import {offerType} from '../../types/offers';
+import {offerType, favoriteOfferType} from '../../types/offers';
 import {reviewType} from '../../types/reviews';
 import {Switch, Route, Router, Redirect} from "react-router-dom";
 import Property from '../property/property';
@@ -11,7 +11,7 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/site/site";
 import {Operation as DataOperation} from '../../reducer/data/data';
 import {Operation as UserOperation} from '../../reducer/user/user';
-import {getConvertOffers, getConvertReviews, getConvertNearOffers, getMessageServer, getBlocking, getConvertFavoriteOffers} from '../../reducer/data/selector';
+import {getConvertOffers, getConvertReviews, getFiltredNearOffers, getMessageServer, getBlocking, getSortedFavoriteOffers} from '../../reducer/data/selector';
 import {getCity, getOffer, getHoverOffer, getSortType} from '../../reducer/site/selector';
 import {getUser, checkAuthUser} from '../../reducer/user/selector';
 import history from '../../history';
@@ -65,16 +65,14 @@ class App extends PureComponent {
               : <Redirect to={AppRoute.LOGIN}/>
             }
           </Route>
-          <Route exact path={`${AppRoute.PROPERTY}/:id`} render={({match}) => {
+          <Route exact path={`${AppRoute.PROPERTY}/:id`} component={({match}) => {
             const foundOffer = offers.find((item) => item.id === +match.params.id);
-
 
             return (offer ?
               <Property
                 offer={foundOffer}
                 reviews={reviews}
-                offers={offers}
-                nearOffers={nearOffers.slice(0, 4)}
+                nearOffers={nearOffers}
                 onTitleCardClick={onTitleClick}
                 onCardHover={() => {}}
                 user={user}
@@ -94,7 +92,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path={AppRoute.FAVORITES}>
             <Favorites
-              offers={favoriteOffers}
+              favoriteOffers={favoriteOffers}
               onFavoriteOfferClick={onFavoriteOfferClick}
               onTitleCardClick={onTitleClick}
               onCardHover={() => {}}
@@ -114,12 +112,12 @@ const mapStateToProps = (state) => ({
   hoverOffer: getHoverOffer(state),
   currentCity: getCity(state),
   sortType: getSortType(state),
-  nearOffers: getConvertNearOffers(state),
+  nearOffers: getFiltredNearOffers(state),
   isAuth: checkAuthUser(state),
   user: getUser(state),
   messageServer: getMessageServer(state),
   isBlocked: getBlocking(state),
-  favoriteOffers: getConvertFavoriteOffers(state)
+  favoriteOffers: getSortedFavoriteOffers(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -174,7 +172,7 @@ App.propTypes = {
   isBlocked: PropTypes.bool,
   onFavoriteOfferClick: PropTypes.func.isRequired,
   favoriteOffers: PropTypes.arrayOf(
-      PropTypes.shape(offerType).isRequired
+      PropTypes.shape(favoriteOfferType).isRequired
   ).isRequired,
 };
 

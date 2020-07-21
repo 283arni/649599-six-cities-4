@@ -40,7 +40,8 @@ exports[`check render Favorites 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -48,7 +49,7 @@ exports[`check render Favorites 1`] = `
                 <span
                   className="header__user-name user__name"
                 >
-                  Oliver.conner@gmail.com
+                  google@google.com
                 </span>
               </a>
             </li>
@@ -88,7 +89,7 @@ exports[`check render Favorites 1`] = `
                   href="#"
                 >
                   <span>
-                    Amsterdam
+                    Brussels
                   </span>
                 </a>
               </div>
@@ -98,7 +99,15 @@ exports[`check render Favorites 1`] = `
             >
               <article
                 className="favorites__card place-card"
+                onMouseOver={[Function]}
               >
+                <div
+                  className="place-card__mark"
+                >
+                  <span>
+                    Premium
+                  </span>
+                </div>
                 <div
                   className="favorites__image-wrapper place-card__image-wrapper"
                 >
@@ -106,16 +115,16 @@ exports[`check render Favorites 1`] = `
                     href="#"
                   >
                     <img
-                      alt="Place image"
+                      alt="Beautiful &amp; luxurious apartment at great location"
                       className="place-card__image"
-                      height="110"
-                      src="img/apartment-small-03.jpg"
-                      width="150"
+                      height="200"
+                      src="./img/apartment-01.jpg"
+                      width="260"
                     />
                   </a>
                 </div>
                 <div
-                  className="favorites__card-info place-card__info"
+                  className="place-card__info"
                 >
                   <div
                     className="place-card__price-wrapper"
@@ -126,7 +135,8 @@ exports[`check render Favorites 1`] = `
                       <b
                         className="place-card__price-value"
                       >
-                        €180
+                        €
+                        220
                       </b>
                       <span
                         className="place-card__price-text"
@@ -135,7 +145,8 @@ exports[`check render Favorites 1`] = `
                       </span>
                     </div>
                     <button
-                      className="place-card__bookmark-button place-card__bookmark-button--active button"
+                      className="place-card__bookmark-button  button"
+                      onClick={[Function]}
                       type="button"
                     >
                       <svg
@@ -150,7 +161,7 @@ exports[`check render Favorites 1`] = `
                       <span
                         className="visually-hidden"
                       >
-                        In bookmarks
+                        To bookmarks
                       </span>
                     </button>
                   </div>
@@ -163,7 +174,7 @@ exports[`check render Favorites 1`] = `
                       <span
                         style={
                           Object {
-                            "width": "100%",
+                            "width": "40%",
                           }
                         }
                       />
@@ -178,109 +189,16 @@ exports[`check render Favorites 1`] = `
                     className="place-card__name"
                   >
                     <a
-                      href="#"
+                      href="/property/4"
+                      onClick={[Function]}
                     >
-                      Nice, cozy, warm big bed apartment
+                      Beautiful &amp; luxurious apartment at great location
                     </a>
                   </h2>
                   <p
                     className="place-card__type"
                   >
-                    Apartment
-                  </p>
-                </div>
-              </article>
-              <article
-                className="favorites__card place-card"
-              >
-                <div
-                  className="favorites__image-wrapper place-card__image-wrapper"
-                >
-                  <a
-                    href="#"
-                  >
-                    <img
-                      alt="Place image"
-                      className="place-card__image"
-                      height="110"
-                      src="img/room-small.jpg"
-                      width="150"
-                    />
-                  </a>
-                </div>
-                <div
-                  className="favorites__card-info place-card__info"
-                >
-                  <div
-                    className="place-card__price-wrapper"
-                  >
-                    <div
-                      className="place-card__price"
-                    >
-                      <b
-                        className="place-card__price-value"
-                      >
-                        €80
-                      </b>
-                      <span
-                        className="place-card__price-text"
-                      >
-                        / night
-                      </span>
-                    </div>
-                    <button
-                      className="place-card__bookmark-button place-card__bookmark-button--active button"
-                      type="button"
-                    >
-                      <svg
-                        className="place-card__bookmark-icon"
-                        height="19"
-                        width="18"
-                      >
-                        <use
-                          xlinkHref="#icon-bookmark"
-                        />
-                      </svg>
-                      <span
-                        className="visually-hidden"
-                      >
-                        In bookmarks
-                      </span>
-                    </button>
-                  </div>
-                  <div
-                    className="place-card__rating rating"
-                  >
-                    <div
-                      className="place-card__stars rating__stars"
-                    >
-                      <span
-                        style={
-                          Object {
-                            "width": "80%",
-                          }
-                        }
-                      />
-                      <span
-                        className="visually-hidden"
-                      >
-                        Rating
-                      </span>
-                    </div>
-                  </div>
-                  <h2
-                    className="place-card__name"
-                  >
-                    <a
-                      href="#"
-                    >
-                      Wood and stone place
-                    </a>
-                  </h2>
-                  <p
-                    className="place-card__type"
-                  >
-                    Private room
+                    room
                   </p>
                 </div>
               </article>
@@ -300,7 +218,7 @@ exports[`check render Favorites 1`] = `
                   href="#"
                 >
                   <span>
-                    Cologne
+                    Amsterdam
                   </span>
                 </a>
               </div>
@@ -310,7 +228,15 @@ exports[`check render Favorites 1`] = `
             >
               <article
                 className="favorites__card place-card"
+                onMouseOver={[Function]}
               >
+                <div
+                  className="place-card__mark"
+                >
+                  <span>
+                    Premium
+                  </span>
+                </div>
                 <div
                   className="favorites__image-wrapper place-card__image-wrapper"
                 >
@@ -318,16 +244,16 @@ exports[`check render Favorites 1`] = `
                     href="#"
                   >
                     <img
-                      alt="Place image"
+                      alt="Beautiful &amp; luxurious apartment at great location"
                       className="place-card__image"
-                      height="110"
-                      src="img/apartment-small-04.jpg"
-                      width="150"
+                      height="200"
+                      src="./img/apartment-01.jpg"
+                      width="260"
                     />
                   </a>
                 </div>
                 <div
-                  className="favorites__card-info place-card__info"
+                  className="place-card__info"
                 >
                   <div
                     className="place-card__price-wrapper"
@@ -338,7 +264,8 @@ exports[`check render Favorites 1`] = `
                       <b
                         className="place-card__price-value"
                       >
-                        €180
+                        €
+                        220
                       </b>
                       <span
                         className="place-card__price-text"
@@ -347,7 +274,8 @@ exports[`check render Favorites 1`] = `
                       </span>
                     </div>
                     <button
-                      className="place-card__bookmark-button place-card__bookmark-button--active button"
+                      className="place-card__bookmark-button  button"
+                      onClick={[Function]}
                       type="button"
                     >
                       <svg
@@ -362,7 +290,7 @@ exports[`check render Favorites 1`] = `
                       <span
                         className="visually-hidden"
                       >
-                        In bookmarks
+                        To bookmarks
                       </span>
                     </button>
                   </div>
@@ -375,7 +303,7 @@ exports[`check render Favorites 1`] = `
                       <span
                         style={
                           Object {
-                            "width": "100%",
+                            "width": "40%",
                           }
                         }
                       />
@@ -390,15 +318,16 @@ exports[`check render Favorites 1`] = `
                     className="place-card__name"
                   >
                     <a
-                      href="#"
+                      href="/property/1"
+                      onClick={[Function]}
                     >
-                      White castle
+                      Beautiful &amp; luxurious apartment at great location
                     </a>
                   </h2>
                   <p
                     className="place-card__type"
                   >
-                    Apartment
+                    room
                   </p>
                 </div>
               </article>
@@ -413,7 +342,8 @@ exports[`check render Favorites 1`] = `
   >
     <a
       className="footer__logo-link"
-      href="main.html"
+      href="/"
+      onClick={[Function]}
     >
       <img
         alt="6 cities logo"

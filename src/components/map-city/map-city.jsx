@@ -114,7 +114,6 @@ MapCity.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape(offerType).isRequired
   ).isRequired,
-  // cityOffers: cityType,
   offer: PropTypes.shape(offerType),
 };
 
