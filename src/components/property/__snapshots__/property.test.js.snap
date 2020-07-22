@@ -189,7 +189,9 @@ exports[`check render Property 1`] = `
           >
             <li
               className="property__feature property__feature--entire"
-            />
+            >
+              Private Room
+            </li>
             <li
               className="property__feature property__feature--bedrooms"
             >

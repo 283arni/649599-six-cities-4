@@ -28,7 +28,7 @@ export const SettingImage = {
 
 export const housingType = {
   'apartment': `Apartment`,
-  'room ': `Private Room`,
+  'room': `Private Room`,
   'house': `House`,
   'hotel': `Hotel`
 };

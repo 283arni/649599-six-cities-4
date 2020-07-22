@@ -1,10 +1,9 @@
 import React from "react";
-import Enzyme, {mount} from "enzyme";
+import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Card from "./card";
 import {offers} from '../../mocks/test/offers';
-import {Router} from 'react-router-dom';
-import history from '../../history';
+import {Link} from 'react-router-dom';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -18,24 +17,20 @@ const onFavoriteOfferClick = jest.fn();
 it(`to check Card should return offer and click on title`, () => {
 
 
-  const card = mount(
-      <Router
-        history={history}
-      >
-        <Card
-          offer={offers[0]}
-          onTitleCardClick={onTitleCardClick}
-          onCardHover={onCardHover}
-          className={`cities`}
-          onActiveChange={onActiveChange}
-          activeItem={offers[0]}
-          onFavoriteOfferClick={onFavoriteOfferClick}
-        />
-      </Router>
+  const card = shallow(
+      <Card
+        offer={offers[0]}
+        onTitleCardClick={onTitleCardClick}
+        onCardHover={onCardHover}
+        className={`cities`}
+        onActiveChange={onActiveChange}
+        activeItem={offers[0]}
+        onFavoriteOfferClick={onFavoriteOfferClick}
+      />
   );
 
   const place = card.find(`.place-card`);
-  const titleCard = card.find(`.place-card__name a`);
+  const titleCard = card.find(Link);
 
 
   place.simulate(`onmouseover`, onCardHover(offers[0]));

@@ -136,8 +136,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.setSortType(valueType));
   },
   onLoginSubmit(mail) {
-    dispatch(UserOperation.login(mail));
-    dispatch(DataOperation.loadFavoriteOffers());
+    dispatch(UserOperation.login(mail))
+      .then(() => dispatch(DataOperation.loadFavoriteOffers()));
   },
   onReviewSubmit(id, review) {
     dispatch(DataOperation.sendReview(id, review));
