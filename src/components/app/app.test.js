@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {App} from './app';
 import {Provider} from "react-redux";
-import {offers} from '../../mocks/test/offers';
+import {offers, favoriteOffers} from '../../mocks/test/offers';
 import {reviews} from '../../mocks/test/reviews';
 import {user} from '../../mocks/test/user';
 import configureStore from "redux-mock-store";
@@ -45,7 +45,7 @@ it(`check render App`, () => {
           onReviewSubmit={onReviewSubmit}
           isBlocked={false}
           onFavoriteOfferClick={onFavoriteOfferClick}
-          favoriteOffers={offers}
+          favoriteOffers={favoriteOffers}
         />
       </Provider>, {
         createNodeMock: () => document.createElement(`div`)

@@ -31,3 +31,10 @@ export const offerType = {
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
 };
+
+export const favoriteOfferType = {
+  city: PropTypes.string.isRequired,
+  offers: PropTypes.arrayOf(
+      PropTypes.shape(offerType)
+  ).isRequired
+};

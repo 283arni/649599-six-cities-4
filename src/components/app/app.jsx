@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main';
-import {offerType} from '../../types/offers';
+import {offerType, favoriteOfferType} from '../../types/offers';
 import {reviewType} from '../../types/reviews';
 import {Switch, Route, Router, Redirect} from "react-router-dom";
 import Property from '../property/property';
@@ -11,7 +11,7 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/site/site";
 import {Operation as DataOperation} from '../../reducer/data/data';
 import {Operation as UserOperation} from '../../reducer/user/user';
-import {getConvertOffers, getConvertReviews, getConvertNearOffers, getMessageServer, getBlocking, getConvertFavoriteOffers} from '../../reducer/data/selector';
+import {getConvertOffers, getConvertReviews, getFiltredNearOffers, getMessageServer, getBlocking, getSortedFavoriteOffers} from '../../reducer/data/selector';
 import {getCity, getOffer, getHoverOffer, getSortType} from '../../reducer/site/selector';
 import {getUser, checkAuthUser} from '../../reducer/user/selector';
 import history from '../../history';
@@ -19,7 +19,6 @@ import {AppRoute} from '../../const';
 
 
 class App extends PureComponent {
-
 
   render() {
     const {
@@ -50,8 +49,8 @@ class App extends PureComponent {
       >
         <Switch>
           <Route exact path={AppRoute.MAIN}>
-            {isAuth ? <Redirect to={AppRoute.LOGIN}/>
-              : <Main
+            {isAuth ?
+              <Main
                 currentCity={currentCity}
                 onTitleCardClick={onTitleClick}
                 hoverOffer={hoverOffer}
@@ -63,31 +62,42 @@ class App extends PureComponent {
                 user={user}
                 onFavoriteOfferClick={onFavoriteOfferClick}
               />
+              : <Redirect to={AppRoute.LOGIN}/>
             }
           </Route>
-          <Route exact path={AppRoute.PROPERTY}>
-            <Property
-              offer={offer}
-              reviews={reviews}
-              nearOffers={nearOffers.slice(0, 4)}
-              onTitleCardClick={onTitleClick}
-              onCardHover={onCardHover}
-              user={user}
-              onReviewSubmit={onReviewSubmit}
-              messageServer={messageServer}
-              isBlocked={isBlocked}
-              onFavoriteOfferClick={onFavoriteOfferClick}
-            />
-          </Route>
+          <Route exact path={`${AppRoute.PROPERTY}/:id`} component={({match}) => {
+            const foundOffer = offers.find((item) => item.id === +match.params.id);
+
+            return (offer ?
+              <Property
+                offer={foundOffer}
+                reviews={reviews}
+                nearOffers={nearOffers}
+                onTitleCardClick={onTitleClick}
+                onCardHover={() => {}}
+                user={user}
+                onReviewSubmit={onReviewSubmit}
+                messageServer={messageServer}
+                isBlocked={isBlocked}
+                onFavoriteOfferClick={onFavoriteOfferClick}
+              /> : null);
+
+          }}/>
           <Route exact path={AppRoute.LOGIN}>
-            {isAuth ?
+            {isAuth ? <Redirect to={AppRoute.MAIN}/>
+              :
               <SignScreen
                 onLoginSubmit={onLoginSubmit}
-              /> :
-              <Redirect to={AppRoute.MAIN}/>}
+              />}
           </Route>
           <Route exact path={AppRoute.FAVORITES}>
-            <Favorites favoriteOffers={favoriteOffers} />
+            <Favorites
+              favoriteOffers={favoriteOffers}
+              onFavoriteOfferClick={onFavoriteOfferClick}
+              onTitleCardClick={onTitleClick}
+              onCardHover={() => {}}
+              user={user}
+            />
           </Route>
         </Switch>
       </Router>
@@ -102,12 +112,12 @@ const mapStateToProps = (state) => ({
   hoverOffer: getHoverOffer(state),
   currentCity: getCity(state),
   sortType: getSortType(state),
-  nearOffers: getConvertNearOffers(state),
+  nearOffers: getFiltredNearOffers(state),
   isAuth: checkAuthUser(state),
   user: getUser(state),
   messageServer: getMessageServer(state),
   isBlocked: getBlocking(state),
-  favoriteOffers: getConvertFavoriteOffers(state)
+  favoriteOffers: getSortedFavoriteOffers(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -126,7 +136,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.setSortType(valueType));
   },
   onLoginSubmit(mail) {
-    dispatch(UserOperation.login(mail));
+    dispatch(UserOperation.login(mail))
+      .then(() => dispatch(DataOperation.loadFavoriteOffers()));
   },
   onReviewSubmit(id, review) {
     dispatch(DataOperation.sendReview(id, review));
@@ -161,7 +172,7 @@ App.propTypes = {
   isBlocked: PropTypes.bool,
   onFavoriteOfferClick: PropTypes.func.isRequired,
   favoriteOffers: PropTypes.arrayOf(
-      PropTypes.shape(offerType).isRequired
+      PropTypes.shape(favoriteOfferType).isRequired
   ).isRequired,
 };
 

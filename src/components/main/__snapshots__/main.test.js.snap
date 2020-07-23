@@ -48,7 +48,7 @@ exports[`check render Main 1`] = `
                 <span
                   className="header__user-name user__name"
                 >
-                  Max
+                  google@google.com
                 </span>
               </a>
             </li>
@@ -171,7 +171,7 @@ exports[`check render Main 1`] = `
             </ul>
           </form>
           <div
-            className="cities__places-list places__list tabs__content"
+            className="cities__places-list places__list "
           >
             <article
               className="cities__place-card place-card"
@@ -265,7 +265,7 @@ exports[`check render Main 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/property/4"
                     onClick={[Function]}
                   >
                     Beautiful &amp; luxurious apartment at great location
@@ -370,7 +370,7 @@ exports[`check render Main 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/property/1"
                     onClick={[Function]}
                   >
                     Beautiful &amp; luxurious apartment at great location
@@ -475,7 +475,7 @@ exports[`check render Main 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/property/2"
                     onClick={[Function]}
                   >
                     Beautiful &amp; luxurious apartment at great location

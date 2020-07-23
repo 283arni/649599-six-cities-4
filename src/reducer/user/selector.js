@@ -19,7 +19,7 @@ export const getUser = createSelector(
 export const checkAuthUser = createSelector(
     getAuth,
     (auth) => {
-      return auth === AuthorizationStatus.NO_AUTH;
+      return auth === AuthorizationStatus.AUTH;
     }
 );
 

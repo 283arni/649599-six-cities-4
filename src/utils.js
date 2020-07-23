@@ -1,4 +1,5 @@
-import {TypeSortOffers} from './const';
+import {TypeSortOffers, NameBlockCards} from './const';
+
 
 const monthNames = [`January`, `February`, `March`, `April`, `May`, `June`,
   `July`, `August`, `September`, `October`, `November`, `December`
@@ -35,4 +36,31 @@ export const getCities = (offers) => {
   let cities = new Set();
   offers.forEach((offer) => cities.add(offer.city.name));
   return Array.from(cities);
+};
+
+export const getCurrentName = (name) => {
+  if (name.includes(NameBlockCards.NEAR)) {
+    return NameBlockCards.NEAR;
+  }
+
+  if (name.includes(NameBlockCards.CITIES)) {
+    return NameBlockCards.CITIES;
+  }
+
+  return NameBlockCards.FAVORITES;
+};
+
+export const filterNearOffers = (offers, nearOffers) => {
+  return offers.filter((offer) => {
+    return nearOffers.find((nearOffer) => nearOffer.id === offer.id);
+  });
+};
+
+export const getOffersSortedCities = (offers) => {
+  return getCities(offers.slice()).map((item) => {
+    return {
+      city: item,
+      offers: offers.filter((offer) => item === offer.city.name)
+    };
+  });
 };

@@ -7,7 +7,8 @@ import {NameBlockCards} from '../../const';
 
 const ListOffers = (props) => {
   const {offers, className} = props;
-  const tabsContent = className.search(NameBlockCards.CITIES) ? `` : `tabs__content`;
+  const tabsContent = className.includes(NameBlockCards.CITIES) ? `` : `tabs__content`;
+  const currentClass = className.includes(NameBlockCards.CITIES) ? `cities__place-card` : `near-places__card`;
 
   return (
     <div className={`${className} places__list ${tabsContent}`}>
@@ -16,7 +17,7 @@ const ListOffers = (props) => {
           {...props}
           offer={offer}
           key={offer.id}
-          className={className}
+          className={currentClass}
         />
       )}
     </div>

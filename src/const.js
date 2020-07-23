@@ -1,6 +1,7 @@
 export const NameBlockCards = {
   CITIES: `cities`,
-  NEAR: `near-places`
+  NEAR: `near-places`,
+  FAVORITES: `favorites`
 };
 
 export const ONE_STAR = 20;
@@ -27,7 +28,7 @@ export const SettingImage = {
 
 export const housingType = {
   'apartment': `Apartment`,
-  'room ': `Private Room`,
+  'room': `Private Room`,
   'house': `House`,
   'hotel': `Hotel`
 };

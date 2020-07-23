@@ -90,3 +90,17 @@ export const offers = [
     type: `room`,
   }
 ];
+
+export const favoriteOffers = [
+  {
+    city: `Brussels`,
+    offers: [
+      offers[0]
+    ]
+  }, {
+    city: `Amsterdam`,
+    offers: [
+      offers[1]
+    ]
+  },
+];

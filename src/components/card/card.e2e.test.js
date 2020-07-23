@@ -3,6 +3,7 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Card from "./card";
 import {offers} from '../../mocks/test/offers';
+import {Link} from 'react-router-dom';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -29,7 +30,7 @@ it(`to check Card should return offer and click on title`, () => {
   );
 
   const place = card.find(`.place-card`);
-  const titleCard = card.find(`.place-card__name a`);
+  const titleCard = card.find(Link);
 
 
   place.simulate(`onmouseover`, onCardHover(offers[0]));

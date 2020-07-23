@@ -34,7 +34,7 @@ const Main = (props) => {
                   <Link className="header__nav-link header__nav-link--profile" to={user ? AppRoute.FAVORITES : AppRoute.LOGIN}>
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">{user ? user.name : `Sign in`}</span>
+                    <span className="header__user-name user__name">{user ? user.mail : `Sign in`}</span>
                   </Link>
                 </li>
               </ul>
