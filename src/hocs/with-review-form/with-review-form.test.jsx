@@ -9,6 +9,8 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
+const onReviewSubmit = jest.fn();
+
 const Form = ({onReviewFormChange, onSubmit}) => {
 
   return (
@@ -59,7 +61,7 @@ Form.propTypes = {
 describe(`change activ item through withReviewForm`, () => {
   it(`change active item in ReviewFormWrapper`, () => {
     const ReviewFormWrapper = withReviewForm(Form);
-    const component = Enzyme.mount(<ReviewFormWrapper offer={offers[0]} onReviewSubmit={() => {}}/>);
+    const component = Enzyme.mount(<ReviewFormWrapper offer={offers[0]} onReviewSubmit={onReviewSubmit}/>);
 
     component.find(`.form__rating-input`).simulate(`change`);
     component.find(`.reviews__textarea`).simulate(`change`);

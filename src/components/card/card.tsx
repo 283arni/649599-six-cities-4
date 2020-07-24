@@ -1,14 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers';
 import {Link} from 'react-router-dom';
 import {AppRoute, ONE_STAR} from '../../const';
 import {getCurrentName} from '../../utils';
 
-const Card = (props) => {
+interface Props {
+  offer: offerType;
+  onTitleCardClick: (offer: offerType) => void;
+  onCardHover: (offer: offerType) => void;
+  className: string;
+  onActiveChange: (offer: offerType) => void;
+  activeItem: offerType;
+  onFavoriteOfferClick: (id: number, favorite: boolean) => void;
+}
+
+const Card: React.FunctionComponent<Props> = (props: Props) => {
 
   const {offer, onTitleCardClick, onCardHover, className, onActiveChange, onFavoriteOfferClick} = props;
-  const {photo, premium, price, title, type, rating} = offer;
+  const {photo, premium, price, title, type, rating, favorite, id} = offer;
 
   const currentName = getCurrentName(className);
 
@@ -37,9 +46,9 @@ const Card = (props) => {
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
-            className={`place-card__bookmark-button ${offer.favorite ? `place-card__bookmark-button--active` : ``} button`}
+            className={`place-card__bookmark-button ${favorite ? `place-card__bookmark-button--active` : ``} button`}
             type="button"
-            onClick={() => onFavoriteOfferClick(offer.id, offer.favorite)}
+            onClick={() => onFavoriteOfferClick(id, favorite)}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
@@ -65,14 +74,14 @@ const Card = (props) => {
   );
 };
 
-Card.propTypes = {
-  offer: PropTypes.shape(offerType).isRequired,
-  onTitleCardClick: PropTypes.func.isRequired,
-  onCardHover: PropTypes.func.isRequired,
-  className: PropTypes.string.isRequired,
-  onActiveChange: PropTypes.func.isRequired,
-  activeItem: PropTypes.shape(offerType),
-  onFavoriteOfferClick: PropTypes.func.isRequired
-};
+// Card.propTypes = {
+//   offer: PropTypes.shape(offerType).isRequired,
+//   onTitleCardClick: PropTypes.func.isRequired,
+//   onCardHover: PropTypes.func.isRequired,
+//   className: PropTypes.string.isRequired,
+//   onActiveChange: PropTypes.func.isRequired,
+//   activeItem: PropTypes.shape(offerType),
+//   onFavoriteOfferClick: PropTypes.func.isRequired
+// };
 
 export default Card;

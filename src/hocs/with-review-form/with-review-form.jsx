@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {offerType} from '../../types/offers';
-import {Validation} from '../../const';
+import {Validation, ResponseStatus} from '../../const';
 
 
 const withReviewForm = (Component) => {
@@ -19,7 +19,7 @@ const withReviewForm = (Component) => {
     }
 
     componentDidUpdate(prevProps) {
-      if (prevProps.messageServer !== this.props.messageServer && this.props.messageServer.status === 200) {
+      if (prevProps.messageServer !== this.props.messageServer && this.props.messageServer.status === ResponseStatus.SUCCESS) {
         this.reset();
       }
     }

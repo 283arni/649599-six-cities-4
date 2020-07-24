@@ -1,19 +1,18 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import SignScreen from './sign-screen';
+import Header from './header';
+import {user} from '../../mocks/test/user';
 import {Router} from 'react-router-dom';
 import history from '../../history';
 
 
-const onLoginSubmit = jest.fn();
-
-it(`check render SignScreen`, () => {
+it(`check render Header`, () => {
   const tree = renderer.create(
       <Router
         history={history}
       >
-        <SignScreen
-          onLoginSubmit={onLoginSubmit}
+        <Header
+          user={user}
         />
       </Router>
   ).toJSON();

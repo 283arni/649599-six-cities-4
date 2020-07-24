@@ -1,7 +1,8 @@
 import {createSelector} from 'reselect';
 import OfferModel from '../../adapters/offer-model';
 import ReviewModel from '../../adapters/review-model';
-import NameSpace from "../name-space.js";
+import NameSpace from "../name-space";
+import {Slicer} from '../../const';
 import {getOffersSortedCities, filterNearOffers} from '../../utils';
 
 const getSelector = (state) => state[NameSpace.DATA];
@@ -76,6 +77,13 @@ export const getFiltredNearOffers = createSelector(
     getConvertOffers,
     getConvertNearOffers,
     (offers, nearOffers) => {
-      return filterNearOffers(offers, nearOffers).slice(0, 4);
+      return filterNearOffers(offers, nearOffers).slice(0, Slicer.OFFERS);
+    }
+);
+
+export const getReverseReviews = createSelector(
+    getConvertReviews,
+    (reviews) => {
+      return reviews.reverse().slice(0, Slicer.REVIEWS);
     }
 );

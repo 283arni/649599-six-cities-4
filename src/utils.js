@@ -1,4 +1,4 @@
-import {TypeSortOffers, NameBlockCards} from './const';
+import {SortOffersType, NameBlockCard} from './const';
 
 
 const monthNames = [`January`, `February`, `March`, `April`, `May`, `June`,
@@ -17,11 +17,11 @@ export const extend = (oldData, newData) => {
 
 export const sortOffers = (currentOffers, sortType) => {
   switch (sortType) {
-    case TypeSortOffers.PRICE_HIGH:
+    case SortOffersType.PRICE_HIGH:
       return currentOffers.sort((a, b) => b.price - a.price);
-    case TypeSortOffers.PRICE_LOW:
+    case SortOffersType.PRICE_LOW:
       return currentOffers.sort((a, b) => a.price - b.price);
-    case TypeSortOffers.TOP:
+    case SortOffersType.TOP:
       return currentOffers.sort((a, b) => b.rating - a.rating);
   }
 
@@ -39,15 +39,15 @@ export const getCities = (offers) => {
 };
 
 export const getCurrentName = (name) => {
-  if (name.includes(NameBlockCards.NEAR)) {
-    return NameBlockCards.NEAR;
+  if (name.includes(NameBlockCard.NEAR)) {
+    return NameBlockCard.NEAR;
   }
 
-  if (name.includes(NameBlockCards.CITIES)) {
-    return NameBlockCards.CITIES;
+  if (name.includes(NameBlockCard.CITIES)) {
+    return NameBlockCard.CITIES;
   }
 
-  return NameBlockCards.FAVORITES;
+  return NameBlockCard.FAVORITES;
 };
 
 export const filterNearOffers = (offers, nearOffers) => {

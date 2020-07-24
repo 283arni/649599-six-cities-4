@@ -11,11 +11,11 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/site/site";
 import {Operation as DataOperation} from '../../reducer/data/data';
 import {Operation as UserOperation} from '../../reducer/user/user';
-import {getConvertOffers, getConvertReviews, getFiltredNearOffers, getMessageServer, getBlocking, getSortedFavoriteOffers} from '../../reducer/data/selector';
+import {getConvertOffers, getReverseReviews, getFiltredNearOffers, getMessageServer, getBlocking, getSortedFavoriteOffers} from '../../reducer/data/selector';
 import {getCity, getOffer, getHoverOffer, getSortType} from '../../reducer/site/selector';
 import {getUser, checkAuthUser} from '../../reducer/user/selector';
 import history from '../../history';
-import {AppRoute} from '../../const';
+import {AppRoute, NOOP} from '../../const';
 
 
 class App extends PureComponent {
@@ -74,7 +74,7 @@ class App extends PureComponent {
                 reviews={reviews}
                 nearOffers={nearOffers}
                 onTitleCardClick={onTitleClick}
-                onCardHover={() => {}}
+                onCardHover={NOOP}
                 user={user}
                 onReviewSubmit={onReviewSubmit}
                 messageServer={messageServer}
@@ -95,7 +95,7 @@ class App extends PureComponent {
               favoriteOffers={favoriteOffers}
               onFavoriteOfferClick={onFavoriteOfferClick}
               onTitleCardClick={onTitleClick}
-              onCardHover={() => {}}
+              onCardHover={NOOP}
               user={user}
             />
           </Route>
@@ -107,7 +107,7 @@ class App extends PureComponent {
 
 const mapStateToProps = (state) => ({
   offers: getConvertOffers(state),
-  reviews: getConvertReviews(state),
+  reviews: getReverseReviews(state),
   offer: getOffer(state),
   hoverOffer: getHoverOffer(state),
   currentCity: getCity(state),

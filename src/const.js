@@ -1,7 +1,14 @@
-export const NameBlockCards = {
+export const NameBlockCard = {
   CITIES: `cities`,
   NEAR: `near-places`,
   FAVORITES: `favorites`
+};
+
+export const NOOP = () => {};
+
+export const Slicer = {
+  OFFERS: 3,
+  REVIEWS: 10
 };
 
 export const ONE_STAR = 20;
@@ -11,7 +18,13 @@ export const AuthorizationStatus = {
   AUTH: `AUTH`
 };
 
-export const TypeSortOffers = {
+export const ResponseStatus = {
+  ERROR: 404,
+  SUCCESS: 200,
+  NO_ACCESS: 401
+};
+
+export const SortOffersType = {
   POPULAR: `Popular`,
   PRICE_LOW: `Price: high to low`,
   PRICE_HIGH: `Price: low to high`,

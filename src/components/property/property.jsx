@@ -8,9 +8,9 @@ import MapCity from '../map-city/map-city';
 import ListOffers from '../list-offers/list-offers';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withReviewForm from '../../hocs/with-review-form/with-review-form';
-import {housingType, ONE_STAR, AppRoute} from '../../const';
+import {housingType, ONE_STAR, ResponseStatus} from '../../const';
 import ReviewForm from '../review-form/review-form';
-import {Link} from 'react-router-dom';
+import Header from '../header/header';
 
 const ListOffersWrapper = withActiveItem(ListOffers);
 const ReviewFormWrapper = withReviewForm(ReviewForm);
@@ -27,32 +27,9 @@ class Property extends PureComponent {
 
     return (
       <div className="page">
-        <header className="header">
-          <div className="container">
-            <div className="header__wrapper">
-              <div className="header__left">
-                <a className="header__logo-link" href="main.html">
-                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-                </a>
-              </div>
-              <nav className="header__nav">
-                <ul className="header__nav-list">
-                  <li className="header__nav-item user">
-                    <Link
-                      className="header__nav-link header__nav-link--profile"
-                      to={AppRoute.FAVORITES}
-                    >
-                      <div className="header__avatar-wrapper user__avatar-wrapper">
-                      </div>
-                      <span className="header__user-name user__name">{user.mail}</span>
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </header>
-
+        <Header
+          user={user}
+        />
         <main className="page__main page__main--property">
           <section className="property">
             <div className="property__gallery-container container">
@@ -174,7 +151,7 @@ class Property extends PureComponent {
             </section>
           </div>
         </main>
-        {messageServer && messageServer.status === 404 ?
+        {messageServer && messageServer.status === ResponseStatus.ERROR ?
           <div className="error" style={{
             minWidth: `300px`,
             fontSize: `1.5rem`,

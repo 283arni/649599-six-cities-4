@@ -1,5 +1,5 @@
 import React from 'react';
-import {TypeSortOffers} from '../../const';
+import {SortOffersType} from '../../const';
 import PropTypes from 'prop-types';
 
 
@@ -19,7 +19,7 @@ const Sorting = ({onSortChange, sortType, onSortClick, viewSort}) => {
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${viewSort ? `places__options--opened` : ``}`}>
-        {Object.values(TypeSortOffers).map((type, i) =>
+        {Object.values(SortOffersType).map((type, i) =>
           <li
             key={type + i}
             className={`places__option ${sortType === type ? `places__option--active` : ``}`}
