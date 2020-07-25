@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import ScreenCity from './screen-city';
 import {offers} from '../../mocks/test/offers';

@@ -1,9 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {radioStars} from '../../const';
+import {messageType} from '../../types/message';
 
+interface Props {
+  onSubmit: () => void;
+  onReviewFormChange: () => void;
+  review: string;
+  rating: string | number;
+  isActive: boolean;
+  messageServer: messageType;
+  isBlocked: boolean;
+}
 
-const ReviewForm = (props) => {
+const ReviewForm: React.FunctionComponent<Props> = (props: Props) => {
   const {onSubmit, onReviewFormChange, review, rating, isActive, isBlocked} = props;
   const stars = Object.entries(radioStars);
 
@@ -50,14 +59,14 @@ const ReviewForm = (props) => {
   );
 };
 
-ReviewForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  onReviewFormChange: PropTypes.func.isRequired,
-  review: PropTypes.string.isRequired,
-  rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  isActive: PropTypes.bool.isRequired,
-  messageServer: PropTypes.object,
-  isBlocked: PropTypes.bool.isRequired
-};
+// ReviewForm.propTypes = {
+//   onSubmit: PropTypes.func.isRequired,
+//   onReviewFormChange: PropTypes.func.isRequired,
+//   review: PropTypes.string.isRequired,
+//   rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+//   isActive: PropTypes.bool.isRequired,
+//   messageServer: PropTypes.object,
+//   isBlocked: PropTypes.bool.isRequired
+// };
 
 export default ReviewForm;

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Card from '../card/card';
 import {offerType} from '../../types/offers';
 import {NameBlockCard} from '../../const';
@@ -9,11 +9,11 @@ interface Props {
     onTitleCardClick: (offer: offerType) => void;
     onCardHover: (offer: offerType) => void;
     onActiveChange: (offer: offerType) => void;
-    activeItem: offerType;
+    activeItem: boolean;
     onFavoriteOfferClick: (id: number, favorite: boolean) => void;
 }
 
-const ListOffers: React.FunctionComponent<Props> = (props:Props) => {
+const ListOffers: React.FunctionComponent<Props> = (props: Props) => {
   const {offers, className} = props;
   const tabsContent = className.includes(NameBlockCard.CITIES) ? `` : `tabs__content`;
   const currentClass = className.includes(NameBlockCard.CITIES) ? `cities__place-card` : `near-places__card`;

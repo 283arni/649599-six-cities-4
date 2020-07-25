@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import MapCity from './map-city';
 import {offers, offer} from '../../mocks/test/offers';

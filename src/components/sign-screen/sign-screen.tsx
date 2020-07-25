@@ -1,15 +1,21 @@
-import React, {PureComponent, createRef} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import Header from '../header/header';
+import {userType} from '../../types/user';
 
+interface Props {
+  onLoginSubmit: ({login, password}: {login: string; password: string}) => void;
+  user: userType;
+}
 
-class SignScreen extends PureComponent {
+class SignScreen extends React.PureComponent<Props, {}> {
+  private loginRef: React.RefObject<HTMLInputElement>;
+  private passwordRef: React.RefObject<HTMLInputElement>;
 
   constructor(props) {
     super(props);
 
-    this.loginRef = createRef();
-    this.passwordRef = createRef();
+    this.loginRef = React.createRef();
+    this.passwordRef = React.createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -41,11 +47,11 @@ class SignScreen extends PureComponent {
               <form className="login__form form" action="#" method="post" onSubmit={this.handleSubmit}>
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">E-mail</label>
-                  <input className="login__input form__input" type="email" name="email" placeholder="Email" required="" ref={this.loginRef}/>
+                  <input className="login__input form__input" type="email" name="email" placeholder="Email" required ref={this.loginRef}/>
                 </div>
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">Password</label>
-                  <input className="login__input form__input" type="password" name="password" placeholder="Password" required="" ref={this.passwordRef}/>
+                  <input className="login__input form__input" type="password" name="password" placeholder="Password" required ref={this.passwordRef}/>
                 </div>
                 <button className="login__submit form__submit button" type="submit">Sign in</button>
               </form>
@@ -64,9 +70,9 @@ class SignScreen extends PureComponent {
   }
 }
 
-SignScreen.propTypes = {
-  onLoginSubmit: PropTypes.func,
-  user: PropTypes.object
-};
+// SignScreen.propTypes = {
+//   onLoginSubmit: PropTypes.func,
+//   user: PropTypes.object
+// };
 
 export default SignScreen;

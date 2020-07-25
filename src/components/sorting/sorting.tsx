@@ -1,16 +1,22 @@
-import React from 'react';
+import * as React from 'react';
 import {SortOffersType} from '../../const';
-import PropTypes from 'prop-types';
+
+interface Props {
+  onSortChange: (type: string) => void;
+  sortType: string;
+  onSortClick: () => void;
+  viewSort: boolean;
+}
 
 
-const Sorting = ({onSortChange, sortType, onSortClick, viewSort}) => {
+const Sorting: React.FunctionComponent<Props> = ({onSortChange, sortType, onSortClick, viewSort}: Props) => {
 
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       <span
         className="places__sorting-type"
-        tabIndex="0"
+        tabIndex={0}
         onClick={onSortClick}
       >
         {sortType}
@@ -23,7 +29,7 @@ const Sorting = ({onSortChange, sortType, onSortClick, viewSort}) => {
           <li
             key={type + i}
             className={`places__option ${sortType === type ? `places__option--active` : ``}`}
-            tabIndex="0"
+            tabIndex={0}
             onClick={() => {
               onSortClick();
               onSortChange(type);
@@ -38,12 +44,12 @@ const Sorting = ({onSortChange, sortType, onSortClick, viewSort}) => {
 
 };
 
-Sorting.propTypes = {
-  onSortChange: PropTypes.func.isRequired,
-  sortType: PropTypes.string.isRequired,
-  onSortClick: PropTypes.func.isRequired,
-  viewSort: PropTypes.bool.isRequired
-};
+// Sorting.propTypes = {
+//   onSortChange: PropTypes.func.isRequired,
+//   sortType: PropTypes.string.isRequired,
+//   onSortClick: PropTypes.func.isRequired,
+//   viewSort: PropTypes.bool.isRequired
+// };
 
 
 export default Sorting;

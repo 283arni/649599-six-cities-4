@@ -1,11 +1,29 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {offerType} from '../../types/offers';
+import {messageType} from '../../types/message';
 import {Validation, ResponseStatus} from '../../const';
 
 
+type Review = {
+  comment: string;
+  rating: number;
+}
+
+interface State {
+  review: string;
+  rating: number;
+  isActive: boolean;
+}
+
+interface Props {
+  offer: offerType;
+  onReviewSubmit: (id: number, review: Review) => void;
+  messageServer: messageType;
+  isBlocked: boolean;
+}
+
 const withReviewForm = (Component) => {
-  class WithReviewForm extends PureComponent {
+  class WithReviewForm extends React.PureComponent<Props, State> {
     constructor(props) {
       super(props);
       this.state = {
@@ -41,7 +59,7 @@ const withReviewForm = (Component) => {
 
       this.setState({
         [name]: value
-      }, this.validateForm());
+      } as Pick<State, keyof State>, this.validateForm);
     }
 
     validateForm() {
@@ -57,7 +75,7 @@ const withReviewForm = (Component) => {
       this.setState({
         review: ``,
         rating: 0
-      }, this.validateForm());
+      }, this.validateForm);
     }
 
     render() {
@@ -72,11 +90,11 @@ const withReviewForm = (Component) => {
     }
   }
 
-  WithReviewForm.propTypes = {
-    offer: PropTypes.shape(offerType).isRequired,
-    onReviewSubmit: PropTypes.func.isRequired,
-    messageServer: PropTypes.object,
-  };
+  // WithReviewForm.propTypes = {
+  //   offer: PropTypes.shape(offerType).isRequired,
+  //   onReviewSubmit: PropTypes.func.isRequired,
+  //   messageServer: PropTypes.object,
+  // };
 
   return WithReviewForm;
 };

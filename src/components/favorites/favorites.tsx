@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import * as React from 'react';
 import Card from '../card/card';
 import NoFavorites from '../no-favorites/no-favorites';
 import {favoriteOfferType, offerType} from '../../types/offers';
@@ -12,7 +12,7 @@ interface Props {
     user: userType;
     onTitleCardClick: (offer: offerType) => void;
     onCardHover: (offer: offerType) => void;
-    activeItem: offerType;
+    activeItem: boolean;
     onFavoriteOfferClick: (id: number, favorite: boolean) => void;
 }
 
@@ -26,7 +26,7 @@ const Favorites: React.FunctionComponent<Props> = (props: Props) => {
       />
 
       {favoriteOffers.length ?
-        <Fragment>
+        <React.Fragment>
           <main className="page__main page__main--favorites">
             <div className="page__favorites-container container">
               <section className="favorites">
@@ -66,7 +66,7 @@ const Favorites: React.FunctionComponent<Props> = (props: Props) => {
               <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
             </Link>
           </footer>
-        </Fragment> : <NoFavorites />}
+        </React.Fragment> : <NoFavorites />}
     </div>
   );
 };

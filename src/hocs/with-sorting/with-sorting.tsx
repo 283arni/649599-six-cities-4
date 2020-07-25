@@ -1,8 +1,25 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
+import {offerType} from '../../types/offers';
+import {Subtract} from 'utility-types';
 
+interface State {
+  viewSort: boolean;
+}
+
+interface InjectingProps {
+  offers: offerType[];
+  onTitleCardClick: () => void;
+  onCardHover: () => void;
+  onFavoriteOfferClick: () => void;
+  className: string;
+}
 
 const withSorting = (Component) => {
-  class WithSorting extends PureComponent {
+
+  type P = React.ComponentProps<typeof Component>
+  type T = {} & Subtract<P, InjectingProps>;
+
+  class WithSorting extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
       this.state = {

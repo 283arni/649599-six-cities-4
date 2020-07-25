@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import LocationsList from '../locations-list/locations-list';
 import {offerType} from '../../types/offers';
 import {userType} from '../../types/user';
@@ -11,8 +10,20 @@ import {filterList, getCities} from '../../utils';
 
 const LocationsListWrapper = withActiveItem(LocationsList);
 
+interface Props {
+  offers: offerType[];
+  currentCity: string;
+  onCityClick: () => void;
+  user: userType;
+  onTitleCardClick: () => void;
+  hoverOffer: offerType;
+  onCardHover: () => void;
+  sortType: string;
+  onSortChange: () => void;
+  onFavoriteOfferClick: () => void;
+}
 
-const Main = (props) => {
+const Main: React.FunctionComponent<Props> = (props: Props) => {
   const {offers, currentCity, onCityClick, user} = props;
   const currentOffers = filterList(offers, currentCity);
   const cities = getCities(offers);
@@ -50,13 +61,13 @@ const Main = (props) => {
 
 };
 
-Main.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape(offerType)
-  ),
-  currentCity: PropTypes.string.isRequired,
-  onCityClick: PropTypes.func.isRequired,
-  user: PropTypes.shape(userType)
-};
+// Main.propTypes = {
+//   offers: PropTypes.arrayOf(
+//       PropTypes.shape(offerType)
+//   ),
+//   currentCity: PropTypes.string.isRequired,
+//   onCityClick: PropTypes.func.isRequired,
+//   user: PropTypes.shape(userType)
+// };
 
 export default Main;

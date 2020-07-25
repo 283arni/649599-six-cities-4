@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {userType} from '../../mocks/test/user';
 
 interface Props {
-  user: userType
+  user: userType;
 }
 
 const Header: React.FunctionComponent<Props> = ({user}: Props) => {

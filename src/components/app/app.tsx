@@ -1,8 +1,9 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import Main from '../main/main';
 import {offerType, favoriteOfferType} from '../../types/offers';
 import {reviewType} from '../../types/reviews';
+import {userType} from '../../types/user';
+import {messageType} from '../../types/message';
 import {Switch, Route, Router, Redirect} from "react-router-dom";
 import Property from '../property/property';
 import SignScreen from '../sign-screen/sign-screen';
@@ -17,8 +18,29 @@ import {getUser, checkAuthUser} from '../../reducer/user/selector';
 import history from '../../history';
 import {AppRoute, NOOP} from '../../const';
 
+interface Props {
+    offers: offerType[];
+    reviews: reviewType[];
+    offer: offerType;
+    onTitleClick: () => void;
+    onCardHover: () => void;
+    currentCity: string;
+    onCityClick: () => void;
+    hoverOffer: offerType;
+    sortType: string;
+    onSortChange: () => void;
+    nearOffers: offerType[];
+    isAuth: boolean;
+    onLoginSubmit: () => void;
+    user: userType;
+    onReviewSubmit: () => void;
+    messageServer: messageType;
+    isBlocked: boolean;
+    onFavoriteOfferClick: () => void;
+    favoriteOffers: favoriteOfferType[];
+}
 
-class App extends PureComponent {
+class App extends React.PureComponent<Props, {}> {
 
   render() {
     const {
@@ -88,6 +110,7 @@ class App extends PureComponent {
               :
               <SignScreen
                 onLoginSubmit={onLoginSubmit}
+                user={user}
               />}
           </Route>
           <Route exact path={AppRoute.FAVORITES}>
@@ -97,6 +120,7 @@ class App extends PureComponent {
               onTitleCardClick={onTitleClick}
               onCardHover={NOOP}
               user={user}
+              activeItem={false}
             />
           </Route>
         </Switch>
@@ -148,33 +172,33 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-App.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape(offerType).isRequired
-  ).isRequired,
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape(reviewType).isRequired
-  ).isRequired,
-  offer: PropTypes.object,
-  onTitleClick: PropTypes.func.isRequired,
-  onCardHover: PropTypes.func.isRequired,
-  currentCity: PropTypes.string.isRequired,
-  onCityClick: PropTypes.func.isRequired,
-  hoverOffer: PropTypes.shape(offerType),
-  sortType: PropTypes.string.isRequired,
-  onSortChange: PropTypes.func.isRequired,
-  nearOffers: PropTypes.array,
-  isAuth: PropTypes.bool.isRequired,
-  onLoginSubmit: PropTypes.func.isRequired,
-  user: PropTypes.object,
-  onReviewSubmit: PropTypes.func,
-  messageServer: PropTypes.object,
-  isBlocked: PropTypes.bool,
-  onFavoriteOfferClick: PropTypes.func.isRequired,
-  favoriteOffers: PropTypes.arrayOf(
-      PropTypes.shape(favoriteOfferType).isRequired
-  ).isRequired,
-};
+// App.propTypes = {
+//   offers: PropTypes.arrayOf(
+//       PropTypes.shape(offerType).isRequired
+//   ).isRequired,
+//   reviews: PropTypes.arrayOf(
+//       PropTypes.shape(reviewType).isRequired
+//   ).isRequired,
+//   offer: PropTypes.object,
+//   onTitleClick: PropTypes.func.isRequired,
+//   onCardHover: PropTypes.func.isRequired,
+//   currentCity: PropTypes.string.isRequired,
+//   onCityClick: PropTypes.func.isRequired,
+//   hoverOffer: PropTypes.shape(offerType),
+//   sortType: PropTypes.string.isRequired,
+//   onSortChange: PropTypes.func.isRequired,
+//   nearOffers: PropTypes.array,
+//   isAuth: PropTypes.bool.isRequired,
+//   onLoginSubmit: PropTypes.func.isRequired,
+//   user: PropTypes.object,
+//   onReviewSubmit: PropTypes.func,
+//   messageServer: PropTypes.object,
+//   isBlocked: PropTypes.bool,
+//   onFavoriteOfferClick: PropTypes.func.isRequired,
+//   favoriteOffers: PropTypes.arrayOf(
+//       PropTypes.shape(favoriteOfferType).isRequired
+//   ).isRequired,
+// };
 
 export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);

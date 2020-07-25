@@ -1,9 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {SettingImage} from '../../const';
 
+interface Props {
+  currentCity: string;
+}
 
-const NoOffers = ({currentCity}) => {
+const NoOffers: React.FunctionComponent<Props> = ({currentCity}: Props) => {
 
   return (
     <div className="cities__places-container cities__places-container--empty container">
@@ -26,8 +28,8 @@ const NoOffers = ({currentCity}) => {
   );
 };
 
-NoOffers.propTypes = {
-  currentCity: PropTypes.string.isRequired
-};
+// NoOffers.propTypes = {
+//   currentCity: PropTypes.string.isRequired
+// };
 
 export default NoOffers;

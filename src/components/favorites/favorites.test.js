@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import Favorites from './favorites';
 import {Router} from 'react-router-dom';

@@ -1,12 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 import {reviewType} from '../../types/reviews';
-import {reviewDefault} from '../../mocks/data/reviews';
 import {getDate} from '../../utils';
 import {ONE_STAR} from '../../const';
 
-const Review = ({review}) => {
+interface Props {
+  review: reviewType;
+}
+
+const Review: React.FunctionComponent<Props> = ({review}: Props) => {
 
   const date = getDate(review.date);
+
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -32,8 +36,5 @@ const Review = ({review}) => {
     </li>
   );
 };
-
-Review.propTypes = reviewType;
-Review.defaultProps = reviewDefault;
 
 export default Review;

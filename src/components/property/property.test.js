@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import Property from './property';
 import {Router} from 'react-router-dom';

@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import MapCity from '../map-city/map-city';
 import {sortOffers} from '../../utils';
 import Sorting from '../sorting/sorting';
@@ -10,7 +9,18 @@ import {offerType} from '../../types/offers';
 const ListOffersWrapper = withActiveItem(ListOffers);
 const SortingWrapper = withSorting(Sorting);
 
-const ScreenCity = (props) => {
+interface Props {
+  currentOffers: offerType[];
+  onTitleCardClick: () => void;
+  onCardHover: () => void;
+  currentCity: string;
+  hoverOffer: offerType;
+  sortType: string;
+  onSortChange: () => void;
+  onFavoriteOfferClick: () => void;
+}
+
+const ScreenCity: React.FunctionComponent<Props> = (props: Props) => {
   const {currentCity, sortType, onSortChange, onTitleCardClick, onCardHover, hoverOffer, currentOffers, onFavoriteOfferClick} = props;
 
 
@@ -43,17 +53,17 @@ const ScreenCity = (props) => {
   );
 };
 
-ScreenCity.propTypes = {
-  currentOffers: PropTypes.arrayOf(
-      PropTypes.shape(offerType).isRequired
-  ),
-  onTitleCardClick: PropTypes.func.isRequired,
-  onCardHover: PropTypes.func.isRequired,
-  currentCity: PropTypes.string.isRequired,
-  hoverOffer: PropTypes.shape(offerType),
-  sortType: PropTypes.string.isRequired,
-  onSortChange: PropTypes.func.isRequired,
-  onFavoriteOfferClick: PropTypes.func.isRequired
-};
+// ScreenCity.propTypes = {
+//   currentOffers: PropTypes.arrayOf(
+//       PropTypes.shape(offerType).isRequired
+//   ),
+//   onTitleCardClick: PropTypes.func.isRequired,
+//   onCardHover: PropTypes.func.isRequired,
+//   currentCity: PropTypes.string.isRequired,
+//   hoverOffer: PropTypes.shape(offerType),
+//   sortType: PropTypes.string.isRequired,
+//   onSortChange: PropTypes.func.isRequired,
+//   onFavoriteOfferClick: PropTypes.func.isRequired
+// };
 
 export default ScreenCity;

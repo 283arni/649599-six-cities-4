@@ -1,8 +1,8 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import {offerType} from '../../types/offers';
 import {reviewType} from '../../types/reviews';
 import {userType} from '../../types/user';
-import PropTypes from 'prop-types';
+import {messageType} from '../../types/message';
 import ReviewsList from '../reviews-list/reviews-list';
 import MapCity from '../map-city/map-city';
 import ListOffers from '../list-offers/list-offers';
@@ -15,14 +15,28 @@ import Header from '../header/header';
 const ListOffersWrapper = withActiveItem(ListOffers);
 const ReviewFormWrapper = withReviewForm(ReviewForm);
 
-class Property extends PureComponent {
+
+interface Props {
+  offer: offerType;
+  onTitleCardClick: () => void;
+  reviews: reviewType[];
+  messageServer: messageType;
+  nearOffers: offerType[];
+  onCardHover: () => void;
+  user: userType;
+  onReviewSubmit: () => void;
+  isBlocked: boolean;
+  onFavoriteOfferClick: (id: number, favorite: boolean) => void;
+}
+
+class Property extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
 
   render() {
     const {offer, onTitleCardClick, reviews, nearOffers, onCardHover, user, onReviewSubmit, messageServer, isBlocked, onFavoriteOfferClick} = this.props;
-    const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner} = offer;
+    const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner, id, favorite} = offer;
 
 
     return (
@@ -53,9 +67,9 @@ class Property extends PureComponent {
                     {title}
                   </h1>
                   <button
-                    className={`property__bookmark-button ${offer.favorite ? `property__bookmark-button--active` : ``} button`}
+                    className={`property__bookmark-button ${favorite ? `property__bookmark-button--active` : ``} button`}
                     type="button"
-                    onClick={() => onFavoriteOfferClick(offer.id, offer.favorite)}
+                    onClick={() => onFavoriteOfferClick(id, favorite)}
                   >
                     <svg className="place-card__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
@@ -162,7 +176,7 @@ class Property extends PureComponent {
             borderRadius: `3px`,
             backgroundColor: `red`,
             position: `fixed`,
-            zIndex: `100`,
+            zIndex: 100,
             top: `20px`,
             left: `50%`,
             transform: `translateX(-50%)`
@@ -176,21 +190,21 @@ class Property extends PureComponent {
   }
 }
 
-Property.propTypes = {
-  offer: PropTypes.shape(offerType),
-  onTitleCardClick: PropTypes.func.isRequired,
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape(reviewType).isRequired
-  ).isRequired,
-  nearOffers: PropTypes.arrayOf(
-      PropTypes.shape(offerType).isRequired
-  ),
-  onCardHover: PropTypes.func.isRequired,
-  user: PropTypes.shape(userType),
-  onReviewSubmit: PropTypes.func.isRequired,
-  messageServer: PropTypes.object,
-  isBlocked: PropTypes.bool.isRequired,
-  onFavoriteOfferClick: PropTypes.func.isRequired,
-};
+// Property.propTypes = {
+//   offer: PropTypes.shape(offerType),
+//   onTitleCardClick: PropTypes.func.isRequired,
+//   reviews: PropTypes.arrayOf(
+//       PropTypes.shape(reviewType).isRequired
+//   ).isRequired,
+//   nearOffers: PropTypes.arrayOf(
+//       PropTypes.shape(offerType).isRequired
+//   ),
+//   onCardHover: PropTypes.func.isRequired,
+//   user: PropTypes.shape(userType),
+//   onReviewSubmit: PropTypes.func.isRequired,
+//   messageServer: PropTypes.object,
+//   isBlocked: PropTypes.bool.isRequired,
+//   onFavoriteOfferClick: PropTypes.func.isRequired,
+// };
 
 export default Property;

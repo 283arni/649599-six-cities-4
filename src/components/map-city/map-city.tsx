@@ -1,7 +1,6 @@
-import React, {Component, createRef} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {offerType} from '../../types/offers';
-import leaflet from 'leaflet';
+import * as leaflet from 'leaflet';
 
 const marker = leaflet.icon({
   iconUrl: `img/pin.svg`,
@@ -13,13 +12,21 @@ const activeMarker = leaflet.icon({
   iconSize: [20, 30]
 });
 
+interface Props {
+  offers: offerType[];
+  offer: offerType;
+}
 
-class MapCity extends Component {
+class MapCity extends React.PureComponent<Props, {}> {
+  private _mapRef: React.RefObject<HTMLDivElement>;
+  private _map;
+  private _markers;
+
   constructor(props) {
     super(props);
-    this._mapRef = createRef();
+    this._mapRef = React.createRef();
     this._map = null;
-    this.markers = null;
+    this._markers = null;
   }
 
   componentDidUpdate(prevProps) {
@@ -29,7 +36,7 @@ class MapCity extends Component {
     }
 
     if (prevProps.offer && prevProps.offer.id !== this.props.offer.id) {
-      this.markers.clearLayers();
+      this._markers.clearLayers();
       this.renderPins();
     }
   }
@@ -49,7 +56,7 @@ class MapCity extends Component {
 
   renderPins() {
     const {offers, offer} = this.props;
-    this.markers = leaflet.layerGroup().addTo(this._map);
+    this._markers = leaflet.layerGroup().addTo(this._map);
 
     if (offer) {
       this.setTypePin(offer, activeMarker);
@@ -64,7 +71,7 @@ class MapCity extends Component {
       this.setTypePin(item, marker);
     });
 
-    leaflet.layerGroup(this.markers);
+    leaflet.layerGroup(this._markers);
   }
 
   setTypePin(offer, type) {
@@ -72,7 +79,7 @@ class MapCity extends Component {
 
     leaflet
       .marker(offer.coords.target, {icon})
-      .addTo(this.markers);
+      .addTo(this._markers);
   }
 
 
@@ -110,12 +117,12 @@ class MapCity extends Component {
   }
 }
 
-MapCity.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape(offerType).isRequired
-  ).isRequired,
-  offer: PropTypes.shape(offerType),
-};
+// MapCity.propTypes = {
+//   offers: PropTypes.arrayOf(
+//       PropTypes.shape(offerType).isRequired
+//   ).isRequired,
+//   offer: PropTypes.shape(offerType),
+// };
 
 export default MapCity;
 

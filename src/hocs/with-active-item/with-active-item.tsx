@@ -1,8 +1,27 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
+import {offerType} from '../../types/offers';
+import {Subtract} from "utility-types";
 
+interface State {
+  activeItem: boolean | null;
+}
+
+interface InjectingProps {
+  offers: offerType[];
+  className: string;
+  onTitleCardClick: () => void;
+  onCardHover: () => void;
+  onActiveChange: () => void;
+  activeItem: boolean;
+  onFavoriteOfferClick: () => void;
+}
 
 const withActiveItem = (Component) => {
-  class WithActiveItem extends PureComponent {
+
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithActiveItem extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
       this.state = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {offerType} from '../../types/offers';
 import {Link} from 'react-router-dom';
 import {AppRoute, ONE_STAR} from '../../const';
@@ -10,7 +10,7 @@ interface Props {
   onCardHover: (offer: offerType) => void;
   className: string;
   onActiveChange: (offer: offerType) => void;
-  activeItem: offerType;
+  activeItem: boolean;
   onFavoriteOfferClick: (id: number, favorite: boolean) => void;
 }
 
