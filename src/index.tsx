@@ -10,11 +10,16 @@ import {createApi} from './api';
 import {AuthorizationStatus} from './const';
 import {ActionCreator as UserActionCreator, Operation as UserOperation} from './reducer/user/user';
 import {ActionCreator as SiteActionCreator} from './reducer/site/site';
-import {Operation as DataOperation} from './reducer/data/data';
+import {Operation as DataOperation, ActionCreator as DataActionCreator} from './reducer/data/data';
 
-const api = createApi(() => {
+const api = createApi(
+() => {
   store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
-});
+},
+(err) => {
+  store.dispatch(DataActionCreator.loadMessageServer(err));
+}
+);
 
 const store = createStore(
     reducer,

@@ -1,4 +1,4 @@
-import {SortOffersType, NameBlockCard} from './const';
+import {SortOffersType, NameBlockCard, MAX_RENDER_CITY} from './const';
 
 
 const monthNames = [`January`, `February`, `March`, `April`, `May`, `June`,
@@ -35,7 +35,7 @@ export const filterList = (offers, city) => {
 export const getCities = (offers) => {
   let cities = new Set();
   offers.forEach((offer) => cities.add(offer.city.name));
-  return Array.from(cities);
+  return Array.from(cities).slice(0, MAX_RENDER_CITY);;
 };
 
 export const getCurrentName = (name) => {

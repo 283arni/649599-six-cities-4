@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
-import {userType} from '../../mocks/test/user';
+import {userType} from '../../types/user';
 
 interface Props {
   user: userType;

@@ -117,12 +117,5 @@ class MapCity extends React.PureComponent<Props, {}> {
   }
 }
 
-// MapCity.propTypes = {
-//   offers: PropTypes.arrayOf(
-//       PropTypes.shape(offerType).isRequired
-//   ).isRequired,
-//   offer: PropTypes.shape(offerType),
-// };
-
 export default MapCity;
 

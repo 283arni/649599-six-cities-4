@@ -75,7 +75,6 @@ const Operation = {
         dispatch(ActionCreator.setBlocking(false));
       })
       .catch((err) => {
-        dispatch(ActionCreator.loadMessageServer(err.response));
         dispatch(ActionCreator.setBlocking(false));
 
         throw err;
@@ -88,14 +87,10 @@ const Operation = {
       });
   },
   setFavoriteOffer: (id, status) => (dispatch, getState, api) => {
-    return api.post(`/favorite/${id}/${+!status}`)
+    return api.post(`/favorits/${id}/${+!status}`)
       .then(() => {
         dispatch(Operation.loadOffers());
         dispatch(Operation.loadFavoriteOffers());
-      })
-      .catch((err) => {
-
-        throw err;
       });
   }
 };

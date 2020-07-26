@@ -28,12 +28,5 @@ const LocationItem: React.FunctionComponent<Props> = ({onCityClick, city, active
   );
 };
 
-// LocationItem.propTypes = {
-//   currentCity: PropTypes.string.isRequired,
-//   onCityClick: PropTypes.func.isRequired,
-//   onActiveChange: PropTypes.func.isRequired,
-//   activeItem: PropTypes.string,
-//   city: PropTypes.string.isRequired,
-// };
 
 export default LocationItem;

@@ -53,20 +53,11 @@ const ReviewForm: React.FunctionComponent<Props> = (props: Props) => {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={!isActive || isBlocked}>Submit</button>
+        <button className="reviews__submit form__submit button" disabled={!isActive || isBlocked}>Submit</button>
       </div>
     </form>
   );
 };
 
-// ReviewForm.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-//   onReviewFormChange: PropTypes.func.isRequired,
-//   review: PropTypes.string.isRequired,
-//   rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-//   isActive: PropTypes.bool.isRequired,
-//   messageServer: PropTypes.object,
-//   isBlocked: PropTypes.bool.isRequired
-// };
 
 export default ReviewForm;

@@ -90,12 +90,6 @@ const withReviewForm = (Component) => {
     }
   }
 
-  // WithReviewForm.propTypes = {
-  //   offer: PropTypes.shape(offerType).isRequired,
-  //   onReviewSubmit: PropTypes.func.isRequired,
-  //   messageServer: PropTypes.object,
-  // };
-
   return WithReviewForm;
 };
 

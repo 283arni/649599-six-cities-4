@@ -12,7 +12,7 @@ interface Props {
     user: userType;
     onTitleCardClick: (offer: offerType) => void;
     onCardHover: (offer: offerType) => void;
-    activeItem: boolean;
+    activeItem: string;
     onFavoriteOfferClick: (id: number, favorite: boolean) => void;
 }
 
@@ -71,11 +71,5 @@ const Favorites: React.FunctionComponent<Props> = (props: Props) => {
   );
 };
 
-// Favorites.propTypes = {
-//   favoriteOffers: PropTypes.arrayOf(
-//       PropTypes.shape(favoriteOfferType).isRequired
-//   ).isRequired,
-//   user: PropTypes.shape(userType)
-// };
 
 export default Favorites;

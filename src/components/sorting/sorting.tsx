@@ -44,12 +44,5 @@ const Sorting: React.FunctionComponent<Props> = ({onSortChange, sortType, onSort
 
 };
 
-// Sorting.propTypes = {
-//   onSortChange: PropTypes.func.isRequired,
-//   sortType: PropTypes.string.isRequired,
-//   onSortClick: PropTypes.func.isRequired,
-//   viewSort: PropTypes.bool.isRequired
-// };
-
 
 export default Sorting;

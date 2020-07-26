@@ -1,10 +1,14 @@
 import * as React from 'react';
 import Header from '../header/header';
+import ErrorMessage from '../error-message/error-message';
+import {ResponseStatus} from '../../const';
 import {userType} from '../../types/user';
+import {messageType} from '../../types/message';
 
 interface Props {
   onLoginSubmit: ({login, password}: {login: string; password: string}) => void;
   user: userType;
+  messageServer: messageType;
 }
 
 class SignScreen extends React.PureComponent<Props, {}> {
@@ -65,14 +69,15 @@ class SignScreen extends React.PureComponent<Props, {}> {
             </section>
           </div>
         </main>
+        {this.props.messageServer && this.props.messageServer.status === ResponseStatus.ERROR ?
+        <ErrorMessage
+          messageServer={this.props.messageServer}
+        />
+        : null}
       </div>
     );
   }
 }
 
-// SignScreen.propTypes = {
-//   onLoginSubmit: PropTypes.func,
-//   user: PropTypes.object
-// };
 
 export default SignScreen;

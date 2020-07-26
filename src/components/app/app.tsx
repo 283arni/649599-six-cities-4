@@ -71,21 +71,19 @@ class App extends React.PureComponent<Props, {}> {
       >
         <Switch>
           <Route exact path={AppRoute.MAIN}>
-            {isAuth ?
-              <Main
-                currentCity={currentCity}
-                onTitleCardClick={onTitleClick}
-                hoverOffer={hoverOffer}
-                offers={offers}
-                onCardHover={onCardHover}
-                onCityClick={onCityClick}
-                sortType={sortType}
-                onSortChange={onSortChange}
-                user={user}
-                onFavoriteOfferClick={onFavoriteOfferClick}
-              />
-              : <Redirect to={AppRoute.LOGIN}/>
-            }
+            <Main
+              currentCity={currentCity}
+              onTitleCardClick={onTitleClick}
+              hoverOffer={hoverOffer}
+              offers={offers}
+              onCardHover={onCardHover}
+              onCityClick={onCityClick}
+              sortType={sortType}
+              onSortChange={onSortChange}
+              user={user}
+              onFavoriteOfferClick={onFavoriteOfferClick}
+              messageServer={messageServer}
+            />
           </Route>
           <Route exact path={`${AppRoute.PROPERTY}/:id`} component={({match}) => {
             const foundOffer = offers.find((item) => item.id === +match.params.id);
@@ -111,6 +109,7 @@ class App extends React.PureComponent<Props, {}> {
               <SignScreen
                 onLoginSubmit={onLoginSubmit}
                 user={user}
+                messageServer={messageServer}
               />}
           </Route>
           <Route exact path={AppRoute.FAVORITES}>
@@ -120,7 +119,7 @@ class App extends React.PureComponent<Props, {}> {
               onTitleCardClick={onTitleClick}
               onCardHover={NOOP}
               user={user}
-              activeItem={false}
+              activeItem={currentCity}
             />
           </Route>
         </Switch>
@@ -171,34 +170,6 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-
-// App.propTypes = {
-//   offers: PropTypes.arrayOf(
-//       PropTypes.shape(offerType).isRequired
-//   ).isRequired,
-//   reviews: PropTypes.arrayOf(
-//       PropTypes.shape(reviewType).isRequired
-//   ).isRequired,
-//   offer: PropTypes.object,
-//   onTitleClick: PropTypes.func.isRequired,
-//   onCardHover: PropTypes.func.isRequired,
-//   currentCity: PropTypes.string.isRequired,
-//   onCityClick: PropTypes.func.isRequired,
-//   hoverOffer: PropTypes.shape(offerType),
-//   sortType: PropTypes.string.isRequired,
-//   onSortChange: PropTypes.func.isRequired,
-//   nearOffers: PropTypes.array,
-//   isAuth: PropTypes.bool.isRequired,
-//   onLoginSubmit: PropTypes.func.isRequired,
-//   user: PropTypes.object,
-//   onReviewSubmit: PropTypes.func,
-//   messageServer: PropTypes.object,
-//   isBlocked: PropTypes.bool,
-//   onFavoriteOfferClick: PropTypes.func.isRequired,
-//   favoriteOffers: PropTypes.arrayOf(
-//       PropTypes.shape(favoriteOfferType).isRequired
-//   ).isRequired,
-// };
 
 export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);

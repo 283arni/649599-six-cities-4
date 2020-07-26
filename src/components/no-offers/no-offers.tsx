@@ -28,8 +28,5 @@ const NoOffers: React.FunctionComponent<Props> = ({currentCity}: Props) => {
   );
 };
 
-// NoOffers.propTypes = {
-//   currentCity: PropTypes.string.isRequired
-// };
 
 export default NoOffers;

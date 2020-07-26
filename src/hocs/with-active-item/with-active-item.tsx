@@ -12,7 +12,7 @@ interface InjectingProps {
   onTitleCardClick: () => void;
   onCardHover: () => void;
   onActiveChange: () => void;
-  activeItem: boolean;
+  activeItem: offerType | string;
   onFavoriteOfferClick: () => void;
 }
 

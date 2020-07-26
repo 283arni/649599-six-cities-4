@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`check render ErrorMessage 1`] = `
+<div
+  className="error"
+  style={
+    Object {
+      "backgroundColor": "red",
+      "border": "2px solid pink",
+      "borderRadius": "3px",
+      "color": "pink",
+      "fontSize": "1.5rem",
+      "left": "50%",
+      "minWidth": "300px",
+      "padding": "10px",
+      "position": "fixed",
+      "textAlign": "center",
+      "top": "20px",
+      "transform": "translateX(-50%)",
+      "zIndex": 100,
+    }
+  }
+>
+  ok Status: 200
+</div>
+`;

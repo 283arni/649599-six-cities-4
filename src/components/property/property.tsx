@@ -8,9 +8,11 @@ import MapCity from '../map-city/map-city';
 import ListOffers from '../list-offers/list-offers';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withReviewForm from '../../hocs/with-review-form/with-review-form';
-import {housingType, ONE_STAR, ResponseStatus} from '../../const';
+import {housingType, ONE_STAR, ResponseStatus, AppRoute} from '../../const';
 import ReviewForm from '../review-form/review-form';
 import Header from '../header/header';
+import {Link} from 'react-router-dom';
+import ErrorMessage from '../error-message/error-message';
 
 const ListOffersWrapper = withActiveItem(ListOffers);
 const ReviewFormWrapper = withReviewForm(ReviewForm);
@@ -37,8 +39,7 @@ class Property extends React.PureComponent<Props, {}> {
   render() {
     const {offer, onTitleCardClick, reviews, nearOffers, onCardHover, user, onReviewSubmit, messageServer, isBlocked, onFavoriteOfferClick} = this.props;
     const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner, id, favorite} = offer;
-
-
+    
     return (
       <div className="page">
         <Header
@@ -66,16 +67,16 @@ class Property extends React.PureComponent<Props, {}> {
                   <h1 className="property__name">
                     {title}
                   </h1>
-                  <button
+                  <Link
                     className={`property__bookmark-button ${favorite ? `property__bookmark-button--active` : ``} button`}
-                    type="button"
                     onClick={() => onFavoriteOfferClick(id, favorite)}
+                    to={user ? `${AppRoute.PROPERTY}/${id}` : AppRoute.LOGIN}
                   >
                     <svg className="place-card__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
                     <span className="visually-hidden">To bookmarks</span>
-                  </button>
+                  </Link>
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
@@ -166,45 +167,14 @@ class Property extends React.PureComponent<Props, {}> {
           </div>
         </main>
         {messageServer && messageServer.status === ResponseStatus.ERROR ?
-          <div className="error" style={{
-            minWidth: `300px`,
-            fontSize: `1.5rem`,
-            padding: `10px`,
-            textAlign: `center`,
-            color: `pink`,
-            border: `2px solid pink`,
-            borderRadius: `3px`,
-            backgroundColor: `red`,
-            position: `fixed`,
-            zIndex: 100,
-            top: `20px`,
-            left: `50%`,
-            transform: `translateX(-50%)`
-          }}
-          >
-            {`${messageServer.data.error} Status: ${messageServer.status}`}
-          </div>
+          <ErrorMessage
+            messageServer={messageServer}
+          />
           : null}
       </div>
     );
   }
 }
 
-// Property.propTypes = {
-//   offer: PropTypes.shape(offerType),
-//   onTitleCardClick: PropTypes.func.isRequired,
-//   reviews: PropTypes.arrayOf(
-//       PropTypes.shape(reviewType).isRequired
-//   ).isRequired,
-//   nearOffers: PropTypes.arrayOf(
-//       PropTypes.shape(offerType).isRequired
-//   ),
-//   onCardHover: PropTypes.func.isRequired,
-//   user: PropTypes.shape(userType),
-//   onReviewSubmit: PropTypes.func.isRequired,
-//   messageServer: PropTypes.object,
-//   isBlocked: PropTypes.bool.isRequired,
-//   onFavoriteOfferClick: PropTypes.func.isRequired,
-// };
 
 export default Property;

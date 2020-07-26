@@ -20,10 +20,5 @@ const ReviewsList: React.FunctionComponent<Props> = ({reviews}: Props) => {
   );
 };
 
-// ReviewsList.propTypes = {
-//   reviews: PropTypes.arrayOf(
-//       PropTypes.shape(reviewType).isRequired
-//   ).isRequired
-// };
 
 export default ReviewsList;

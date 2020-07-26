@@ -53,17 +53,5 @@ const ScreenCity: React.FunctionComponent<Props> = (props: Props) => {
   );
 };
 
-// ScreenCity.propTypes = {
-//   currentOffers: PropTypes.arrayOf(
-//       PropTypes.shape(offerType).isRequired
-//   ),
-//   onTitleCardClick: PropTypes.func.isRequired,
-//   onCardHover: PropTypes.func.isRequired,
-//   currentCity: PropTypes.string.isRequired,
-//   hoverOffer: PropTypes.shape(offerType),
-//   sortType: PropTypes.string.isRequired,
-//   onSortChange: PropTypes.func.isRequired,
-//   onFavoriteOfferClick: PropTypes.func.isRequired
-// };
 
 export default ScreenCity;

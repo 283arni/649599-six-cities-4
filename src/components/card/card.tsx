@@ -10,7 +10,7 @@ interface Props {
   onCardHover: (offer: offerType) => void;
   className: string;
   onActiveChange: (offer: offerType) => void;
-  activeItem: boolean;
+  activeItem: offerType | string;
   onFavoriteOfferClick: (id: number, favorite: boolean) => void;
 }
 
@@ -74,14 +74,5 @@ const Card: React.FunctionComponent<Props> = (props: Props) => {
   );
 };
 
-// Card.propTypes = {
-//   offer: PropTypes.shape(offerType).isRequired,
-//   onTitleCardClick: PropTypes.func.isRequired,
-//   onCardHover: PropTypes.func.isRequired,
-//   className: PropTypes.string.isRequired,
-//   onActiveChange: PropTypes.func.isRequired,
-//   activeItem: PropTypes.shape(offerType),
-//   onFavoriteOfferClick: PropTypes.func.isRequired
-// };
 
 export default Card;
