@@ -11,9 +11,9 @@ module.exports = {
     open: true,
     port: 1337,
     proxy: {
-      '/property': {
+      '/offer': {
         target: `http://localhost:1337/`,
-        pathRewrite: {'^/property': ``},
+        pathRewrite: {'^/offer': ``},
       },
     },
     historyApiFallback: true

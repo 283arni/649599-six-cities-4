@@ -70,7 +70,7 @@ class Property extends React.PureComponent<Props, {}> {
                   <Link
                     className={`property__bookmark-button ${favorite ? `property__bookmark-button--active` : ``} button`}
                     onClick={() => onFavoriteOfferClick(id, favorite)}
-                    to={user ? `${AppRoute.PROPERTY}/${id}` : AppRoute.LOGIN}
+                    to={user ? `${AppRoute.OFFER}/${id}` : AppRoute.LOGIN}
                   >
                     <svg className="place-card__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>

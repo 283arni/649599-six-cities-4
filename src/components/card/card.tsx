@@ -64,7 +64,7 @@ const Card: React.FunctionComponent<Props> = (props: Props) => {
         </div>
         <h2 className="place-card__name">
           <Link
-            to={`${AppRoute.PROPERTY}/${offer.id}`}
+            to={`${AppRoute.OFFER}/${offer.id}`}
             onClick={() => onTitleCardClick(offer)}
           >{title}</Link>
         </h2>

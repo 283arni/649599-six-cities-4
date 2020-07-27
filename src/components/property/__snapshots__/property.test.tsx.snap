@@ -141,7 +141,7 @@ exports[`check render Property 1`] = `
             </h1>
             <a
               className="property__bookmark-button  button"
-              href="/property/4"
+              href="/offer/4"
               onClick={[Function]}
             >
               <svg
@@ -719,7 +719,7 @@ exports[`check render Property 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="/property/4"
+                  href="/offer/4"
                   onClick={[Function]}
                 >
                   Beautiful &amp; luxurious apartment at great location
@@ -824,7 +824,7 @@ exports[`check render Property 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="/property/1"
+                  href="/offer/1"
                   onClick={[Function]}
                 >
                   Beautiful &amp; luxurious apartment at great location
@@ -929,7 +929,7 @@ exports[`check render Property 1`] = `
                 className="place-card__name"
               >
                 <a
-                  href="/property/2"
+                  href="/offer/2"
                   onClick={[Function]}
                 >
                   Beautiful &amp; luxurious apartment at great location

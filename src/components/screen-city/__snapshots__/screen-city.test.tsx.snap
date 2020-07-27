@@ -173,7 +173,7 @@ exports[`check render ScreenCity 1`] = `
             className="place-card__name"
           >
             <a
-              href="/property/4"
+              href="/offer/4"
               onClick={[Function]}
             >
               Beautiful &amp; luxurious apartment at great location
@@ -278,7 +278,7 @@ exports[`check render ScreenCity 1`] = `
             className="place-card__name"
           >
             <a
-              href="/property/1"
+              href="/offer/1"
               onClick={[Function]}
             >
               Beautiful &amp; luxurious apartment at great location
@@ -383,7 +383,7 @@ exports[`check render ScreenCity 1`] = `
             className="place-card__name"
           >
             <a
-              href="/property/2"
+              href="/offer/2"
               onClick={[Function]}
             >
               Beautiful &amp; luxurious apartment at great location

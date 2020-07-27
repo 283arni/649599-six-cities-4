@@ -87,7 +87,7 @@ const Operation = {
       });
   },
   setFavoriteOffer: (id, status) => (dispatch, getState, api) => {
-    return api.post(`/favorits/${id}/${+!status}`)
+    return api.post(`/favorite/${id}/${+!status}`)
       .then(() => {
         dispatch(Operation.loadOffers());
         dispatch(Operation.loadFavoriteOffers());
