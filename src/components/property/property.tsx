@@ -39,7 +39,7 @@ class Property extends React.PureComponent<Props, {}> {
   render() {
     const {offer, onTitleCardClick, reviews, nearOffers, onCardHover, user, onReviewSubmit, messageServer, isBlocked, onFavoriteOfferClick} = this.props;
     const {photos, title, description, premium, type, rating, amountBedrooms, maxGustes, price, things, owner, id, favorite} = offer;
-    
+
     return (
       <div className="page">
         <Header

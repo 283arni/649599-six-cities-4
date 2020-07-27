@@ -25,7 +25,7 @@ const ErrorMessage: React.FunctionComponent<Props> = ({messageServer}: Props) =>
     >
       {`${messageServer.data.error} Status: ${messageServer.status}`}
     </div>
-  )
-}
+  );
+};
 
 export default ErrorMessage;

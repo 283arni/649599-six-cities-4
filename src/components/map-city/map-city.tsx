@@ -39,6 +39,11 @@ class MapCity extends React.PureComponent<Props, {}> {
       this._markers.clearLayers();
       this.renderPins();
     }
+
+    if (prevProps.offer && this.props.offers.every((item) => item.id !== prevProps.offer.id)) {
+      this._markers.clearLayers();
+      this.renderPins();
+    }
   }
 
   componentDidMount() {

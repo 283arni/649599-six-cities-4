@@ -70,10 +70,10 @@ class SignScreen extends React.PureComponent<Props, {}> {
           </div>
         </main>
         {this.props.messageServer && this.props.messageServer.status === ResponseStatus.ERROR ?
-        <ErrorMessage
-          messageServer={this.props.messageServer}
-        />
-        : null}
+          <ErrorMessage
+            messageServer={this.props.messageServer}
+          />
+          : null}
       </div>
     );
   }

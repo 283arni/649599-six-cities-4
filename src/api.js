@@ -17,8 +17,6 @@ export const createApi = (onUnauthorized, onError) => {
 
     if (response.status === ResponseStatus.NO_ACCESS) {
       onUnauthorized();
-
-      throw err;
     }
 
     if (response.status === ResponseStatus.ERROR) {

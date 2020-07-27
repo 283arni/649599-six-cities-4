@@ -6,9 +6,9 @@ import {messageServer} from '../../mocks/test/message';
 it(`check render ErrorMessage`, () => {
 
   const tree = renderer.create(
-    <ErrorMessage
-      messageServer={messageServer}
-    />
+      <ErrorMessage
+        messageServer={messageServer}
+      />
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

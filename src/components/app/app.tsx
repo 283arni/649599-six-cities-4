@@ -85,7 +85,7 @@ class App extends React.PureComponent<Props, {}> {
               messageServer={messageServer}
             />
           </Route>
-          <Route exact path={`${AppRoute.PROPERTY}/:id`} component={({match}) => {
+          <Route exact path={`${AppRoute.PROPERTY}/:id`} render={({match}) => {
             const foundOffer = offers.find((item) => item.id === +match.params.id);
 
             return (offer ?
