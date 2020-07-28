@@ -3,8 +3,9 @@ import {createApi} from '../../api';
 import MockAdapter from "axios-mock-adapter";
 import {offers} from '../../mocks/test/offers';
 import {reviews} from '../../mocks/test/reviews';
+import {NOOP} from '../../const';
 
-const api = createApi(() => {});
+const api = createApi(NOOP);
 
 describe(`test work Reducer`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -79,7 +80,7 @@ describe(`test work Operation`, () => {
       .onGet(`/hotels`)
       .reply(200, offers);
 
-    return offersLoader(dispatch, () => {}, api)
+    return offersLoader(dispatch, NOOP, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -98,7 +99,7 @@ describe(`test work Operation`, () => {
       .onGet(`/hotels/3/nearby`)
       .reply(200, [{fake: true}]);
 
-    return offersNearLoader(dispatch, () => {}, api)
+    return offersNearLoader(dispatch, NOOP, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -117,7 +118,7 @@ describe(`test work Operation`, () => {
       .onGet(`/comments/3`)
       .reply(200, [{fake: true}]);
 
-    return reviewsLoader(dispatch, () => {}, api)
+    return reviewsLoader(dispatch, NOOP, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {

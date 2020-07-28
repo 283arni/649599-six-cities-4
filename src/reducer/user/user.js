@@ -1,4 +1,4 @@
-import {AuthorizationStatus} from '../../const';
+import {AuthorizationStatus, ResponseStatus} from '../../const';
 import {extend} from '../../utils';
 import UserModel from '../../adapters/user-model';
 
@@ -31,7 +31,7 @@ const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then((response) => {
-        if (response.status === 200) {
+        if (response.status === ResponseStatus.SUCCESS) {
           const convertUser = UserModel.parseUser(response.data);
           dispatch(ActionCreator.setUser(convertUser));
         }
@@ -46,7 +46,7 @@ const Operation = {
       password: authData.password,
     })
       .then((response) => {
-        if (response.status === 200) {
+        if (response.status === ResponseStatus.SUCCESS) {
           const convertUser = UserModel.parseUser(response.data);
           dispatch(ActionCreator.setUser(convertUser));
         }

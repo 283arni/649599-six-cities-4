@@ -1,7 +1,7 @@
 const path = require(`path`);
 
 module.exports = {
-  entry: `./src/index.js`,
+  entry: `./src/index.tsx`,
   output: {
     filename: `bundle.js`,
     path: path.join(__dirname, `public`)
@@ -11,9 +11,9 @@ module.exports = {
     open: true,
     port: 1337,
     proxy: {
-      '/property': {
+      '/offer': {
         target: `http://localhost:1337/`,
-        pathRewrite: {'^/property': ``},
+        pathRewrite: {'^/offer': ``},
       },
     },
     historyApiFallback: true
@@ -26,11 +26,15 @@ module.exports = {
         use: {
           loader: `babel-loader`,
         },
+      },
+      {
+        test: /\.(tsx|ts)?$/,
+        loader: `ts-loader`
       }
     ],
   },
   devtool: `source-map`,
   resolve: {
-    extensions: [`.js`, `.jsx`]
+    extensions: [`.js`, `.jsx`, `.ts`, `.tsx`]
   }
 };

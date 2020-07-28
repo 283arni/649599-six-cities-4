@@ -75,7 +75,6 @@ const Operation = {
         dispatch(ActionCreator.setBlocking(false));
       })
       .catch((err) => {
-        dispatch(ActionCreator.loadMessageServer(err.response));
         dispatch(ActionCreator.setBlocking(false));
 
         throw err;
@@ -92,10 +91,6 @@ const Operation = {
       .then(() => {
         dispatch(Operation.loadOffers());
         dispatch(Operation.loadFavoriteOffers());
-      })
-      .catch((err) => {
-
-        throw err;
       });
   }
 };
