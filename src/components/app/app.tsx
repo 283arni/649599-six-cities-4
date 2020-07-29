@@ -19,114 +19,113 @@ import history from '../../history';
 import {AppRoute, NOOP} from '../../const';
 
 interface Props {
-    offers: offerType[];
-    reviews: reviewType[];
-    offer: offerType;
-    onTitleClick: () => void;
-    onCardHover: () => void;
-    currentCity: string;
-    onCityClick: () => void;
-    hoverOffer: offerType;
-    sortType: string;
-    onSortChange: () => void;
-    nearOffers: offerType[];
-    isAuth: boolean;
-    onLoginSubmit: () => void;
-    user: userType;
-    onReviewSubmit: () => void;
-    messageServer: messageType;
-    isBlocked: boolean;
-    onFavoriteOfferClick: () => void;
-    favoriteOffers: favoriteOfferType[];
+  offers: offerType[];
+  reviews: reviewType[];
+  offer: offerType;
+  onTitleClick: () => void;
+  onCardHover: () => void;
+  currentCity: string;
+  onCityClick: () => void;
+  hoverOffer: offerType;
+  sortType: string;
+  onSortChange: () => void;
+  nearOffers: offerType[];
+  isAuth: boolean;
+  onLoginSubmit: () => void;
+  user: userType;
+  onReviewSubmit: () => void;
+  messageServer: messageType;
+  isBlocked: boolean;
+  onFavoriteOfferClick: () => void;
+  favoriteOffers: favoriteOfferType[];
 }
 
-class App extends React.PureComponent<Props, {}> {
+const App: React.FunctionComponent<Props> = (props: Props) => {
 
-  render() {
-    const {
-      isBlocked,
-      onReviewSubmit,
-      offer,
-      offers,
-      onTitleClick,
-      onCardHover,
-      currentCity,
-      onCityClick,
-      hoverOffer,
-      sortType,
-      onSortChange,
-      reviews,
-      nearOffers,
-      isAuth,
-      onLoginSubmit,
-      user,
-      messageServer,
-      onFavoriteOfferClick,
-      favoriteOffers
-    } = this.props;
+  const {
+    isBlocked,
+    onReviewSubmit,
+    offer,
+    offers,
+    onTitleClick,
+    onCardHover,
+    currentCity,
+    onCityClick,
+    hoverOffer,
+    sortType,
+    onSortChange,
+    reviews,
+    nearOffers,
+    isAuth,
+    onLoginSubmit,
+    user,
+    messageServer,
+    onFavoriteOfferClick,
+    favoriteOffers
+  } = props;
 
-    return (
-      <Router
-        history={history}
-      >
-        <Switch>
-          <Route exact path={AppRoute.MAIN}>
-            <Main
-              currentCity={currentCity}
-              onTitleCardClick={onTitleClick}
-              hoverOffer={hoverOffer}
-              offers={offers}
-              onCardHover={onCardHover}
-              onCityClick={onCityClick}
-              sortType={sortType}
-              onSortChange={onSortChange}
-              user={user}
-              onFavoriteOfferClick={onFavoriteOfferClick}
-              messageServer={messageServer}
-            />
-          </Route>
-          <Route exact path={`${AppRoute.OFFER}/:id`} render={({match}) => {
-            const foundOffer = offers.find((item) => item.id === +match.params.id);
+  return (
+    <Router
+      history={history}
+    >
+      <Switch>
+        <Route exact path={AppRoute.MAIN}>
+          <Main
+            currentCity={currentCity}
+            onTitleCardClick={onTitleClick}
+            hoverOffer={hoverOffer}
+            offers={offers}
+            onCardHover={onCardHover}
+            onCityClick={onCityClick}
+            sortType={sortType}
+            onSortChange={onSortChange}
+            user={user}
+            onFavoriteOfferClick={onFavoriteOfferClick}
+            messageServer={messageServer}
+          />
+        </Route>
+        <Route exact path={`${AppRoute.OFFER}/:id`} render={({match}) => {
+          const foundOffer = offers.find((item) => item.id === +match.params.id);
 
-            return (offer ?
-              <Property
-                offer={foundOffer}
-                reviews={reviews}
-                nearOffers={nearOffers}
-                onTitleCardClick={onTitleClick}
-                onCardHover={NOOP}
-                user={user}
-                onReviewSubmit={onReviewSubmit}
-                messageServer={messageServer}
-                isBlocked={isBlocked}
-                onFavoriteOfferClick={onFavoriteOfferClick}
-              /> : null);
-
-          }}/>
-          <Route exact path={AppRoute.LOGIN}>
-            {isAuth ? <Redirect to={AppRoute.MAIN}/>
-              :
-              <SignScreen
-                onLoginSubmit={onLoginSubmit}
-                user={user}
-                messageServer={messageServer}
-              />}
-          </Route>
-          <Route exact path={AppRoute.FAVORITES}>
-            <Favorites
-              favoriteOffers={favoriteOffers}
-              onFavoriteOfferClick={onFavoriteOfferClick}
+          return (offer ?
+            <Property
+              offer={foundOffer}
+              reviews={reviews}
+              nearOffers={nearOffers}
               onTitleCardClick={onTitleClick}
               onCardHover={NOOP}
               user={user}
-              activeItem={currentCity}
-            />
-          </Route>
-        </Switch>
-      </Router>
-    );
-  }
-}
+              onReviewSubmit={onReviewSubmit}
+              messageServer={messageServer}
+              isBlocked={isBlocked}
+              onFavoriteOfferClick={onFavoriteOfferClick}
+            /> : null);
+
+        }}/>
+        <Route exact path={AppRoute.LOGIN}>
+          {isAuth ? <Redirect to={AppRoute.MAIN}/>
+            :
+            <SignScreen
+              onLoginSubmit={onLoginSubmit}
+              user={user}
+              messageServer={messageServer}
+            />}
+        </Route>
+        <Route exact path={AppRoute.FAVORITES}>
+          <Favorites
+            favoriteOffers={favoriteOffers}
+            onFavoriteOfferClick={onFavoriteOfferClick}
+            onTitleCardClick={onTitleClick}
+            onCardHover={NOOP}
+            user={user}
+            activeItem={currentCity}
+          />
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
+
 
 const mapStateToProps = (state) => ({
   offers: getConvertOffers(state),

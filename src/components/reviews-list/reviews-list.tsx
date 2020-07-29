@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Review from '../review/review';
+import {cutReviews} from '../../utils';
 import {reviewType} from '../../types/reviews';
 
 interface Props {
@@ -8,9 +9,11 @@ interface Props {
 
 const ReviewsList: React.FunctionComponent<Props> = ({reviews}: Props) => {
 
+  const newReviews = cutReviews(reviews);
+
   return (
     <ul className="reviews__list">
-      {reviews.map((review) =>
+      {newReviews.map((review) =>
         <Review
           key={review.id}
           review={review}

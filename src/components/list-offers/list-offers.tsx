@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Card from '../card/card';
 import {offerType} from '../../types/offers';
+import {userType} from '../../types/user';
 import {NameBlockCard} from '../../const';
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
     onActiveChange: (offer: offerType) => void;
     activeItem: offerType;
     onFavoriteOfferClick: (id: number, favorite: boolean) => void;
+    user: userType;
 }
 
 const ListOffers: React.FunctionComponent<Props> = (props: Props) => {

@@ -6,6 +6,7 @@ import withSorting from '../../hocs/with-sorting/with-sorting';
 import ListOffers from '../list-offers/list-offers';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {offerType} from '../../types/offers';
+import {userType} from '../../types/user';
 const ListOffersWrapper = withActiveItem(ListOffers);
 const SortingWrapper = withSorting(Sorting);
 
@@ -18,10 +19,11 @@ interface Props {
   sortType: string;
   onSortChange: () => void;
   onFavoriteOfferClick: () => void;
+  user: userType;
 }
 
 const ScreenCity: React.FunctionComponent<Props> = (props: Props) => {
-  const {currentCity, sortType, onSortChange, onTitleCardClick, onCardHover, hoverOffer, currentOffers, onFavoriteOfferClick} = props;
+  const {currentCity, sortType, onSortChange, onTitleCardClick, onCardHover, hoverOffer, currentOffers, onFavoriteOfferClick, user} = props;
 
 
   return (
@@ -39,6 +41,7 @@ const ScreenCity: React.FunctionComponent<Props> = (props: Props) => {
           onCardHover={onCardHover}
           onFavoriteOfferClick={onFavoriteOfferClick}
           className={`cities__places-list`}
+          user={user}
         />
       </section>
       <div className="cities__right-section">

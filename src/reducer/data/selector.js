@@ -84,6 +84,6 @@ export const getFiltredNearOffers = createSelector(
 export const getReverseReviews = createSelector(
     getConvertReviews,
     (reviews) => {
-      return reviews.reverse().slice(0, Slicer.REVIEWS);
+      return reviews.reverse();
     }
 );

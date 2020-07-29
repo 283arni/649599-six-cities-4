@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {offerType} from '../../types/offers';
+import {userType} from '../../types/user';
 import {Link} from 'react-router-dom';
 import {AppRoute, ONE_STAR} from '../../const';
 import {getCurrentName} from '../../utils';
@@ -12,11 +13,11 @@ interface Props {
   onActiveChange: (offer: offerType) => void;
   activeItem: offerType | string;
   onFavoriteOfferClick: (id: number, favorite: boolean) => void;
+  user: userType;
 }
 
 const Card: React.FunctionComponent<Props> = (props: Props) => {
-
-  const {offer, onTitleCardClick, onCardHover, className, onActiveChange, onFavoriteOfferClick} = props;
+  const {offer, onTitleCardClick, onCardHover, className, onActiveChange, onFavoriteOfferClick, user} = props;
   const {photo, premium, price, title, type, rating, favorite, id} = offer;
 
   const currentName = getCurrentName(className);
@@ -45,16 +46,16 @@ const Card: React.FunctionComponent<Props> = (props: Props) => {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button
+          <Link
             className={`place-card__bookmark-button ${favorite ? `place-card__bookmark-button--active` : ``} button`}
-            type="button"
-            onClick={() => onFavoriteOfferClick(id, favorite)}
+            to={user ? {} : AppRoute.LOGIN}
+            onClick={user ? () => onFavoriteOfferClick(id, favorite) : null}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
             <span className="visually-hidden">To bookmarks</span>
-          </button>
+          </Link>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

@@ -51,10 +51,10 @@ exports[`check render ListOffers 1`] = `
             / night
           </span>
         </div>
-        <button
+        <a
           className="place-card__bookmark-button  button"
+          href="/"
           onClick={[Function]}
-          type="button"
         >
           <svg
             className="place-card__bookmark-icon"
@@ -70,7 +70,7 @@ exports[`check render ListOffers 1`] = `
           >
             To bookmarks
           </span>
-        </button>
+        </a>
       </div>
       <div
         className="place-card__rating rating"
@@ -156,10 +156,10 @@ exports[`check render ListOffers 1`] = `
             / night
           </span>
         </div>
-        <button
+        <a
           className="place-card__bookmark-button  button"
+          href="/"
           onClick={[Function]}
-          type="button"
         >
           <svg
             className="place-card__bookmark-icon"
@@ -175,7 +175,7 @@ exports[`check render ListOffers 1`] = `
           >
             To bookmarks
           </span>
-        </button>
+        </a>
       </div>
       <div
         className="place-card__rating rating"
@@ -261,10 +261,10 @@ exports[`check render ListOffers 1`] = `
             / night
           </span>
         </div>
-        <button
+        <a
           className="place-card__bookmark-button  button"
+          href="/"
           onClick={[Function]}
-          type="button"
         >
           <svg
             className="place-card__bookmark-icon"
@@ -280,7 +280,7 @@ exports[`check render ListOffers 1`] = `
           >
             To bookmarks
           </span>
-        </button>
+        </a>
       </div>
       <div
         className="place-card__rating rating"

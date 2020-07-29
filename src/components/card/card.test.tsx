@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import Card from './card';
 import {offers} from '../../mocks/test/offers';
+import {user} from '../../mocks/test/user';
 import {Router} from 'react-router-dom';
 import history from '../../history';
 
@@ -23,6 +24,7 @@ it(`check render Card`, () => {
           onActiveChange={onTitleCardClick}
           activeItem={`Paris`}
           onFavoriteOfferClick={onFavoriteOfferClick}
+          user={user}
         />
       </Router>
   ).toJSON();

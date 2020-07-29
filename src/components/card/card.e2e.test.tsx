@@ -3,6 +3,7 @@ import {configure, shallow} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 import Card from "./card";
 import {offers} from '../../mocks/test/offers';
+import {user} from '../../mocks/test/user';
 import {Link} from 'react-router-dom';
 
 configure({
@@ -26,15 +27,18 @@ it(`to check Card should return offer and click on title`, () => {
         onActiveChange={onActiveChange}
         activeItem={`Paris`}
         onFavoriteOfferClick={onFavoriteOfferClick}
+        user={user}
       />
   );
 
   const place = card.find(`.place-card`);
-  const titleCard = card.find(Link);
+  const links = card.find(Link);
 
+  links.forEach((link) => {
+    link.simulate(`click`);
+  });
 
   place.simulate(`onmouseover`, onCardHover(offers[0]));
-  titleCard.simulate(`click`);
 
   expect(onCardHover.mock.calls[0][0]).toMatchObject(offers[0]);
   expect(onTitleCardClick).toHaveBeenCalled();

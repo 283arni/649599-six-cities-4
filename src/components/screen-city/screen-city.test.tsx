@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import ScreenCity from './screen-city';
 import {offers} from '../../mocks/test/offers';
+import {user} from '../../mocks/test/user';
 import {Router} from 'react-router-dom';
 import history from '../../history';
 
@@ -26,6 +27,7 @@ it(`check render ScreenCity`, () => {
         hoverOffer={offers[0]}
         currentOffers={offers}
         onFavoriteOfferClick={onFavoriteOfferClick}
+        user={user}
       />
     </Router>
   ), {

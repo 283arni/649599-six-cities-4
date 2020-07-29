@@ -1,4 +1,4 @@
-import {SortOffersType, NameBlockCard, MAX_RENDER_CITY} from './const';
+import {SortOffersType, NameBlockCard, MAX_RENDER_CITY, Slicer} from './const';
 
 
 const monthNames = [`January`, `February`, `March`, `April`, `May`, `June`,
@@ -18,9 +18,9 @@ export const extend = (oldData, newData) => {
 export const sortOffers = (currentOffers, sortType) => {
   switch (sortType) {
     case SortOffersType.PRICE_HIGH:
-      return currentOffers.sort((a, b) => b.price - a.price);
+      return currentOffers.sort((a, b) => a.price - b.price );
     case SortOffersType.PRICE_LOW:
-      return currentOffers.sort((a, b) => a.price - b.price);
+      return currentOffers.sort((a, b) => b.price - a.price);
     case SortOffersType.TOP:
       return currentOffers.sort((a, b) => b.rating - a.rating);
   }
@@ -63,4 +63,8 @@ export const getOffersSortedCities = (offers) => {
       offers: offers.filter((offer) => item === offer.city.name)
     };
   });
+};
+
+export const cutReviews = (reviews) => {
+  return reviews.slice(0, Slicer.REVIEWS);
 };
